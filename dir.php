@@ -1,11 +1,13 @@
 <?php
 
-$url = "http://archives.bassdrivearchive.com";
+$url = "http://archives.bassdrivearchive.com/";
+$sets = [];
 
-fetchDirectoryLinks("", $url);
+fetchDirectoryLinks("", $url, $sets);
 
+echo json_encode($sets);
 
-function fetchDirectoryLinks($url, $base = "") {
+function fetchDirectoryLinks($url, $base = "", &$sets) {
 
   if (!$base) {
     $base = $url;
@@ -17,17 +19,14 @@ function fetchDirectoryLinks($url, $base = "") {
   
   array_shift($hrefs[1]);
   foreach ($hrefs[1] as $link) {
-
-    
-
     $base = $url;
     if (!preg_match("*/$*", $link)) {
-      echo $url.$link."<br />";
+      $sets[] = $url.$link;
     } else {
-      fetchDirectoryLinks($link, $base);
+      fetchDirectoryLinks($link, $base, $sets[$url.$link]);
     }
     
   }
 
-  return $hrefs[1];
+  return $sets;
 }
