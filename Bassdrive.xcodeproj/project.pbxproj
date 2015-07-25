@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		38B8365A1B63CBB300C41F02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B836591B63CBB300C41F02 /* AppDelegate.swift */; };
-		38B8365C1B63CBB300C41F02 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B8365B1B63CBB300C41F02 /* ViewController.swift */; };
 		38B8365F1B63CBB300C41F02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38B8365D1B63CBB300C41F02 /* Main.storyboard */; };
 		38B836611B63CBB300C41F02 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38B836601B63CBB300C41F02 /* Images.xcassets */; };
 		38B836641B63CBB300C41F02 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B836621B63CBB300C41F02 /* LaunchScreen.xib */; };
 		38B836701B63CBB400C41F02 /* BassdriveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B8366F1B63CBB400C41F02 /* BassdriveTests.swift */; };
+		C8B7FDF21B643705000053BE /* SetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B7FDF11B643705000053BE /* SetsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,13 +29,13 @@
 		38B836541B63CBB300C41F02 /* Bassdrive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bassdrive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38B836581B63CBB300C41F02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38B836591B63CBB300C41F02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		38B8365B1B63CBB300C41F02 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		38B8365E1B63CBB300C41F02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		38B836601B63CBB300C41F02 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		38B836631B63CBB300C41F02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		38B836691B63CBB400C41F02 /* BassdriveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BassdriveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		38B8366E1B63CBB400C41F02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38B8366F1B63CBB400C41F02 /* BassdriveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BassdriveTests.swift; sourceTree = "<group>"; };
+		C8B7FDF11B643705000053BE /* SetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetsViewController.swift; path = ../SetsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,8 +77,8 @@
 		38B836561B63CBB300C41F02 /* Bassdrive */ = {
 			isa = PBXGroup;
 			children = (
+				C8B7FDF31B643713000053BE /* ViewController */,
 				38B836591B63CBB300C41F02 /* AppDelegate.swift */,
-				38B8365B1B63CBB300C41F02 /* ViewController.swift */,
 				38B8365D1B63CBB300C41F02 /* Main.storyboard */,
 				38B836601B63CBB300C41F02 /* Images.xcassets */,
 				38B836621B63CBB300C41F02 /* LaunchScreen.xib */,
@@ -110,6 +110,14 @@
 				38B8366E1B63CBB400C41F02 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C8B7FDF31B643713000053BE /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C8B7FDF11B643705000053BE /* SetsViewController.swift */,
+			);
+			name = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,8 +220,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38B8365C1B63CBB300C41F02 /* ViewController.swift in Sources */,
 				38B8365A1B63CBB300C41F02 /* AppDelegate.swift in Sources */,
+				C8B7FDF21B643705000053BE /* SetsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +419,7 @@
 				38B836751B63CBB400C41F02 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		38B836761B63CBB400C41F02 /* Build configuration list for PBXNativeTarget "BassdriveTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +428,7 @@
 				38B836781B63CBB400C41F02 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
