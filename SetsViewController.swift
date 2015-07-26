@@ -13,7 +13,6 @@ import SwiftyJSON
 class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var sets:JSON?
-    var data = [1 : "link 1", 2 : "link 2", 3 : "link 3"]
     let requestURL:String = "http://localhost:8080/parse.php"
     
     @IBOutlet var tableView:UITableView!
@@ -34,9 +33,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let indexPath:NSIndexPath = self.tableView.indexPathForSelectedRow()!
 
             var key:String? = self.sets?.dictionaryObject?.keys.array[indexPath.row] ?? ""
-            println(key)
             destVC.sets = self.sets![key!]
-            println(destVC.sets)
         }
     }
     
@@ -63,6 +60,10 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        let cell:RSSetTableViewCell = tableView.cellForRowAtIndexPath(indexPath) as! RSSetTableViewCell
+        if (cell.cellType == .MediaFile) {
+            
+        }
     }
+
 }
