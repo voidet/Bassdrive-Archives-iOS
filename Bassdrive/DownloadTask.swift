@@ -27,7 +27,15 @@ class DownloadTask {
             }
         }
     }
-    var percentageCompleted:Double = 0
+    var percentageCompleted:Double = 0 {
+        didSet {
+            if let monitor = self.progressMonitor {
+                monitor(self.percentageCompleted)
+            }
+        }
+    }
+    var progressMonitor:((Double) -> (Void))?
+    
     private var activeRequest:Request?
     
     private func beginDownload() {

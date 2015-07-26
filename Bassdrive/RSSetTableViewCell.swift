@@ -19,6 +19,8 @@ class RSSetTableViewCell: UITableViewCell {
 
     @IBOutlet var bassdriveSetTitleLabel:UILabel!
     @IBOutlet var bassdriveSetImageView:UIImageView!
+    @IBOutlet var progressBarSize:NSLayoutConstraint!
+    
     var bassdriveSetUrlString:String?
     var bassdriveSet:BassdriveSet?
     var cellType:Type?

@@ -61,6 +61,9 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             bassdriveSet.bassdriveSetTitle = title
             bassdriveSet.bassdriveSetUrlString = title
             cell.bassdriveSet = bassdriveSet
+            bassdriveSet.downloadTask?.progressMonitor = { progress in
+                println(progress)
+            }
             
         }
         
