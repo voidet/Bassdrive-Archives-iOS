@@ -21,7 +21,9 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         if (self.sets == nil) {
             Alamofire.request(.GET, requestURL).responseJSON { _, _, responseJSON, _ in
-                self.sets = JSON(responseJSON!)
+                if let sets = responseJSON as? Dictionary<String, AnyObject> {
+                    self.sets = JSON(sets)
+                }
                 self.tableView.reloadData()
             }
         }
@@ -52,8 +54,14 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.bassdriveSetTitleLabel.text = key
             cell.cellType = .Folder
         } else if (type == .Array) {
-            cell.bassdriveSetTitleLabel.text = self.sets?.arrayObject![indexPath.row] as? String ?? ""
             cell.cellType = .MediaFile
+            
+            var bassdriveSet = BassdriveSet()
+            let title:String = self.sets?.arrayObject![indexPath.row] as! String
+            bassdriveSet.bassdriveSetTitle = title
+            bassdriveSet.bassdriveSetUrlString = title
+            cell.bassdriveSet = bassdriveSet
+            
         }
         
         return cell
@@ -64,6 +72,17 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if (cell.cellType == .MediaFile) {
             
         }
+        self.tableView.deselectRowAtIndexPath(self.tableView.indexPathForSelectedRow()!, animated: true)
+        
+        if let bassdriveSet = cell.bassdriveSet {
+            if (bassdriveSet.exists()) {
+                // start playing
+            } else {
+                // start downloading
+                RSDownloadManager.sharedManager.enqueForDownload(bassdriveSet)
+            }
+        }
+       
     }
 
 }

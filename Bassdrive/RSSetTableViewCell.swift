@@ -19,7 +19,8 @@ class RSSetTableViewCell: UITableViewCell {
 
     @IBOutlet var bassdriveSetTitleLabel:UILabel!
     @IBOutlet var bassdriveSetImageView:UIImageView!
-    
+    var bassdriveSetUrlString:String?
+    var bassdriveSet:BassdriveSet?
     var cellType:Type?
 
     override func prepareForReuse() {

@@ -6,8 +6,13 @@
 //  Copyright (c) 2015 Richard Sbresny. All rights reserved.
 //
 
-import UIKit
-
-class BassdriveSet: NSObject {
+struct BassdriveSet {
+    
+    var bassdriveSetUrlString:String?
+    var bassdriveSetTitle:String?
    
+    func exists() -> Bool {
+        return false
+    }
+    
 }

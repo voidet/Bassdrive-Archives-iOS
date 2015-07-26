@@ -12,6 +12,10 @@
 		38B836611B63CBB300C41F02 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38B836601B63CBB300C41F02 /* Images.xcassets */; };
 		38B836641B63CBB300C41F02 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B836621B63CBB300C41F02 /* LaunchScreen.xib */; };
 		38B836701B63CBB400C41F02 /* BassdriveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B8366F1B63CBB400C41F02 /* BassdriveTests.swift */; };
+		38C9111D1B65180800F4EBC7 /* launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C9111C1B65180800F4EBC7 /* launch.png */; };
+		38C9111F1B65185C00F4EBC7 /* launch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C9111E1B65185C00F4EBC7 /* launch@2x.png */; };
+		38C911221B651BD200F4EBC7 /* BassdriveSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C911211B651BD200F4EBC7 /* BassdriveSet.swift */; };
+		38C911251B65205F00F4EBC7 /* RSExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C911241B65205F00F4EBC7 /* RSExt.swift */; };
 		38F317001B6459B500FAE882 /* RSSetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F316FF1B6459B500FAE882 /* RSSetTableViewCell.swift */; };
 		38F317031B646B4200FAE882 /* RSDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F317021B646B4200FAE882 /* RSDownloadManager.swift */; };
 		38F317061B646B8400FAE882 /* DownloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F317051B646B8400FAE882 /* DownloadTask.swift */; };
@@ -40,6 +44,10 @@
 		38B836691B63CBB400C41F02 /* BassdriveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BassdriveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		38B8366E1B63CBB400C41F02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38B8366F1B63CBB400C41F02 /* BassdriveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BassdriveTests.swift; sourceTree = "<group>"; };
+		38C9111C1B65180800F4EBC7 /* launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch.png; sourceTree = "<group>"; };
+		38C9111E1B65185C00F4EBC7 /* launch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch@2x.png"; sourceTree = "<group>"; };
+		38C911211B651BD200F4EBC7 /* BassdriveSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BassdriveSet.swift; sourceTree = "<group>"; };
+		38C911241B65205F00F4EBC7 /* RSExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSExt.swift; sourceTree = "<group>"; };
 		38F316FF1B6459B500FAE882 /* RSSetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSetTableViewCell.swift; sourceTree = "<group>"; };
 		38F317021B646B4200FAE882 /* RSDownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSDownloadManager.swift; sourceTree = "<group>"; };
 		38F317051B646B8400FAE882 /* DownloadTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadTask.swift; sourceTree = "<group>"; };
@@ -90,11 +98,14 @@
 		38B836561B63CBB300C41F02 /* Bassdrive */ = {
 			isa = PBXGroup;
 			children = (
-				38F317041B646B7700FAE882 /* DataTypes */,
-				38F317011B646B3000FAE882 /* Managers */,
+				38C911231B65204D00F4EBC7 /* Extensions */,
 				38B836591B63CBB300C41F02 /* AppDelegate.swift */,
+				38C9111B1B6517FD00F4EBC7 /* Assets */,
+				38F317041B646B7700FAE882 /* DataTypes */,
 				38B836601B63CBB300C41F02 /* Images.xcassets */,
 				38B836621B63CBB300C41F02 /* LaunchScreen.xib */,
+				38F317011B646B3000FAE882 /* Managers */,
+				38C911201B651BC600F4EBC7 /* Models */,
 				38B836571B63CBB300C41F02 /* Supporting Files */,
 				38F316FE1B64599B00FAE882 /* UI */,
 				38F316FD1B64599600FAE882 /* View */,
@@ -126,6 +137,31 @@
 				38B8366E1B63CBB400C41F02 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		38C9111B1B6517FD00F4EBC7 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				38C9111E1B65185C00F4EBC7 /* launch@2x.png */,
+				38C9111C1B65180800F4EBC7 /* launch.png */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		38C911201B651BC600F4EBC7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				38C911211B651BD200F4EBC7 /* BassdriveSet.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		38C911231B65204D00F4EBC7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				38C911241B65205F00F4EBC7 /* RSExt.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		38F316FD1B64599600FAE882 /* View */ = {
@@ -269,9 +305,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38C9111D1B65180800F4EBC7 /* launch.png in Resources */,
 				38B8365F1B63CBB300C41F02 /* Main.storyboard in Resources */,
 				38B836641B63CBB300C41F02 /* LaunchScreen.xib in Resources */,
 				38B836611B63CBB300C41F02 /* Images.xcassets in Resources */,
+				38C9111F1B65185C00F4EBC7 /* launch@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,8 +375,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38C911251B65205F00F4EBC7 /* RSExt.swift in Sources */,
 				38F317061B646B8400FAE882 /* DownloadTask.swift in Sources */,
 				38B8365A1B63CBB300C41F02 /* AppDelegate.swift in Sources */,
+				38C911221B651BD200F4EBC7 /* BassdriveSet.swift in Sources */,
 				C8B7FDF21B643705000053BE /* SetsViewController.swift in Sources */,
 				38F317031B646B4200FAE882 /* RSDownloadManager.swift in Sources */,
 				38F317001B6459B500FAE882 /* RSSetTableViewCell.swift in Sources */,
@@ -471,7 +511,9 @@
 			baseConfigurationReference = 7F8C5CD8C90E5A304C2ACCF7 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = Bassdrive/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -482,7 +524,9 @@
 			baseConfigurationReference = 92D0CB75744113ACDB0A4345 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = Bassdrive/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
