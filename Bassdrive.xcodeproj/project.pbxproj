@@ -13,6 +13,8 @@
 		38B836641B63CBB300C41F02 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B836621B63CBB300C41F02 /* LaunchScreen.xib */; };
 		38B836701B63CBB400C41F02 /* BassdriveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B8366F1B63CBB400C41F02 /* BassdriveTests.swift */; };
 		38F317001B6459B500FAE882 /* RSSetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F316FF1B6459B500FAE882 /* RSSetTableViewCell.swift */; };
+		38F317031B646B4200FAE882 /* RSDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F317021B646B4200FAE882 /* RSDownloadManager.swift */; };
+		38F317061B646B8400FAE882 /* DownloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F317051B646B8400FAE882 /* DownloadTask.swift */; };
 		5D952F7C97C8A3F9083BB551 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F42DB6D95ACF9C747BFACF5 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C8B7FDF21B643705000053BE /* SetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B7FDF11B643705000053BE /* SetsViewController.swift */; };
 /* End PBXBuildFile section */
@@ -39,6 +41,8 @@
 		38B8366E1B63CBB400C41F02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38B8366F1B63CBB400C41F02 /* BassdriveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BassdriveTests.swift; sourceTree = "<group>"; };
 		38F316FF1B6459B500FAE882 /* RSSetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSetTableViewCell.swift; sourceTree = "<group>"; };
+		38F317021B646B4200FAE882 /* RSDownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSDownloadManager.swift; sourceTree = "<group>"; };
+		38F317051B646B8400FAE882 /* DownloadTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadTask.swift; sourceTree = "<group>"; };
 		7F8C5CD8C90E5A304C2ACCF7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		92D0CB75744113ACDB0A4345 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		C8B7FDF11B643705000053BE /* SetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetsViewController.swift; path = ../SetsViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +90,8 @@
 		38B836561B63CBB300C41F02 /* Bassdrive */ = {
 			isa = PBXGroup;
 			children = (
+				38F317041B646B7700FAE882 /* DataTypes */,
+				38F317011B646B3000FAE882 /* Managers */,
 				38B836591B63CBB300C41F02 /* AppDelegate.swift */,
 				38B836601B63CBB300C41F02 /* Images.xcassets */,
 				38B836621B63CBB300C41F02 /* LaunchScreen.xib */,
@@ -136,6 +142,22 @@
 				38B8365D1B63CBB300C41F02 /* Main.storyboard */,
 			);
 			name = UI;
+			sourceTree = "<group>";
+		};
+		38F317011B646B3000FAE882 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				38F317021B646B4200FAE882 /* RSDownloadManager.swift */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
+		38F317041B646B7700FAE882 /* DataTypes */ = {
+			isa = PBXGroup;
+			children = (
+				38F317051B646B8400FAE882 /* DownloadTask.swift */,
+			);
+			name = DataTypes;
 			sourceTree = "<group>";
 		};
 		7AFD6D6DEDAEB47E65A7015F /* Pods */ = {
@@ -210,6 +232,7 @@
 		38B8364C1B63CBB300C41F02 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Richard Sbresny";
 				TargetAttributes = {
@@ -314,8 +337,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38F317061B646B8400FAE882 /* DownloadTask.swift in Sources */,
 				38B8365A1B63CBB300C41F02 /* AppDelegate.swift in Sources */,
 				C8B7FDF21B643705000053BE /* SetsViewController.swift in Sources */,
+				38F317031B646B4200FAE882 /* RSDownloadManager.swift in Sources */,
 				38F317001B6459B500FAE882 /* RSSetTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
