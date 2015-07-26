@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xbc-G5-O0v">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Sets View Controller-->
@@ -16,11 +17,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lzy-zJ-tcU">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lzy-zJ-tcU">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="setTitleCell" id="NB6-Nu-XdY" customClass="RSSetTableViewCell" customModule="Bassdrive" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NB6-Nu-XdY" id="H20-sf-ctz">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XYx-p5-a8w">
+                                                    <rect key="frame" x="10" y="10" width="59" height="59"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="XYx-p5-a8w" secondAttribute="height" multiplier="1:1" id="hmb-lJ-3kr"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zk4-tL-eLb">
+                                                    <rect key="frame" x="89" y="0.0" width="501" height="79"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="Zk4-tL-eLb" secondAttribute="bottom" id="5rW-Pb-7X5"/>
+                                                <constraint firstAttribute="bottom" secondItem="XYx-p5-a8w" secondAttribute="bottom" constant="10" id="Cel-3B-57C"/>
+                                                <constraint firstItem="XYx-p5-a8w" firstAttribute="top" secondItem="H20-sf-ctz" secondAttribute="top" constant="10" id="FNT-nQ-mU0"/>
+                                                <constraint firstItem="XYx-p5-a8w" firstAttribute="leading" secondItem="H20-sf-ctz" secondAttribute="leading" constant="10" id="Yej-PO-hBT"/>
+                                                <constraint firstAttribute="centerY" secondItem="Zk4-tL-eLb" secondAttribute="centerY" id="g53-dO-3kC"/>
+                                                <constraint firstItem="Zk4-tL-eLb" firstAttribute="leading" secondItem="XYx-p5-a8w" secondAttribute="trailing" constant="20" id="jm8-nH-EG7"/>
+                                                <constraint firstItem="Zk4-tL-eLb" firstAttribute="top" secondItem="H20-sf-ctz" secondAttribute="top" id="nGh-b9-Kwx"/>
+                                                <constraint firstAttribute="trailing" secondItem="Zk4-tL-eLb" secondAttribute="trailing" constant="10" id="r03-Kl-dAP"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="bassdriveSetImageView" destination="XYx-p5-a8w" id="KSs-Qq-EZg"/>
+                                            <outlet property="bassdriveSetTitleLabel" destination="Zk4-tL-eLb" id="xQu-BZ-1bZ"/>
+                                            <segue destination="BYZ-38-t0r" kind="show" identifier="goToSetList" id="Zb5-8G-vLE"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="cSW-b2-GtV"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="STI-b3-4m0"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -32,12 +72,35 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="lzy-zJ-tcU" secondAttribute="bottom" id="nmi-kh-WPT"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="A2i-4b-9oM"/>
                     <connections>
                         <outlet property="tableView" destination="lzy-zJ-tcU" id="pUK-IZ-J3M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1117" y="357"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="NgX-e8-jqw">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xbc-G5-O0v" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wE6-Xf-9p6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="sMP-Zs-Uml"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c2y-F6-M2c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="270" y="-336"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="sMP-Zs-Uml"/>
+    </inferredMetricsTieBreakers>
 </document>
