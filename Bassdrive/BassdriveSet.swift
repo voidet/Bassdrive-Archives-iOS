@@ -6,10 +6,11 @@
 //  Copyright (c) 2015 Richard Sbresny. All rights reserved.
 //
 
-struct BassdriveSet {
+class BassdriveSet {
     
     var bassdriveSetUrlString:String?
     var bassdriveSetTitle:String?
+    var downloadTask:DownloadTask?
    
     func exists() -> Bool {
         return false

@@ -14,7 +14,9 @@ class DownloadTask {
     var requestUrlString:String?
     var isActive:Bool = false {
         willSet {
-            self.beginDownload()
+            if (!self.isActive) {
+                self.beginDownload()
+            }
         }
     }
     var totalFileSize:Int64 = 0
@@ -31,7 +33,6 @@ class DownloadTask {
     private func beginDownload() {
         
         let destination = Alamofire.Request.suggestedDownloadDestination(directory: .DocumentDirectory, domain: .UserDomainMask)
-
         
         self.activeRequest = Alamofire.download(.GET, self.requestUrlString!, destination: destination).progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
             self.totalDownloaded = totalBytesRead

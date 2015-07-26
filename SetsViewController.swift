@@ -67,6 +67,20 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
     }
     
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        
+        if (identifier == "goToSetList") {
+            if let indexPath = self.tableView.indexPathForSelectedRow() {
+                let cell:RSSetTableViewCell = tableView.cellForRowAtIndexPath(indexPath) as! RSSetTableViewCell
+                if (cell.cellType == .MediaFile && !cell.bassdriveSet!.exists()) {
+                    return false
+                }
+            }
+        }
+        
+        return true
+    }
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell:RSSetTableViewCell = tableView.cellForRowAtIndexPath(indexPath) as! RSSetTableViewCell
         if (cell.cellType == .MediaFile) {
@@ -77,9 +91,9 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if let bassdriveSet = cell.bassdriveSet {
             if (bassdriveSet.exists()) {
                 // start playing
-            } else {
+            } else if (bassdriveSet.downloadTask == nil) {
                 // start downloading
-                RSDownloadManager.sharedManager.enqueForDownload(bassdriveSet)
+                bassdriveSet.downloadTask = RSDownloadManager.sharedManager.enqueForDownload(bassdriveSet)
             }
         }
        
