@@ -8,9 +8,22 @@
 
 import UIKit
 
+public enum Type :Int {
+    
+    case Folder
+    case MediaFile
+    
+}
+
 class RSSetTableViewCell: UITableViewCell {
 
     @IBOutlet var bassdriveSetTitleLabel:UILabel!
     @IBOutlet var bassdriveSetImageView:UIImageView!
+    
+    var cellType:Type?
 
+    override func prepareForReuse() {
+        self.bassdriveSetTitleLabel.text = ""
+    }
+    
 }

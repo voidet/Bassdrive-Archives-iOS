@@ -20,9 +20,11 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Alamofire.request(.GET, requestURL).responseJSON { _, _, responseJSON, _ in
-            self.sets = JSON(responseJSON!)
-            self.tableView.reloadData()
+        if (self.sets == nil) {
+            Alamofire.request(.GET, requestURL).responseJSON { _, _, responseJSON, _ in
+                self.sets = JSON(responseJSON!)
+                self.tableView.reloadData()
+            }
         }
     }
     
@@ -34,6 +36,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             var key:String? = self.sets?.dictionaryObject?.keys.array[indexPath.row] ?? ""
             println(key)
             destVC.sets = self.sets![key!]
+            println(destVC.sets)
         }
     }
     
@@ -45,12 +48,15 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         var cell:RSSetTableViewCell = tableView.dequeueReusableCellWithIdentifier("setTitleCell") as! RSSetTableViewCell
-        let key:String = self.sets?.dictionaryObject?.keys.array[indexPath.row] ?? ""
-        cell.bassdriveSetTitleLabel.text = key
         
-        cell.userInteractionEnabled = true
-        if (self.sets![key].dictionary?.values != nil) {
-            cell.userInteractionEnabled = false
+        var type = self.sets?.type
+        if (type == .Dictionary) {
+            let key:String = self.sets?.dictionaryObject?.keys.array[indexPath.row] ?? ""
+            cell.bassdriveSetTitleLabel.text = key
+            cell.cellType = .Folder
+        } else if (type == .Array) {
+            cell.bassdriveSetTitleLabel.text = self.sets?.arrayObject![indexPath.row] as? String ?? ""
+            cell.cellType = .MediaFile
         }
         
         return cell
