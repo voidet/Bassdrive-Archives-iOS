@@ -58,8 +58,13 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             var bassdriveSet = BassdriveSet()
             let title:String = self.sets?.arrayObject![indexPath.row] as! String
+
+
             bassdriveSet.bassdriveSetTitle = title
             bassdriveSet.bassdriveSetUrlString = title
+            
+            cell.bassdriveSetTitleLabel.text = bassdriveSet.fileName()
+            
             cell.bassdriveSet = bassdriveSet
             bassdriveSet.downloadTask?.progressMonitor = { progress in
                 println(progress)
@@ -93,7 +98,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         if let bassdriveSet = cell.bassdriveSet {
             if (bassdriveSet.exists()) {
-                // start playing
+                RSPlaybackManager.sharedInstance.playSet(bassdriveSet)
             } else if (bassdriveSet.downloadTask == nil) {
                 // start downloading
                 bassdriveSet.downloadTask = RSDownloadManager.sharedManager.enqueForDownload(bassdriveSet)
