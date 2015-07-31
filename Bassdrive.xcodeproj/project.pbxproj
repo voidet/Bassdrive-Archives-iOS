@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		135E57221B6B45C8005F7FC8 /* RSPlaybackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135E57211B6B45C8005F7FC8 /* RSPlaybackManager.swift */; };
 		135E57261B6B45E7005F7FC8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135E57251B6B45E7005F7FC8 /* AVFoundation.framework */; };
+		137169C31B6B4AA70008BC29 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 137169C21B6B4AA70008BC29 /* MediaPlayer.framework */; };
 		38B8365A1B63CBB300C41F02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B836591B63CBB300C41F02 /* AppDelegate.swift */; };
 		38B8365F1B63CBB300C41F02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38B8365D1B63CBB300C41F02 /* Main.storyboard */; };
 		38B836611B63CBB300C41F02 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38B836601B63CBB300C41F02 /* Images.xcassets */; };
@@ -39,6 +40,7 @@
 		135E57211B6B45C8005F7FC8 /* RSPlaybackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSPlaybackManager.swift; sourceTree = "<group>"; };
 		135E57231B6B45DE005F7FC8 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		135E57251B6B45E7005F7FC8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		137169C21B6B4AA70008BC29 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		2F42DB6D95ACF9C747BFACF5 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		38B836541B63CBB300C41F02 /* Bassdrive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bassdrive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38B836581B63CBB300C41F02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				137169C31B6B4AA70008BC29 /* MediaPlayer.framework in Frameworks */,
 				135E57261B6B45E7005F7FC8 /* AVFoundation.framework in Frameworks */,
 				5D952F7C97C8A3F9083BB551 /* Pods.framework in Frameworks */,
 			);
@@ -215,6 +218,7 @@
 		B29AB5DD834684D29841C7BC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				137169C21B6B4AA70008BC29 /* MediaPlayer.framework */,
 				135E57251B6B45E7005F7FC8 /* AVFoundation.framework */,
 				135E57231B6B45DE005F7FC8 /* AVKit.framework */,
 				2F42DB6D95ACF9C747BFACF5 /* Pods.framework */,

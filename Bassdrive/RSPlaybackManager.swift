@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import MediaPlayer
 
 class RSPlaybackManager {
     
@@ -24,6 +25,10 @@ class RSPlaybackManager {
         self.audioPlayer = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: bassdriveSet.filePath()!), error: &error)
         self.audioPlayer?.prepareToPlay()
         self.audioPlayer?.play()
-    }
+        
+
+        UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
+        MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = [MPMediaItemPropertyTitle : bassdriveSet.fileName()!]
+        }
    
 }
