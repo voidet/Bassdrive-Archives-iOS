@@ -13,6 +13,8 @@ import SwiftyJSON
 class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var sets:JSON?
+    
+
     let requestURL:String = "http://localhost:8080/parse.php"
     
     @IBOutlet var tableView:UITableView!
@@ -20,7 +22,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         if (self.sets == nil) {
-            Alamofire.request(.GET, requestURL).responseJSON { _, _, responseJSON, _ in
+            Alamofire.request(.GET, self.requestURL).responseJSON { _, _, responseJSON, error in
                 if let sets = responseJSON as? Dictionary<String, AnyObject> {
                     self.sets = JSON(sets)
                 }
@@ -39,29 +41,55 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return (self.sets?["_sets"] != nil) ? 2 : 1
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return self.sets?.count ?? 0
+        if (self.sets == nil) {
+            return 0;
+        }
+        
+        var count = 0
+        if (section == 0) {
+            count = self.sets!.count
+            count -= (self.sets?["_sets"] != nil) ? 1 : 0
+        } else if (section == 1) {
+            return self.sets?["_sets"].count ?? 0
+        }
+        
+        return count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         var cell:RSSetTableViewCell = tableView.dequeueReusableCellWithIdentifier("setTitleCell") as! RSSetTableViewCell
-        
-        var type = self.sets?.type
-        if (type == .Dictionary) {
-            let key:String = self.sets?.dictionaryObject?.keys.array[indexPath.row] ?? ""
+    
+        if (indexPath.section == 0) {
+            let keys = self.sets?.dictionaryObject?.keys
+            var row = indexPath.row
+
+            var key:String? = keys?.array[row]
+            while (key == "_sets") {
+                key = keys!.array[row++]
+            }
+
             cell.bassdriveSetTitleLabel.text = key
             cell.cellType = .Folder
-        } else if (type == .Array) {
+        } else if (indexPath.section == 1) {
             cell.cellType = .MediaFile
             
             var bassdriveSet = BassdriveSet()
-            let title:String = self.sets?.arrayObject![indexPath.row] as! String
+            let title:String = self.sets?["_sets"].arrayObject![indexPath.row] as! String
 
 
             bassdriveSet.bassdriveSetTitle = title
             bassdriveSet.bassdriveSetUrlString = title
+            
+            if (bassdriveSet.exists()) {
+                cell.backgroundColor = UIColor.redColor()
+            }
             
             cell.bassdriveSetTitleLabel.text = bassdriveSet.fileName()
             

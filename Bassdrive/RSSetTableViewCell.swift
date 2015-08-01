@@ -27,6 +27,7 @@ class RSSetTableViewCell: UITableViewCell {
 
     override func prepareForReuse() {
         self.bassdriveSetTitleLabel.text = ""
+        self.backgroundColor = UIColor.whiteColor()
     }
     
 }
