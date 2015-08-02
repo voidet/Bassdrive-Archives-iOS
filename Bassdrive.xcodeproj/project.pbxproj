@@ -11,6 +11,7 @@
 		135E57261B6B45E7005F7FC8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135E57251B6B45E7005F7FC8 /* AVFoundation.framework */; };
 		136121811B6D86B4001CBD3A /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136121801B6D86B4001CBD3A /* UIColorExtension.swift */; };
 		136121831B6E9296001CBD3A /* titleView@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 136121821B6E9296001CBD3A /* titleView@2x.png */; };
+		136121851B6EA0A3001CBD3A /* RSPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136121841B6EA0A3001CBD3A /* RSPlayerViewController.swift */; };
 		137169C31B6B4AA70008BC29 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 137169C21B6B4AA70008BC29 /* MediaPlayer.framework */; };
 		38B8365A1B63CBB300C41F02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B836591B63CBB300C41F02 /* AppDelegate.swift */; };
 		38B8365F1B63CBB300C41F02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38B8365D1B63CBB300C41F02 /* Main.storyboard */; };
@@ -44,6 +45,7 @@
 		135E57251B6B45E7005F7FC8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		136121801B6D86B4001CBD3A /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		136121821B6E9296001CBD3A /* titleView@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "titleView@2x.png"; sourceTree = "<group>"; };
+		136121841B6EA0A3001CBD3A /* RSPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSPlayerViewController.swift; sourceTree = "<group>"; };
 		137169C21B6B4AA70008BC29 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		2F42DB6D95ACF9C747BFACF5 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		38B836541B63CBB300C41F02 /* Bassdrive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bassdrive.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -235,6 +237,7 @@
 		C8B7FDF31B643713000053BE /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				136121841B6EA0A3001CBD3A /* RSPlayerViewController.swift */,
 				C8B7FDF11B643705000053BE /* SetsViewController.swift */,
 			);
 			name = ViewController;
@@ -402,6 +405,7 @@
 			files = (
 				38C911251B65205F00F4EBC7 /* RSExt.swift in Sources */,
 				135E57221B6B45C8005F7FC8 /* RSPlaybackManager.swift in Sources */,
+				136121851B6EA0A3001CBD3A /* RSPlayerViewController.swift in Sources */,
 				38F317061B646B8400FAE882 /* DownloadTask.swift in Sources */,
 				38B8365A1B63CBB300C41F02 /* AppDelegate.swift in Sources */,
 				38C911221B651BD200F4EBC7 /* BassdriveSet.swift in Sources */,

@@ -107,11 +107,24 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="STI-b3-4m0"/>
                                 </connections>
                             </tableView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TG5-Rp-pz9">
+                                <rect key="frame" x="0.0" y="496" width="600" height="40"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="9kY-tE-YAx"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="pA8-4E-dnF" kind="embed" id="NCN-bI-XhB"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="lzy-zJ-tcU" secondAttribute="trailing" id="H02-Gh-JxY"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="TG5-Rp-pz9" secondAttribute="bottom" id="OMW-3I-mWJ"/>
+                            <constraint firstItem="TG5-Rp-pz9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Oaj-m5-HvF"/>
+                            <constraint firstAttribute="trailing" secondItem="TG5-Rp-pz9" secondAttribute="trailing" id="TXP-ZL-8bD"/>
                             <constraint firstItem="lzy-zJ-tcU" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="VgM-LD-ac4"/>
                             <constraint firstItem="lzy-zJ-tcU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ZZ6-8P-8K7"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="lzy-zJ-tcU" secondAttribute="bottom" id="nmi-kh-WPT"/>
@@ -152,6 +165,26 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c2y-F6-M2c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="270" y="-336"/>
+        </scene>
+        <!--Player View Controller-->
+        <scene sceneID="afi-nZ-D54">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cOn-y5-NRV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="pA8-4E-dnF" customClass="RSPlayerViewController" customModule="Bassdrive" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YbB-yQ-usp"/>
+                        <viewControllerLayoutGuide type="bottom" id="jxs-z1-mvm"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ped-U9-wCh">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1274" y="833"/>
         </scene>
     </scenes>
     <resources>
