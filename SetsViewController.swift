@@ -80,20 +80,19 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         } else if (indexPath.section == 1) {
             cell.cellType = .MediaFile
             
-            var bassdriveSet = BassdriveSet()
-            let title:String = self.sets?["_sets"].arrayObject![indexPath.row] as! String
-
-            bassdriveSet.bassdriveSetTitle = title
-            bassdriveSet.bassdriveSetUrlString = title
-            
-            if (bassdriveSet.exists()) {
-                cell.backgroundColor = UIColor.redColor()
+            if let setDict = self.sets?["_sets"].arrayObject![indexPath.row] as? Dictionary<String, String> {
+                var bassdriveSet = BassdriveSet(dict: setDict)
+                
+                if (bassdriveSet.exists()) {
+                    cell.backgroundColor = UIColor.redColor()
+                }
+                
+                cell.bassdriveSetTitleLabel.text = bassdriveSet.fileName()
+                cell.bassdriveSet = bassdriveSet
+                
+                cell.downloadTask = RSDownloadManager.sharedManager.jobForBassdriveSet(bassdriveSet)
             }
-            
-            cell.bassdriveSetTitleLabel.text = bassdriveSet.fileName()
-            cell.bassdriveSet = bassdriveSet
-            
-            cell.downloadTask = RSDownloadManager.sharedManager.jobForBassdriveSet(bassdriveSet)
+
         }
         
         return cell

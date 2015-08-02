@@ -41,6 +41,7 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XYx-p5-a8w">
                                                     <rect key="frame" x="10" y="10" width="59" height="59"/>
                                                     <animations/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="XYx-p5-a8w" secondAttribute="height" multiplier="1:1" id="hmb-lJ-3kr"/>
                                                     </constraints>

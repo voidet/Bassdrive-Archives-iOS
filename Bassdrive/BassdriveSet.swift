@@ -12,6 +12,11 @@ class BassdriveSet {
     
     var bassdriveSetUrlString:String?
     var bassdriveSetTitle:String?
+    
+    init(dict:Dictionary<String, String>) {
+        self.bassdriveSetTitle = dict["title"]
+        self.bassdriveSetUrlString = dict["url"]
+    }
    
     func exists() -> Bool {
         var checkValidation = NSFileManager.defaultManager()
