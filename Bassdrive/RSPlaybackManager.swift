@@ -23,7 +23,6 @@ class RSPlaybackManager {
         self.currentSet = bassdriveSet
         AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, error: nil)
         AVAudioSession.sharedInstance().setActive(true, error: nil)
-        UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
         
         var error:NSError?
         self.audioPlayer = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: self.currentSet!.filePath()!), error: &error)
@@ -32,14 +31,18 @@ class RSPlaybackManager {
     }
     
     func play() {
-        self.playing = self.audioPlayer!.play()
-        self.updateMeta()
+        if (self.audioPlayer != nil) {
+            self.playing = self.audioPlayer!.play()
+            self.updateMeta()
+        }
     }
     
     func pause() {
-        self.playing = false
-        self.audioPlayer?.pause()
-        self.updateMeta()
+        if (self.audioPlayer != nil) {
+            self.playing = false
+            self.audioPlayer?.pause()
+            self.updateMeta()
+        }
     }
     
     private func updateMeta() {

@@ -128,10 +128,10 @@
             </objects>
             <point key="canvasLocation" x="1117" y="357"/>
         </scene>
-        <!--View Controller-->
+        <!--Container View Controller-->
         <scene sceneID="rk0-hx-8rf">
             <objects>
-                <viewController id="xaw-nA-FIS" sceneMemberID="viewController">
+                <viewController id="xaw-nA-FIS" customClass="RSContainerViewController" customModule="Bassdrive" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WAF-dW-UtH"/>
                         <viewControllerLayoutGuide type="bottom" id="aRp-xL-59s"/>
@@ -227,7 +227,7 @@
                                 </view>
                                 <blurEffect style="dark"/>
                             </visualEffectView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ar3-wc-iIN" userLabel="playpause">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ar3-wc-iIN" userLabel="playpause">
                                 <rect key="frame" x="555" y="8" width="25" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="H1e-1I-eK1"/>
@@ -236,6 +236,9 @@
                                 <state key="normal" image="Pause-50.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="playPause" destination="pA8-4E-dnF" eventType="touchUpInside" id="iqq-cG-kju"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lr8-Xb-EJ1" userLabel="bgBar">
                                 <rect key="frame" x="102" y="18" width="433" height="5"/>
@@ -283,6 +286,7 @@
                     </view>
                     <toolbarItems/>
                     <connections>
+                        <outlet property="playPauseButton" destination="Ar3-wc-iIN" id="JBa-zf-yru"/>
                         <outlet property="playbackProgressBar" destination="Z4G-QZ-4Hy" id="bWB-iW-3Mv"/>
                         <outlet property="playbackProgressBarXOffset" destination="mwu-3q-CrI" id="eJq-lF-eyW"/>
                         <outlet property="timeLabel" destination="d9u-HB-e1k" id="tD3-b3-1Aa"/>

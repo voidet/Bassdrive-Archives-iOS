@@ -24,6 +24,7 @@
 		38C911251B65205F00F4EBC7 /* RSExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C911241B65205F00F4EBC7 /* RSExt.swift */; };
 		38D6CBEF1B6EB23600D8D6B0 /* Pause-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D6CBEE1B6EB23600D8D6B0 /* Pause-50.png */; };
 		38D6CBF11B6EB24800D8D6B0 /* Play-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D6CBF01B6EB24800D8D6B0 /* Play-50.png */; };
+		38D6CBF31B6EC89000D8D6B0 /* RSContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D6CBF21B6EC89000D8D6B0 /* RSContainerViewController.swift */; };
 		38F317001B6459B500FAE882 /* RSSetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F316FF1B6459B500FAE882 /* RSSetTableViewCell.swift */; };
 		38F317031B646B4200FAE882 /* RSDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F317021B646B4200FAE882 /* RSDownloadManager.swift */; };
 		38F317061B646B8400FAE882 /* DownloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F317051B646B8400FAE882 /* DownloadTask.swift */; };
@@ -65,6 +66,7 @@
 		38C911241B65205F00F4EBC7 /* RSExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSExt.swift; sourceTree = "<group>"; };
 		38D6CBEE1B6EB23600D8D6B0 /* Pause-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pause-50.png"; sourceTree = "<group>"; };
 		38D6CBF01B6EB24800D8D6B0 /* Play-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Play-50.png"; sourceTree = "<group>"; };
+		38D6CBF21B6EC89000D8D6B0 /* RSContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSContainerViewController.swift; sourceTree = "<group>"; };
 		38F316FF1B6459B500FAE882 /* RSSetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSetTableViewCell.swift; sourceTree = "<group>"; };
 		38F317021B646B4200FAE882 /* RSDownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSDownloadManager.swift; sourceTree = "<group>"; };
 		38F317051B646B8400FAE882 /* DownloadTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadTask.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 			children = (
 				136121841B6EA0A3001CBD3A /* RSPlayerViewController.swift */,
 				C8B7FDF11B643705000053BE /* SetsViewController.swift */,
+				38D6CBF21B6EC89000D8D6B0 /* RSContainerViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -416,6 +419,7 @@
 				136121851B6EA0A3001CBD3A /* RSPlayerViewController.swift in Sources */,
 				38F317061B646B8400FAE882 /* DownloadTask.swift in Sources */,
 				38B8365A1B63CBB300C41F02 /* AppDelegate.swift in Sources */,
+				38D6CBF31B6EC89000D8D6B0 /* RSContainerViewController.swift in Sources */,
 				38C911221B651BD200F4EBC7 /* BassdriveSet.swift in Sources */,
 				136121811B6D86B4001CBD3A /* UIColorExtension.swift in Sources */,
 				C8B7FDF21B643705000053BE /* SetsViewController.swift in Sources */,

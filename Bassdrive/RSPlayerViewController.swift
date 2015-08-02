@@ -13,6 +13,7 @@ class RSPlayerViewController: UIViewController {
     @IBOutlet var playbackProgressBarXOffset:NSLayoutConstraint!
     @IBOutlet var playbackProgressBar:UIView!
     @IBOutlet var timeLabel:UILabel!
+    @IBOutlet var playPauseButton:UIButton!
     
     private var initialLayout:Bool = false
     private var initialProgressSize:CGFloat?
@@ -25,34 +26,12 @@ class RSPlayerViewController: UIViewController {
         self.progressTracker!.fire()
     }
     
-    
-    
-//    override func sub() {
-//        super.updateViewConstraints()
-//        self.initialProgressSize = self.playbackProgressBar.frame.size.width
-////        self.playbackProgressBarXOffset.constant = self.initialProgressSize!;
-//                println(self.playbackProgressBar.frame)
-//    }
-    
     override func viewDidLayoutSubviews() {
         if (!self.initialLayout) {
             self.initialLayout = true
             self.initialProgressSize = self.playbackProgressBar.frame.size.width
             self.playbackProgressBarXOffset.constant = self.initialProgressSize!
             self.playbackProgressBar.updateConstraints()
-        }
-    }
-    
-    override func remoteControlReceivedWithEvent(event: UIEvent) {
-        switch event.subtype {
-            case .RemoteControlPause:
-                RSPlaybackManager.sharedInstance.pause()
-                break
-            case .RemoteControlPlay:
-                RSPlaybackManager.sharedInstance.play()
-                break
-            default:
-                break
         }
     }
     
@@ -75,16 +54,37 @@ class RSPlayerViewController: UIViewController {
         return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
     
+    @IBAction func playPause() {
+        if (RSPlaybackManager.sharedInstance.isPlaying()) {
+            RSPlaybackManager.sharedInstance.pause()
+        } else {
+            RSPlaybackManager.sharedInstance.play()
+        }
+        
+        UIView.animateWithDuration(0.2, animations: {
+            self.playPauseButton.alpha = 0
+        }, completion: { (completed) in
+            if (completed) {
+                let imageString = RSPlaybackManager.sharedInstance.isPlaying() ? "Pause-50" : "Play-50"
+                self.playPauseButton .setImage(UIImage(named: imageString), forState:.Normal)
+                UIView.animateWithDuration(0.2, animations: { () -> Void in
+                  self.playPauseButton.alpha = 1
+                })
+            }
+        })
+        
+    }
+    
     @IBAction func changeCountDown() {
         UIView.animateWithDuration(0.2, animations: {
             self.timeLabel.alpha = 0
-        }) { (completed) in
+        }, completion: { (completed) in
             self.isCountingDown = !self.isCountingDown
             self.updateProgress()
             UIView.animateWithDuration(0.2, animations: { () -> Void in
                 self.timeLabel.alpha = 1
             })
-        }
+        })
     }
 
 }
