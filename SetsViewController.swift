@@ -13,14 +13,14 @@ import SwiftyJSON
 class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var sets:JSON?
-    
-
     let requestURL:String = "http://localhost:8080/parse.php"
     
     @IBOutlet var tableView:UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.layoutMargins = UIEdgeInsetsZero
+        
         if (self.sets == nil) {
             Alamofire.request(.GET, self.requestURL).responseJSON { _, _, responseJSON, error in
                 if let sets = responseJSON as? Dictionary<String, AnyObject> {
@@ -28,6 +28,14 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }
                 self.tableView.reloadData()
             }
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let indexPath = self.tableView.indexPathForSelectedRow() {
+            self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
     }
     
@@ -65,6 +73,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         var cell:RSSetTableViewCell = tableView.dequeueReusableCellWithIdentifier("setTitleCell") as! RSSetTableViewCell
+        cell.progressBarSize.constant = self.view.frame.size.width
     
         if (indexPath.section == 0) {
             let keys = self.sets?.dictionaryObject?.keys
@@ -82,14 +91,9 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             if let setDict = self.sets?["_sets"].arrayObject![indexPath.row] as? Dictionary<String, String> {
                 var bassdriveSet = BassdriveSet(dict: setDict)
-                
-                if (bassdriveSet.exists()) {
-                    cell.backgroundColor = UIColor.redColor()
-                }
-                
                 cell.bassdriveSetTitleLabel.text = bassdriveSet.fileName()
+                cell.downloaded.alpha = bassdriveSet.exists() ? 1 : 0
                 cell.bassdriveSet = bassdriveSet
-                
                 cell.downloadTask = RSDownloadManager.sharedManager.jobForBassdriveSet(bassdriveSet)
             }
 
@@ -114,16 +118,13 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell:RSSetTableViewCell = tableView.cellForRowAtIndexPath(indexPath) as! RSSetTableViewCell
-        if (cell.cellType == .MediaFile) {
-            
-        }
-        self.tableView.deselectRowAtIndexPath(self.tableView.indexPathForSelectedRow()!, animated: true)
         
         if let bassdriveSet = cell.bassdriveSet {
             if (bassdriveSet.exists()) {
                 RSPlaybackManager.sharedInstance.playSet(bassdriveSet)
             } else {
                 cell.downloadTask = RSDownloadManager.sharedManager.enqueForDownload(bassdriveSet)
+                self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
             }
         }
        

@@ -9,17 +9,18 @@
 import UIKit
 
 public enum Type :Int {
-    
     case Folder
     case MediaFile
-    
 }
 
 class RSSetTableViewCell: UITableViewCell {
 
     @IBOutlet var bassdriveSetTitleLabel:UILabel!
     @IBOutlet var bassdriveSetImageView:UIImageView!
+    @IBOutlet var progressBar:UIView!
     @IBOutlet var progressBarSize:NSLayoutConstraint!
+    @IBOutlet var selectedBackground:UIView!
+    @IBOutlet var downloaded:UIView!
     
     var bassdriveSetUrlString:String?
     var bassdriveSet:BassdriveSet?
@@ -27,26 +28,53 @@ class RSSetTableViewCell: UITableViewCell {
     var downloadTask:DownloadTask? {
         didSet {
             downloadTask?.progressMonitor = updateProgress
+            downloadTask?.completion = completed
         }
     }
     
     override func awakeFromNib() {
+        super.awakeFromNib()
         self.layoutMargins = UIEdgeInsetsZero
+        self.prepareForReuse()
+        self.selectedBackground.alpha = 0
+        self.downloaded.alpha = 0
     }
 
     override func prepareForReuse() {
+        super.prepareForReuse()
         self.bassdriveSetTitleLabel.text = ""
         self.backgroundColor = UIColor.whiteColor()
+        self.progressBarSize.constant = self.frame.size.width
     }
     
     private func updateProgress(progress:Double) {
         dispatch_async(dispatch_get_main_queue(), {
+            self.progressBar.alpha = 1
             let width = self.frame.size.width
             let constant = width - CGFloat(width * (CGFloat(progress) / 100))
             self.progressBarSize.constant = constant
             self.layoutIfNeeded()
         })
-        
     }
+    
+    private func completed() {
+        if (self.bassdriveSet!.exists()) {
+            UIView.animateWithDuration(0.5, animations: {
+                self.downloaded.alpha = 1
+                self.progressBar.alpha = 0
+            })
+        }
+    }
+    
+    override func setSelected(selected: Bool, animated: Bool) {
+        UIView .animateWithDuration(0.25, animations: {
+            if (selected) {
+                self.selectedBackground.alpha = 1;
+            } else {
+                self.selectedBackground.alpha = 0;
+            }
+        })
+    }
+
     
 }

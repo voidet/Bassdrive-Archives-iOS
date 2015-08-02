@@ -35,6 +35,7 @@ class DownloadTask {
         }
     }
     var progressMonitor:((Double) -> (Void))?
+    var completion:((Void) -> (Void))?
     
     private var activeRequest:Request?
     
@@ -47,7 +48,9 @@ class DownloadTask {
             self.totalFileSize = totalBytesExpectedToRead
             return
         }.response { (request, response, data, error) -> Void in
-            
+            if let completion = self.completion {
+                completion()
+            }
         }
     }
     
