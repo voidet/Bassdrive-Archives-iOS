@@ -108,7 +108,7 @@ class RSPlayerViewController: UIViewController {
         var xOffset = translation.x + self.playbackHeadCurrentPosition.x + 5
         if (xOffset < self.playbackProgressBar.frame.origin.x) {
             xOffset = self.playbackProgressBar.frame.origin.x
-        } else if (xOffset + self.playbackProgressBar.frame.size.width >= self.initialProgressSize! + self.playbackProgressBar.frame.origin.x + 5) {
+        } else if (xOffset >= self.initialProgressSize! + self.playbackProgressBar.frame.origin.x + 5) {
             xOffset = self.playbackProgressBar.frame.origin.x + self.playbackProgressBar.frame.size.width
         }
         
