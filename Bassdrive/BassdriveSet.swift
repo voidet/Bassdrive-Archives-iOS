@@ -12,7 +12,6 @@ class BassdriveSet {
     
     var bassdriveSetUrlString:String?
     var bassdriveSetTitle:String?
-    var downloadTask:DownloadTask?
    
     func exists() -> Bool {
         var checkValidation = NSFileManager.defaultManager()

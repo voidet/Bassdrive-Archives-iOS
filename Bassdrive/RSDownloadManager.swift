@@ -24,8 +24,13 @@ class RSDownloadManager {
         return downloadTask
     }
     
-    func jobForBassdriveSet(bassdriveSet:BassdriveSet) -> DownloadTask {
-        return DownloadTask()
+    func jobForBassdriveSet(bassdriveSet:BassdriveSet) -> DownloadTask? {
+        for downloadTask in self.downloadQueue {
+            if (bassdriveSet.bassdriveSetUrlString == downloadTask.requestUrlString) {
+                return downloadTask
+            }
+        }
+        return nil
     }
     
     private func addAndEnqueue(downloadTask:DownloadTask) {
