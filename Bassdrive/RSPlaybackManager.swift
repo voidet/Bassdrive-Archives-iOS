@@ -13,21 +13,54 @@ import MediaPlayer
 class RSPlaybackManager {
     
     static let sharedInstance = RSPlaybackManager()
-    var audioPlayer:AVAudioPlayer?
+    private var audioPlayer:AVAudioPlayer?
+    private var currentSet:BassdriveSet?
+    private var playing:Bool = false
     
     private init() {}
     
     func playSet(bassdriveSet:BassdriveSet) {
+        self.currentSet = bassdriveSet
         AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, error: nil)
         AVAudioSession.sharedInstance().setActive(true, error: nil)
+        UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
         
         var error:NSError?
-        self.audioPlayer = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: bassdriveSet.filePath()!), error: &error)
-        self.audioPlayer?.prepareToPlay()
-        self.audioPlayer?.play()
-
-        UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
-        MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = [MPMediaItemPropertyTitle : bassdriveSet.fileName()!]
+        self.audioPlayer = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: self.currentSet!.filePath()!), error: &error)
+        self.audioPlayer!.prepareToPlay()
+        self.play()
     }
+    
+    func play() {
+        self.playing = self.audioPlayer!.play()
+        self.updateMeta()
+    }
+    
+    func pause() {
+        self.playing = false
+        self.audioPlayer?.pause()
+        self.updateMeta()
+    }
+    
+    private func updateMeta() {
+        MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = [
+            MPMediaItemPropertyTitle : self.currentSet!.fileName()!,
+            MPMediaItemPropertyPlaybackDuration: self.audioPlayer!.duration,
+            MPNowPlayingInfoPropertyPlaybackRate: self.playing ? 1 : 0,
+            MPNowPlayingInfoPropertyElapsedPlaybackTime: self.audioPlayer!.currentTime]
+    }
+    
+    func currentTime() -> NSTimeInterval {
+        return self.audioPlayer?.currentTime ?? 0
+    }
+    
+    func totalTime() -> NSTimeInterval {
+        return self.audioPlayer?.duration ?? 0
+    }
+    
+    func isPlaying() -> Bool {
+        return self.playing
+    }
+    
    
 }

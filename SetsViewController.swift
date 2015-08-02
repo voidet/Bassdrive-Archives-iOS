@@ -117,7 +117,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if (identifier == "goToSetList") {
             if let indexPath = self.tableView.indexPathForSelectedRow() {
                 let cell:RSSetTableViewCell = tableView.cellForRowAtIndexPath(indexPath) as! RSSetTableViewCell
-                if (cell.cellType == .MediaFile && cell.bassdriveSet!.exists()) {
+                if (cell.cellType == .MediaFile) {
                     return false
                 }
             }
