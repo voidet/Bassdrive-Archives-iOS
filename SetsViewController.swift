@@ -29,6 +29,14 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.tableView.reloadData()
             }
         }
+        
+        if (self.sets == nil) {
+            var titleView = UIImageView(image: UIImage(named: "titleView"))
+            titleView.frame.size.height = 40
+            titleView.contentMode = .ScaleAspectFit
+            titleView.clipsToBounds = true
+            self.navigationItem.titleView = titleView
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -37,6 +45,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if let indexPath = self.tableView.indexPathForSelectedRow() {
             self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -46,6 +55,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
             var key:String? = self.sets?.dictionaryObject?.keys.array[indexPath.row] ?? ""
             destVC.sets = self.sets![key!]
+            destVC.title = key
         }
     }
     

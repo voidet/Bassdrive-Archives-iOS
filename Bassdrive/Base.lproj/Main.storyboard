@@ -14,11 +14,11 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lzy-zJ-tcU">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.16078431369999999" green="0.16862745100000001" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="separatorColor" red="0.2627450980392157" green="0.27843137254901962" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
@@ -117,7 +117,9 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="lzy-zJ-tcU" secondAttribute="bottom" id="nmi-kh-WPT"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="A2i-4b-9oM"/>
+                    <navigationItem key="navigationItem" id="L1U-j8-86i">
+                        <nil key="title"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="lzy-zJ-tcU" id="pUK-IZ-J3M"/>
                     </connections>
@@ -132,7 +134,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xbc-G5-O0v" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wE6-Xf-9p6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="wE6-Xf-9p6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
