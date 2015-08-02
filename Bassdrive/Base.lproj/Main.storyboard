@@ -119,6 +119,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="L1U-j8-86i">
                         <nil key="title"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="0zR-7V-Nfw"/>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="lzy-zJ-tcU" id="pUK-IZ-J3M"/>
@@ -214,16 +215,6 @@
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="mdS-i7-zwT">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fcM-0b-lgj">
-                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="zY4-Pd-AyC">
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            </view>
-                                            <vibrancyEffect>
-                                                <blurEffect style="light"/>
-                                            </vibrancyEffect>
-                                        </visualEffectView>
-                                    </subviews>
                                 </view>
                                 <blurEffect style="dark"/>
                             </visualEffectView>
@@ -263,6 +254,17 @@
                                     <outletCollection property="gestureRecognizers" destination="fRc-WC-7wE" appends="YES" id="EJM-OZ-XUg"/>
                                 </connections>
                             </label>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xPr-6l-2sw" userLabel="Head">
+                                <rect key="frame" x="530" y="10" width="10" height="20"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="10" id="BTa-81-Hvo"/>
+                                    <constraint firstAttribute="height" constant="20" id="cjv-O9-iT5"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="bVq-gf-xqS" appends="YES" id="fTs-C4-ya4"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.20000000000000001" colorSpace="calibratedWhite"/>
@@ -275,6 +277,7 @@
                             <constraint firstItem="lr8-Xb-EJ1" firstAttribute="height" secondItem="Z4G-QZ-4Hy" secondAttribute="height" id="H5p-Wq-zmb"/>
                             <constraint firstItem="jxs-z1-mvm" firstAttribute="top" secondItem="t7M-oZ-hP2" secondAttribute="bottom" id="HsW-oY-f51"/>
                             <constraint firstItem="lr8-Xb-EJ1" firstAttribute="leading" secondItem="Z4G-QZ-4Hy" secondAttribute="leading" id="Hwf-nn-0d8"/>
+                            <constraint firstItem="Z4G-QZ-4Hy" firstAttribute="trailing" secondItem="xPr-6l-2sw" secondAttribute="trailing" constant="-5" id="Hyp-Vg-HtZ"/>
                             <constraint firstAttribute="trailing" secondItem="t7M-oZ-hP2" secondAttribute="trailing" id="Kfh-1o-lOc"/>
                             <constraint firstItem="lr8-Xb-EJ1" firstAttribute="leading" secondItem="d9u-HB-e1k" secondAttribute="trailing" constant="20" id="Mu5-Ym-j2N"/>
                             <constraint firstAttribute="trailing" secondItem="Ar3-wc-iIN" secondAttribute="trailing" constant="20" id="X1W-Mq-P50"/>
@@ -282,11 +285,13 @@
                             <constraint firstItem="lr8-Xb-EJ1" firstAttribute="trailing" secondItem="Z4G-QZ-4Hy" secondAttribute="trailing" id="mwu-3q-CrI"/>
                             <constraint firstItem="d9u-HB-e1k" firstAttribute="leading" secondItem="ped-U9-wCh" secondAttribute="leading" constant="20" id="xrK-Ez-PEQ"/>
                             <constraint firstItem="t7M-oZ-hP2" firstAttribute="leading" secondItem="ped-U9-wCh" secondAttribute="leading" id="yhe-GL-qmP"/>
+                            <constraint firstItem="xPr-6l-2sw" firstAttribute="centerY" secondItem="Z4G-QZ-4Hy" secondAttribute="centerY" id="zHS-06-DCb"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <connections>
                         <outlet property="playPauseButton" destination="Ar3-wc-iIN" id="JBa-zf-yru"/>
+                        <outlet property="playbackHead" destination="xPr-6l-2sw" id="avp-dA-Zpy"/>
                         <outlet property="playbackProgressBar" destination="Z4G-QZ-4Hy" id="bWB-iW-3Mv"/>
                         <outlet property="playbackProgressBarXOffset" destination="mwu-3q-CrI" id="eJq-lF-eyW"/>
                         <outlet property="timeLabel" destination="d9u-HB-e1k" id="tD3-b3-1Aa"/>
@@ -298,6 +303,11 @@
                         <action selector="changeCountDown" destination="pA8-4E-dnF" id="zYV-Vg-0vO"/>
                     </connections>
                 </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="bVq-gf-xqS">
+                    <connections>
+                        <action selector="handlePan:" destination="pA8-4E-dnF" id="udL-aM-SCF"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="378" y="52"/>
         </scene>

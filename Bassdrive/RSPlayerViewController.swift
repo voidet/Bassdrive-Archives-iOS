@@ -14,7 +14,10 @@ class RSPlayerViewController: UIViewController {
     @IBOutlet var playbackProgressBar:UIView!
     @IBOutlet var timeLabel:UILabel!
     @IBOutlet var playPauseButton:UIButton!
+    @IBOutlet var playbackHead:UIView!
     
+    private var scrubbing:Bool = false
+    private var playbackHeadCurrentPosition:CGPoint = CGPointZero
     private var initialLayout:Bool = false
     private var initialProgressSize:CGFloat?
     private var progressTracker:NSTimer?
@@ -36,7 +39,7 @@ class RSPlayerViewController: UIViewController {
     }
     
     func updateProgress() {
-        if (RSPlaybackManager.sharedInstance.isPlaying()) {
+        if (RSPlaybackManager.sharedInstance.isPlaying() && !self.scrubbing) {
             let totalTime = RSPlaybackManager.sharedInstance.totalTime()
             let currentTime = RSPlaybackManager.sharedInstance.currentTime()
             
@@ -52,6 +55,14 @@ class RSPlayerViewController: UIViewController {
         let minutes = (interval / 60) % 60
         let hours = (interval / 3600)
         return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+    }
+    
+    private func updateTimeByPercentage(percentage:Double) {
+        RSPlaybackManager.sharedInstance.jumpToTime(self.timeAtPercentage(percentage))
+    }
+    
+    private func timeAtPercentage(difference:Double) -> NSTimeInterval {
+        return NSTimeInterval(RSPlaybackManager.sharedInstance.totalTime()) * (difference / 100)
     }
     
     @IBAction func playPause() {
@@ -85,6 +96,38 @@ class RSPlayerViewController: UIViewController {
                 self.timeLabel.alpha = 1
             })
         })
+    }
+    
+    @IBAction func handlePan(gestureRecogniser:UIPanGestureRecognizer) {
+        if (gestureRecogniser.state == .Began) {
+            self.playbackHeadCurrentPosition = self.playbackHead.frame.origin
+            self.scrubbing = true
+        }
+        var translation:CGPoint = gestureRecogniser.translationInView(self.playbackHead.superview!)
+        
+        var xOffset = translation.x + self.playbackHeadCurrentPosition.x + 5
+        if (xOffset < self.playbackProgressBar.frame.origin.x) {
+            xOffset = self.playbackProgressBar.frame.origin.x
+        } else if (xOffset + self.playbackProgressBar.frame.size.width >= self.initialProgressSize! + self.playbackProgressBar.frame.origin.x + 5) {
+            xOffset = self.playbackProgressBar.frame.origin.x + self.playbackProgressBar.frame.size.width
+        }
+        
+        self.playbackHead.center = CGPointMake(xOffset, self.playbackHead.center.y)
+
+        let progressPosition = (self.playbackHead.center.x - self.playbackProgressBar.frame.origin.x)
+        self.playbackProgressBarXOffset.constant = self.initialProgressSize! - progressPosition
+        
+        var difference = (progressPosition) / self.initialProgressSize!
+        if (difference > 1) {
+            difference = 1
+        }
+        
+        self.timeLabel.text = self.stringFromTimeInterval(self.timeAtPercentage(Double(difference * 100)))
+
+        if (gestureRecogniser.state == .Ended) {
+            self.updateTimeByPercentage(Double(difference * 100))
+            self.scrubbing = false
+        }
     }
 
 }

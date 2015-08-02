@@ -65,5 +65,9 @@ class RSPlaybackManager {
         return self.playing
     }
     
+    func jumpToTime(time:NSTimeInterval) {
+        self.audioPlayer?.currentTime = time
+    }
+    
    
 }
