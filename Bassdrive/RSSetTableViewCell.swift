@@ -21,6 +21,7 @@ class RSSetTableViewCell: UITableViewCell {
     @IBOutlet var progressBarSize:NSLayoutConstraint!
     @IBOutlet var selectedBackground:UIView!
     @IBOutlet var downloaded:UIView!
+    @IBOutlet var previouslyListened:UIView!
     
     var bassdriveSetUrlString:String?
     var bassdriveSet:BassdriveSet?
@@ -38,6 +39,8 @@ class RSSetTableViewCell: UITableViewCell {
         self.prepareForReuse()
         self.selectedBackground.alpha = 0
         self.downloaded.alpha = 0
+        self.previouslyListened.alpha = 0
+        self.previouslyListened.layer.cornerRadius = 6
     }
 
     override func prepareForReuse() {
@@ -45,6 +48,7 @@ class RSSetTableViewCell: UITableViewCell {
         self.bassdriveSetTitleLabel.text = ""
         self.backgroundColor = UIColor.whiteColor()
         self.progressBarSize.constant = self.frame.size.width
+        self.previouslyListened.alpha = 0
     }
     
     private func updateProgress(progress:Double) {

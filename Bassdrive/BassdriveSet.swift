@@ -33,4 +33,12 @@ class BassdriveSet {
         return self.bassdriveSetUrlString?.lastPathComponent.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
     }
     
+    func hasPreviouslyListened() -> Bool {
+        if (self.bassdriveSetUrlString != nil &&
+            NSUserDefaults.standardUserDefaults().objectForKey(self.bassdriveSetUrlString!) != nil) {
+            return true
+        }
+        return false
+    }
+    
 }

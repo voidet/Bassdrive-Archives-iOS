@@ -22,21 +22,29 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.tableView.layoutMargins = UIEdgeInsetsZero
         
         if (self.sets == nil) {
-            Alamofire.request(.GET, self.requestURL).responseJSON { _, _, responseJSON, error in
-                if let sets = responseJSON as? Dictionary<String, AnyObject> {
-                    self.sets = JSON(sets)
-                }
-                self.tableView.reloadData()
-            }
-        }
-        
-        if (self.sets == nil) {
+            
             var titleView = UIImageView(image: UIImage(named: "titleView"))
             titleView.frame.size.height = 40
             titleView.contentMode = .ScaleAspectFit
             titleView.clipsToBounds = true
             self.navigationItem.titleView = titleView
+            
+            if let json:AnyObject? = NSUserDefaults.standardUserDefaults().objectForKey("sets") {
+                self.sets = JSON(json!)
+                self.tableView.reloadData()
+            }
+
+            Alamofire.request(.GET, self.requestURL).responseJSON { _, _, responseJSON, error in
+                if let sets = responseJSON as? Dictionary<String, AnyObject> {
+                    self.sets = JSON(sets)
+                    NSUserDefaults.standardUserDefaults().setObject(responseJSON, forKey: "sets")
+                    NSUserDefaults.standardUserDefaults().synchronize()
+                }
+                self.tableView.reloadData()
+            }
         }
+        
+        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -71,8 +79,9 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         var count = 0
         if (section == 0) {
-            count = self.sets!.count
-            count -= (self.sets?["_sets"] != nil) ? 1 : 0
+            let sets = self.sets?.dictionaryObject?.keys.array
+            count = sets?.count ?? 0
+            count -= (self.sets?.dictionaryObject?["_sets"] != nil) ? 1 : 0
         } else if (section == 1) {
             return self.sets?["_sets"].count ?? 0
         }
@@ -86,12 +95,12 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.progressBarSize.constant = self.view.frame.size.width
     
         if (indexPath.section == 0) {
-            let keys = self.sets?.dictionaryObject?.keys
+            let keys = self.sets?.dictionaryObject?.keys.array
             var row = indexPath.row
 
-            var key:String? = keys?.array[row]
+            var key:String? = keys![row]
             while (key == "_sets") {
-                key = keys!.array[row++]
+                key = keys![row++]
             }
 
             cell.bassdriveSetTitleLabel.text = key
@@ -105,6 +114,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 cell.downloaded.alpha = bassdriveSet.exists() ? 1 : 0
                 cell.bassdriveSet = bassdriveSet
                 cell.downloadTask = RSDownloadManager.sharedManager.jobForBassdriveSet(bassdriveSet)
+                cell.previouslyListened.alpha = bassdriveSet.hasPreviouslyListened() ? 1 : 0
             }
 
         }

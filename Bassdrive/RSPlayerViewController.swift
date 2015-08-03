@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RSPlayerViewController: UIViewController {
+class RSPlayerViewController: UIViewController, RSPlaybackManagerProtocol {
 
     @IBOutlet var playbackProgressBarXOffset:NSLayoutConstraint!
     @IBOutlet var playbackProgressBar:UIView!
@@ -20,13 +20,11 @@ class RSPlayerViewController: UIViewController {
     private var playbackHeadCurrentPosition:CGPoint = CGPointZero
     private var initialLayout:Bool = false
     private var initialProgressSize:CGFloat?
-    private var progressTracker:NSTimer?
     private var isCountingDown:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.progressTracker = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "updateProgress", userInfo: nil, repeats: true)
-        self.progressTracker!.fire()
+        RSPlaybackManager.sharedInstance.addSubscriber(self)
     }
     
     override func viewDidLayoutSubviews() {
@@ -36,6 +34,10 @@ class RSPlayerViewController: UIViewController {
             self.playbackProgressBarXOffset.constant = self.initialProgressSize!
             self.playbackProgressBar.updateConstraints()
         }
+    }
+    
+    func didUpdateToTime(time:NSTimeInterval) {
+        self.updateProgress()
     }
     
     func updateProgress() {
@@ -109,7 +111,7 @@ class RSPlayerViewController: UIViewController {
         if (xOffset < self.playbackProgressBar.frame.origin.x) {
             xOffset = self.playbackProgressBar.frame.origin.x
         } else if (xOffset >= self.initialProgressSize! + self.playbackProgressBar.frame.origin.x + 5) {
-            xOffset = self.playbackProgressBar.frame.origin.x + self.playbackProgressBar.frame.size.width
+            xOffset = self.playbackProgressBar.frame.origin.x + self.initialProgressSize! + 5
         }
         
         self.playbackHead.center = CGPointMake(xOffset, self.playbackHead.center.y)
