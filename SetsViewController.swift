@@ -13,7 +13,11 @@ import SwiftyJSON
 class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var sets:JSON?
+    #if DEBUG
     let requestURL:String = "http://localhost:8080/parse.php"
+    #else
+    let requestURL:String = "http://jotlab.com/bassdrive/parse.php"
+    #endif
     
     @IBOutlet var tableView:UITableView!
     
@@ -29,8 +33,8 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             titleView.clipsToBounds = true
             self.navigationItem.titleView = titleView
             
-            if let json:AnyObject? = NSUserDefaults.standardUserDefaults().objectForKey("sets") {
-                self.sets = JSON(json!)
+            if let json:AnyObject = NSUserDefaults.standardUserDefaults().objectForKey("sets") {
+                self.sets = JSON(json)
                 self.tableView.reloadData()
             }
 
