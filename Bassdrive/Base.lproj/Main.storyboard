@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="15A235d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xaw-nA-FIS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xaw-nA-FIS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -137,6 +137,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="L1U-j8-86i">
                         <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" image="download.png" id="8eY-Ai-pMx">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="show" identifier="showDownloadedSets" id="PPX-cA-eFb"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="0zR-7V-Nfw"/>
                     </navigationItem>
                     <connections>
@@ -242,7 +247,7 @@
                                 <blurEffect style="dark"/>
                             </visualEffectView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ar3-wc-iIN" userLabel="playpause">
-                                <rect key="frame" x="555" y="12.5" width="25" height="25"/>
+                                <rect key="frame" x="555" y="13" width="25" height="25"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="H1e-1I-eK1"/>
@@ -256,7 +261,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lr8-Xb-EJ1" userLabel="bgBar">
-                                <rect key="frame" x="102" y="22.5" width="433" height="5"/>
+                                <rect key="frame" x="102" y="23" width="433" height="5"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.29803921570000003" green="0.84705882349999995" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -264,12 +269,12 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z4G-QZ-4Hy" userLabel="playbackProgress">
-                                <rect key="frame" x="102" y="22.5" width="433" height="5"/>
+                                <rect key="frame" x="102" y="23" width="433" height="5"/>
                                 <animations/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="-- : -- : --" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d9u-HB-e1k">
-                                <rect key="frame" x="20" y="9.5" width="62" height="30"/>
+                                <rect key="frame" x="20" y="10" width="62" height="30"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="3Cc-mf-S1g"/>
@@ -282,7 +287,7 @@
                                 </connections>
                             </label>
                             <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xPr-6l-2sw" userLabel="Head">
-                                <rect key="frame" x="530" y="14.5" width="10" height="20"/>
+                                <rect key="frame" x="530" y="15" width="10" height="20"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -356,6 +361,7 @@
     </scenes>
     <resources>
         <image name="Pause-50.png" width="50" height="50"/>
+        <image name="download.png" width="30" height="30"/>
         <image name="launch.png" width="320" height="320"/>
     </resources>
     <inferredMetricsTieBreakers>

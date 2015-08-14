@@ -13,6 +13,7 @@ import SwiftyJSON
 class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var sets:JSON?
+    var downloadedSets:[BassdriveSet]?
     #if DEBUG
     let requestURL:String = "http://localhost:8080/parse.php"
     #else
@@ -58,6 +59,11 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
         
+        if (self !== self.navigationController?.childViewControllers.first)
+        {
+            self.navigationItem.leftBarButtonItem = nil;
+        }
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -68,15 +74,28 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             var key:String? = self.sets?.dictionaryObject?.keys.array[indexPath.row] ?? ""
             destVC.sets = self.sets![key!]
             destVC.title = key
+        } else if (segue.identifier == "showDownloadedSets") {
+            let destVC:SetsViewController = segue.destinationViewController as! SetsViewController
+            destVC.downloadedSets = SetsHelper.getDownloadedSets()
         }
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        
+        if (self.downloadedSets != nil) {
+            return 1
+        }
+        
         return (self.sets?["_sets"] != nil) ? 2 : 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
+        
+        if (self.downloadedSets != nil) {
+            return self.downloadedSets?.count ?? 0
+        }
+        
         if (self.sets == nil) {
             return 0;
         }
@@ -95,18 +114,45 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
+        
         var cell:RSSetTableViewCell = tableView.dequeueReusableCellWithIdentifier("setTitleCell") as! RSSetTableViewCell
-        cell.progressBarSize.constant = self.view.frame.size.width
+        if (self.downloadedSets != nil) {
+            cell = self.getLocalSetCell(indexPath, cell:cell)
+        } else if (self.sets != nil) {
+            cell = self.getRemoteSetCell(indexPath, cell:cell)
+        }
+        
+        return cell
+    }
     
+    func getLocalSetCell(indexPath:NSIndexPath, cell:RSSetTableViewCell) -> RSSetTableViewCell {
+        
+        cell.progressBarSize.constant = self.view.frame.size.width
+        
+        cell.cellType = .MediaFile
+            
+        let bassdriveSet = self.downloadedSets![indexPath.row]
+        cell.bassdriveSetTitleLabel.text = bassdriveSet.fileName()
+        cell.downloaded.alpha = 1
+        cell.bassdriveSet = bassdriveSet
+        cell.previouslyListened.alpha = bassdriveSet.hasPreviouslyListened() ? 1 : 0
+        
+        return cell
+    }
+    
+    func getRemoteSetCell(indexPath:NSIndexPath, cell:RSSetTableViewCell) -> RSSetTableViewCell {
+        
+        cell.progressBarSize.constant = self.view.frame.size.width
+        
         if (indexPath.section == 0) {
             let keys = self.sets?.dictionaryObject?.keys.array
             var row = indexPath.row
-
+            
             var key:String? = keys![row]
             while (key == "_sets") {
                 key = keys![row++]
             }
-
+            
             cell.bassdriveSetTitleLabel.text = key
             cell.cellType = .Folder
         } else if (indexPath.section == 1) {
@@ -120,9 +166,8 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 cell.downloadTask = RSDownloadManager.sharedManager.jobForBassdriveSet(bassdriveSet)
                 cell.previouslyListened.alpha = bassdriveSet.hasPreviouslyListened() ? 1 : 0
             }
-
+            
         }
-        
         return cell
     }
     

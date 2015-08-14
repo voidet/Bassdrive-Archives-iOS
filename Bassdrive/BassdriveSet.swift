@@ -13,7 +13,8 @@ class BassdriveSet {
     var bassdriveSetUrlString:String?
     var bassdriveSetTitle:String?
     
-    init(dict:Dictionary<String, String>) {
+    convenience init(dict:Dictionary<String, String>) {
+        self.init()
         self.bassdriveSetTitle = dict["title"]
         self.bassdriveSetUrlString = dict["url"]
     }

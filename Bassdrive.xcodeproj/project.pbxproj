@@ -13,6 +13,7 @@
 		136121831B6E9296001CBD3A /* titleView@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 136121821B6E9296001CBD3A /* titleView@2x.png */; };
 		136121851B6EA0A3001CBD3A /* RSPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136121841B6EA0A3001CBD3A /* RSPlayerViewController.swift */; };
 		137169C31B6B4AA70008BC29 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 137169C21B6B4AA70008BC29 /* MediaPlayer.framework */; };
+		385498371B7E70FD00F13252 /* SetsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385498361B7E70FD00F13252 /* SetsHelper.swift */; };
 		38B8365A1B63CBB300C41F02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B836591B63CBB300C41F02 /* AppDelegate.swift */; };
 		38B8365F1B63CBB300C41F02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38B8365D1B63CBB300C41F02 /* Main.storyboard */; };
 		38B836611B63CBB300C41F02 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38B836601B63CBB300C41F02 /* Images.xcassets */; };
@@ -25,6 +26,7 @@
 		38D6CBEF1B6EB23600D8D6B0 /* Pause-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D6CBEE1B6EB23600D8D6B0 /* Pause-50.png */; };
 		38D6CBF11B6EB24800D8D6B0 /* Play-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D6CBF01B6EB24800D8D6B0 /* Play-50.png */; };
 		38D6CBF31B6EC89000D8D6B0 /* RSContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D6CBF21B6EC89000D8D6B0 /* RSContainerViewController.swift */; };
+		38E558D41B7E5C8B00219F48 /* download@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E558D31B7E5C8B00219F48 /* download@2x.png */; };
 		38F317001B6459B500FAE882 /* RSSetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F316FF1B6459B500FAE882 /* RSSetTableViewCell.swift */; };
 		38F317031B646B4200FAE882 /* RSDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F317021B646B4200FAE882 /* RSDownloadManager.swift */; };
 		38F317061B646B8400FAE882 /* DownloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F317051B646B8400FAE882 /* DownloadTask.swift */; };
@@ -51,6 +53,7 @@
 		136121841B6EA0A3001CBD3A /* RSPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSPlayerViewController.swift; sourceTree = "<group>"; };
 		137169C21B6B4AA70008BC29 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		2F42DB6D95ACF9C747BFACF5 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		385498361B7E70FD00F13252 /* SetsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetsHelper.swift; sourceTree = "<group>"; };
 		38B836541B63CBB300C41F02 /* Bassdrive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bassdrive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38B836581B63CBB300C41F02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38B836591B63CBB300C41F02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +70,7 @@
 		38D6CBEE1B6EB23600D8D6B0 /* Pause-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pause-50.png"; sourceTree = "<group>"; };
 		38D6CBF01B6EB24800D8D6B0 /* Play-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Play-50.png"; sourceTree = "<group>"; };
 		38D6CBF21B6EC89000D8D6B0 /* RSContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSContainerViewController.swift; sourceTree = "<group>"; };
+		38E558D31B7E5C8B00219F48 /* download@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "download@2x.png"; sourceTree = "<group>"; };
 		38F316FF1B6459B500FAE882 /* RSSetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSetTableViewCell.swift; sourceTree = "<group>"; };
 		38F317021B646B4200FAE882 /* RSDownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSDownloadManager.swift; sourceTree = "<group>"; };
 		38F317051B646B8400FAE882 /* DownloadTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadTask.swift; sourceTree = "<group>"; };
@@ -96,6 +100,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		385498351B7E709F00F13252 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				385498361B7E70FD00F13252 /* SetsHelper.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		38B8364B1B63CBB300C41F02 = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +131,7 @@
 		38B836561B63CBB300C41F02 /* Bassdrive */ = {
 			isa = PBXGroup;
 			children = (
+				385498351B7E709F00F13252 /* Helpers */,
 				38B836591B63CBB300C41F02 /* AppDelegate.swift */,
 				38C9111B1B6517FD00F4EBC7 /* Assets */,
 				38F317041B646B7700FAE882 /* DataTypes */,
@@ -163,6 +176,7 @@
 		38C9111B1B6517FD00F4EBC7 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				38E558D31B7E5C8B00219F48 /* download@2x.png */,
 				38D6CBF01B6EB24800D8D6B0 /* Play-50.png */,
 				38D6CBEE1B6EB23600D8D6B0 /* Pause-50.png */,
 				136121821B6E9296001CBD3A /* titleView@2x.png */,
@@ -345,6 +359,7 @@
 				38C9111D1B65180800F4EBC7 /* launch.png in Resources */,
 				38B8365F1B63CBB300C41F02 /* Main.storyboard in Resources */,
 				38B836641B63CBB300C41F02 /* LaunchScreen.xib in Resources */,
+				38E558D41B7E5C8B00219F48 /* download@2x.png in Resources */,
 				38B836611B63CBB300C41F02 /* Images.xcassets in Resources */,
 				38D6CBEF1B6EB23600D8D6B0 /* Pause-50.png in Resources */,
 				38D6CBF11B6EB24800D8D6B0 /* Play-50.png in Resources */,
@@ -420,6 +435,7 @@
 				38F317061B646B8400FAE882 /* DownloadTask.swift in Sources */,
 				38B8365A1B63CBB300C41F02 /* AppDelegate.swift in Sources */,
 				38D6CBF31B6EC89000D8D6B0 /* RSContainerViewController.swift in Sources */,
+				385498371B7E70FD00F13252 /* SetsHelper.swift in Sources */,
 				38C911221B651BD200F4EBC7 /* BassdriveSet.swift in Sources */,
 				136121811B6D86B4001CBD3A /* UIColorExtension.swift in Sources */,
 				C8B7FDF21B643705000053BE /* SetsViewController.swift in Sources */,
@@ -560,6 +576,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "\"-D\" \"DEBUG\"";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -573,6 +590,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
