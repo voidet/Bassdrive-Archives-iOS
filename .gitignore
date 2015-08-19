@@ -1,3 +1,5 @@
 localhost8080
+Podfile.lock
+Pods
 *.xcuserdatad
 bassdrive-server
