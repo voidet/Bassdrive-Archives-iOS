@@ -9,6 +9,8 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import RxSwift
+import RxCocoa
 
 class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -26,27 +28,15 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         self.tableView.layoutMargins = UIEdgeInsetsZero
         
+        self.setupTitleView()
+        
+        self.rx_observeWeakly("sets")
+            >- subscribeNext { (sets:JSON?) in
+                self.tableView.reloadData()
+            }
+        
         if (self.sets == nil) {
-            
-            var titleView = UIImageView(image: UIImage(named: "titleView"))
-            titleView.frame.size.height = 40
-            titleView.contentMode = .ScaleAspectFit
-            titleView.clipsToBounds = true
-            self.navigationItem.titleView = titleView
-            
-            if let json:AnyObject = NSUserDefaults.standardUserDefaults().objectForKey("sets") {
-                self.sets = JSON(json)
-                self.tableView.reloadData()
-            }
-
-            Alamofire.request(.GET, self.requestURL).responseJSON { _, _, responseJSON, error in
-                if let sets = responseJSON as? Dictionary<String, AnyObject> {
-                    self.sets = JSON(sets)
-                    NSUserDefaults.standardUserDefaults().setObject(responseJSON, forKey: "sets")
-                    NSUserDefaults.standardUserDefaults().synchronize()
-                }
-                self.tableView.reloadData()
-            }
+            self.restoreAndRefreshSets()
         }
         
         self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0)
@@ -59,10 +49,32 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
         
-        if (self !== self.navigationController?.childViewControllers.first)
-        {
+        if (self !== self.navigationController?.childViewControllers.first) {
             self.navigationItem.leftBarButtonItem = nil;
         }
+        
+    }
+    
+    private func restoreAndRefreshSets() {
+        if let json:AnyObject = NSUserDefaults.standardUserDefaults().objectForKey("sets") {
+            self.sets = JSON(json)
+        }
+        
+        Alamofire.request(.GET, self.requestURL).responseJSON { _, _, responseJSON, error in
+            if let sets = responseJSON as? Dictionary<String, AnyObject> {
+                self.sets = JSON(sets)
+                NSUserDefaults.standardUserDefaults().setObject(responseJSON, forKey: "sets")
+                NSUserDefaults.standardUserDefaults().synchronize()
+            }
+        }
+    }
+    
+    private func setupTitleView() {
+        var titleView = UIImageView(image: UIImage(named: "titleView"))
+        titleView.frame.size.height = 40
+        titleView.contentMode = .ScaleAspectFit
+        titleView.clipsToBounds = true
+        self.navigationItem.titleView = titleView
         
     }
     
