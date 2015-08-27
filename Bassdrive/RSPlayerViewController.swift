@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class RSPlayerViewController: UIViewController, RSPlaybackManagerProtocol {
 
@@ -25,6 +27,11 @@ class RSPlayerViewController: UIViewController, RSPlaybackManagerProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         RSPlaybackManager.sharedInstance.addSubscriber(self)
+        
+        NSNotificationCenter.defaultCenter().rx_notification("AVAudioSessionRouteChangeNotification", object:nil)
+            >- map { notif in
+                self.pause()
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -65,6 +72,10 @@ class RSPlayerViewController: UIViewController, RSPlaybackManagerProtocol {
     
     private func timeAtPercentage(difference:Double) -> NSTimeInterval {
         return NSTimeInterval(RSPlaybackManager.sharedInstance.totalTime()) * (difference / 100)
+    }
+    
+    private func pause() {
+        RSPlaybackManager.sharedInstance.pause()
     }
     
     @IBAction func playPause() {

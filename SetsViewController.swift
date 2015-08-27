@@ -75,7 +75,6 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         titleView.contentMode = .ScaleAspectFit
         titleView.clipsToBounds = true
         self.navigationItem.titleView = titleView
-        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
