@@ -27,16 +27,22 @@ class RSPlaybackManager : NSObject {
     
     func playSet(bassdriveSet:BassdriveSet) {
         self.currentSet = bassdriveSet
-        AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, error: nil)
-        AVAudioSession.sharedInstance().setActive(true, error: nil)
+
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+            self.progressTracker = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "announceTime", userInfo: nil, repeats: true)
+            self.progressTracker!.fire()
+            
+            self.audioPlayer = try AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: self.currentSet!.filePath()!))
+            self.audioPlayer!.prepareToPlay()
+            self.play()
+        } catch {
+            print("could not spin up AVAudioSession")
+            return
+        }
         
-        self.progressTracker = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "announceTime", userInfo: nil, repeats: true)
-        self.progressTracker!.fire()
-        
-        var error:NSError?
-        self.audioPlayer = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: self.currentSet!.filePath()!), error: &error)
-        self.audioPlayer!.prepareToPlay()
-        self.play()
     }
     
     func addSubscriber(subscriber:RSPlaybackManagerProtocol) {

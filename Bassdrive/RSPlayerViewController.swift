@@ -29,7 +29,7 @@ class RSPlayerViewController: UIViewController, RSPlaybackManagerProtocol {
         RSPlaybackManager.sharedInstance.addSubscriber(self)
         
         NSNotificationCenter.defaultCenter().rx_notification("AVAudioSessionRouteChangeNotification", object:nil)
-            >- map { notif in
+            .map { notif in
                 self.pause()
         }
     }
@@ -116,7 +116,8 @@ class RSPlayerViewController: UIViewController, RSPlaybackManagerProtocol {
             self.playbackHeadCurrentPosition = self.playbackHead.frame.origin
             self.scrubbing = true
         }
-        var translation:CGPoint = gestureRecogniser.translationInView(self.playbackHead.superview!)
+        
+        let translation:CGPoint = gestureRecogniser.translationInView(self.playbackHead.superview!)
         
         var xOffset = translation.x + self.playbackHeadCurrentPosition.x + 5
         if (xOffset < self.playbackProgressBar.frame.origin.x) {

@@ -20,18 +20,18 @@ class BassdriveSet {
     }
    
     func exists() -> Bool {
-        var checkValidation = NSFileManager.defaultManager()
-        return checkValidation.fileExistsAtPath(self.filePath()!)
+        let checkValidation = NSFileManager.defaultManager()
+        return checkValidation.fileExistsAtPath(self.filePath().absoluteString)
     }
     
-    func filePath() -> String? {
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first as! String
-        var setPath = paths.stringByAppendingPathComponent(self.fileName()! as String)
+    func filePath() -> NSURL {
+        let path:String! = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first
+        let setPath = NSURL(string:path)!.URLByAppendingPathComponent(self.fileName()! as String)
         return setPath
     }
     
     func fileName() -> String? {
-        return self.bassdriveSetUrlString?.lastPathComponent.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
+        return (NSURL(string:self.bassdriveSetUrlString!)!.lastPathComponent!).stringByRemovingPercentEncoding
     }
     
     func hasPreviouslyListened() -> Bool {

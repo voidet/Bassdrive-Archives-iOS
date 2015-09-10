@@ -12,19 +12,22 @@ class SetsHelper {
     
     static func getDownloadedSets() -> [BassdriveSet] {
         var sets:[BassdriveSet] = []
-        let documentsUrl =  NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first as! NSURL
         
-        if let directoryContents =  NSFileManager.defaultManager().contentsOfDirectoryAtPath(documentsUrl.path!, error: nil) {
-            for set in directoryContents {
-                var bassdriveSet = BassdriveSet()
-                bassdriveSet.bassdriveSetTitle = set.lastPathComponent
-                bassdriveSet.bassdriveSetUrlString = set.lastPathComponent
+        do {
+            let documentsUrl:NSURL! =  NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first
+            let directoryContents:[String] = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(documentsUrl.path!)
+            for set:String in directoryContents {
+                let setURL = NSURL(string: set)!
+                let bassdriveSet = BassdriveSet()
+                bassdriveSet.bassdriveSetTitle = setURL.lastPathComponent
+                bassdriveSet.bassdriveSetUrlString = setURL.lastPathComponent
                 bassdriveSet.bassdriveSetUrlString = bassdriveSet.filePath()
                 sets.append(bassdriveSet)
             }
+        } catch {
+            print("Could not find downloaded sets")
         }
-        
         return sets
     }
-
+    
 }

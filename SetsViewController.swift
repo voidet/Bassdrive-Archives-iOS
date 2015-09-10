@@ -31,7 +31,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.setupTitleView()
         
         self.rx_observeWeakly("sets")
-            >- subscribeNext { (sets:JSON?) in
+            .subscribeNext { (sets:JSON?) in
                 self.tableView.reloadData()
             }
         
@@ -45,7 +45,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let indexPath = self.tableView.indexPathForSelectedRow() {
+        if let indexPath = self.tableView.indexPathForSelectedRow {
             self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
         
@@ -60,17 +60,17 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.sets = JSON(json)
         }
         
-        Alamofire.request(.GET, self.requestURL).responseJSON { _, _, responseJSON, error in
-            if let sets = responseJSON as? Dictionary<String, AnyObject> {
+        Alamofire.request(.GET, self.requestURL).responseJSON { _, _, responseJSON in
+            if let sets = responseJSON.value as? Dictionary<String, AnyObject> {
                 self.sets = JSON(sets)
-                NSUserDefaults.standardUserDefaults().setObject(responseJSON, forKey: "sets")
+                NSUserDefaults.standardUserDefaults().setObject(responseJSON.value, forKey: "sets")
                 NSUserDefaults.standardUserDefaults().synchronize()
             }
         }
     }
     
     private func setupTitleView() {
-        var titleView = UIImageView(image: UIImage(named: "titleView"))
+        let titleView = UIImageView(image: UIImage(named: "titleView"))
         titleView.frame.size.height = 40
         titleView.contentMode = .ScaleAspectFit
         titleView.clipsToBounds = true
@@ -80,10 +80,12 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "goToSetList") {
             let destVC:SetsViewController = segue.destinationViewController as! SetsViewController
-            let indexPath:NSIndexPath = self.tableView.indexPathForSelectedRow()!
-
-            var key:String? = self.sets?.dictionaryObject?.keys.array[indexPath.row] ?? ""
-            destVC.sets = self.sets![key!]
+            let indexPath = self.tableView.indexPathForSelectedRow!
+            let key:String = (self.sets?.dictionaryValue.keys.map { (key:String) -> String! in
+                return key
+            }[indexPath.row])!
+            
+            destVC.sets = self.sets![key]
             destVC.title = key
         } else if (segue.identifier == "showDownloadedSets") {
             let destVC:SetsViewController = segue.destinationViewController as! SetsViewController
@@ -113,7 +115,9 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         var count = 0
         if (section == 0) {
-            let sets = self.sets?.dictionaryObject?.keys.array
+            let sets = self.sets?.dictionaryObject?.keys.map { (key:String) -> String in
+                return key
+            }
             count = sets?.count ?? 0
             count -= (self.sets?.dictionaryObject?["_sets"] != nil) ? 1 : 0
         } else if (section == 1) {
@@ -156,12 +160,14 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.progressBarSize.constant = self.view.frame.size.width
         
         if (indexPath.section == 0) {
-            let keys = self.sets?.dictionaryObject?.keys.array
+            let keys:[String] = (self.sets?.dictionaryObject?.keys.map { (key:String) -> String in
+                return key
+            })!
             var row = indexPath.row
             
-            var key:String? = keys![row]
+            var key:String = keys[row]
             while (key == "_sets") {
-                key = keys![row++]
+                key = keys[row++]
             }
             
             cell.bassdriveSetTitleLabel.text = key
@@ -170,7 +176,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.cellType = .MediaFile
             
             if let setDict = self.sets?["_sets"].arrayObject![indexPath.row] as? Dictionary<String, String> {
-                var bassdriveSet = BassdriveSet(dict: setDict)
+                let bassdriveSet = BassdriveSet(dict: setDict)
                 cell.bassdriveSetTitleLabel.text = bassdriveSet.fileName()
                 cell.downloaded.alpha = bassdriveSet.exists() ? 1 : 0
                 cell.bassdriveSet = bassdriveSet
@@ -185,7 +191,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
         
         if (identifier == "goToSetList") {
-            if let indexPath = self.tableView.indexPathForSelectedRow() {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
                 let cell:RSSetTableViewCell = tableView.cellForRowAtIndexPath(indexPath) as! RSSetTableViewCell
                 if (cell.cellType == .MediaFile) {
                     return false

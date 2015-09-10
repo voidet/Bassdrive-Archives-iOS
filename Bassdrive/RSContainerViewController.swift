@@ -16,16 +16,16 @@ class RSContainerViewController: UIViewController {
         self.becomeFirstResponder()
     }
     
-    override func remoteControlReceivedWithEvent(event: UIEvent) {
-        switch event.subtype {
-        case .RemoteControlPause:
-            RSPlaybackManager.sharedInstance.pause()
-            break
-        case .RemoteControlPlay:
-            RSPlaybackManager.sharedInstance.play()
-            break
-        default:
-            break
+    override func remoteControlReceivedWithEvent(event: UIEvent?) {
+        switch event!.subtype {
+            case .RemoteControlPause:
+                RSPlaybackManager.sharedInstance.pause()
+                break
+            case .RemoteControlPlay:
+                RSPlaybackManager.sharedInstance.play()
+                break
+            default:
+                break
         }
     }
 

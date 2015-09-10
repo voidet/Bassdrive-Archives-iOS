@@ -18,7 +18,7 @@ class RSDownloadManager {
     private init() {}
     
     func enqueForDownload(bassdriveSet:BassdriveSet) -> DownloadTask {
-        var downloadTask = DownloadTask()
+        let downloadTask = DownloadTask()
         downloadTask.requestUrlString = bassdriveSet.bassdriveSetUrlString
         self.addAndEnqueue(downloadTask)
         return downloadTask
