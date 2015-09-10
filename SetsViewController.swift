@@ -65,6 +65,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.sets = JSON(sets)
                 NSUserDefaults.standardUserDefaults().setObject(responseJSON.value, forKey: "sets")
                 NSUserDefaults.standardUserDefaults().synchronize()
+                self.tableView.reloadData()
             }
         }
     }
