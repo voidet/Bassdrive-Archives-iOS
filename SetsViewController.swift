@@ -16,6 +16,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var sets:JSON?
     var downloadedSets:[BassdriveSet]?
+    var loadingSets:Bool = false
     #if DEBUG
     let requestURL:String = "http://localhost:8080/parse.php"
     #else
@@ -23,6 +24,8 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     #endif
     
     @IBOutlet var tableView:UITableView!
+    @IBOutlet var loadingView:UIView!
+    @IBOutlet var loadingIndicator:UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +39,21 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         
         if (self.sets == nil) {
+            self.loadingSets = true
             self.restoreAndRefreshSets()
+        }
+        
+        self.loadingView.layer.cornerRadius = 10;
+        
+        self.rx_observeWeakly("loadingSets")
+            .subscribeNext { (alpha:Bool?) in
+            if (alpha!) {
+                self.loadingView.alpha = 1
+                self.loadingIndicator.startAnimating()
+            } else {
+                self.loadingView.alpha = 0
+                self.loadingIndicator.stopAnimating()
+            }
         }
         
         self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0)
@@ -61,6 +78,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         
         Alamofire.request(.GET, self.requestURL).responseJSON { _, _, responseJSON in
+            self.loadingSets = false
             if let sets = responseJSON.value as? Dictionary<String, AnyObject> {
                 self.sets = JSON(sets)
                 NSUserDefaults.standardUserDefaults().setObject(responseJSON.value, forKey: "sets")
