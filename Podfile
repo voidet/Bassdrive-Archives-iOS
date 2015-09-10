@@ -4,6 +4,5 @@ use_frameworks!
 
 pod 'Alamofire'
 pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git', :branch => 'xcode7'
-end
 pod 'RxSwift'
 pod 'RxCocoa'
