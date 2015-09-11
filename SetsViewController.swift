@@ -15,9 +15,9 @@ import RxCocoa
 class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     #if DEBUG
-    let requestURL:String = "http://localhost:8080/parse.php"
+    let requestURL:String = "http://localhost:8080/bassdrive.json"
     #else
-    let requestURL:String = "http://jotlab.com/bassdrive/parse.php"
+    let requestURL:String = "http://jotlab.com/bassdrive.json"
     #endif
     
     var sets:JSON?
@@ -38,7 +38,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         self.setupTitleView()
     
-        if (self.sets == nil) {
+        if (self.sets == nil && self.downloadedSets == nil) {
             self.loadingSets = true
             self.restoreAndRefreshSets()
         }

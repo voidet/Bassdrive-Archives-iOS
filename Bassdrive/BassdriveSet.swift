@@ -31,7 +31,7 @@ class BassdriveSet {
     }
     
     func fileName() -> String? {
-        return (NSURL(string:self.bassdriveSetUrlString!)!.lastPathComponent!).stringByRemovingPercentEncoding
+        return NSURL(string:self.bassdriveSetUrlString!)?.lastPathComponent!.stringByRemovingPercentEncoding
     }
     
     func hasPreviouslyListened() -> Bool {

@@ -17,10 +17,9 @@ class SetsHelper {
             let documentsUrl:NSURL! =  NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first
             let directoryContents:[String] = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(documentsUrl.path!)
             for set:String in directoryContents {
-                let setURL = NSURL(string: set)!
                 let bassdriveSet = BassdriveSet()
-                bassdriveSet.bassdriveSetTitle = setURL.lastPathComponent
-                bassdriveSet.bassdriveSetUrlString = setURL.lastPathComponent
+                bassdriveSet.bassdriveSetTitle = set
+                bassdriveSet.bassdriveSetUrlString = set
                 bassdriveSet.bassdriveSetUrlString = bassdriveSet.filePath().absoluteString
                 sets.append(bassdriveSet)
             }
