@@ -21,12 +21,30 @@ class SetsHelper {
                 let bassdriveSet = BassdriveSet()
                 bassdriveSet.bassdriveSetTitle = setURL.lastPathComponent
                 bassdriveSet.bassdriveSetUrlString = setURL.lastPathComponent
-                bassdriveSet.bassdriveSetUrlString = bassdriveSet.filePath()
+                bassdriveSet.bassdriveSetUrlString = bassdriveSet.filePath().absoluteString
                 sets.append(bassdriveSet)
             }
         } catch {
             print("Could not find downloaded sets")
         }
+        return sets
+    }
+    
+    static func getDownloadingSets() -> [BassdriveSet] {
+        
+        if !RSDownloadManager.sharedManager.isExecuting {
+            return []
+        }
+        
+        let sets:[BassdriveSet] = RSDownloadManager.sharedManager.downloadQueue.filter { (dl:DownloadTask) -> Bool in
+            if dl.mediaObject is BassdriveSet {
+                return true
+            }
+            return false
+        }.map { (dlTask:DownloadTask) -> BassdriveSet in
+            return dlTask.mediaObject as! BassdriveSet
+        }
+        
         return sets
     }
     

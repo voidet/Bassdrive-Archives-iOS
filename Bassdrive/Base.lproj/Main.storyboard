@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Sets View Controller-->
@@ -175,7 +176,14 @@
                                 <segue destination="BYZ-38-t0r" kind="show" identifier="showDownloadedSets" id="PPX-cA-eFb"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="0zR-7V-Nfw"/>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="action" id="0zR-7V-Nfw"/>
+                            <barButtonItem title="DL" id="3sQ-rF-WCZ">
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="goToDownloading" id="NWW-CN-4Kz"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="loadingIndicator" destination="vP4-hR-x6x" id="xLJ-Ww-yBA"/>
@@ -395,7 +403,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Pause-50.png" width="50" height="50"/>
+        <image name="Pause-50.png" width="25" height="25"/>
         <image name="download.png" width="30" height="30"/>
         <image name="launch.png" width="320" height="320"/>
     </resources>

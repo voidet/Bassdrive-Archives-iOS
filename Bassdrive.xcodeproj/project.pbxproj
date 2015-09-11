@@ -23,8 +23,8 @@
 		38C9111F1B65185C00F4EBC7 /* launch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C9111E1B65185C00F4EBC7 /* launch@2x.png */; };
 		38C911221B651BD200F4EBC7 /* BassdriveSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C911211B651BD200F4EBC7 /* BassdriveSet.swift */; };
 		38C911251B65205F00F4EBC7 /* RSExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C911241B65205F00F4EBC7 /* RSExt.swift */; };
-		38D6CBEF1B6EB23600D8D6B0 /* Pause-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D6CBEE1B6EB23600D8D6B0 /* Pause-50.png */; };
-		38D6CBF11B6EB24800D8D6B0 /* Play-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D6CBF01B6EB24800D8D6B0 /* Play-50.png */; };
+		38D6CBEF1B6EB23600D8D6B0 /* Pause-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D6CBEE1B6EB23600D8D6B0 /* Pause-50@2x.png */; };
+		38D6CBF11B6EB24800D8D6B0 /* Play-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D6CBF01B6EB24800D8D6B0 /* Play-50@2x.png */; };
 		38D6CBF31B6EC89000D8D6B0 /* RSContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D6CBF21B6EC89000D8D6B0 /* RSContainerViewController.swift */; };
 		38E558D41B7E5C8B00219F48 /* download@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E558D31B7E5C8B00219F48 /* download@2x.png */; };
 		38F317001B6459B500FAE882 /* RSSetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F316FF1B6459B500FAE882 /* RSSetTableViewCell.swift */; };
@@ -67,8 +67,8 @@
 		38C9111E1B65185C00F4EBC7 /* launch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch@2x.png"; sourceTree = "<group>"; };
 		38C911211B651BD200F4EBC7 /* BassdriveSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BassdriveSet.swift; sourceTree = "<group>"; };
 		38C911241B65205F00F4EBC7 /* RSExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSExt.swift; sourceTree = "<group>"; };
-		38D6CBEE1B6EB23600D8D6B0 /* Pause-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pause-50.png"; sourceTree = "<group>"; };
-		38D6CBF01B6EB24800D8D6B0 /* Play-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Play-50.png"; sourceTree = "<group>"; };
+		38D6CBEE1B6EB23600D8D6B0 /* Pause-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pause-50@2x.png"; sourceTree = "<group>"; };
+		38D6CBF01B6EB24800D8D6B0 /* Play-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Play-50@2x.png"; sourceTree = "<group>"; };
 		38D6CBF21B6EC89000D8D6B0 /* RSContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSContainerViewController.swift; sourceTree = "<group>"; };
 		38E558D31B7E5C8B00219F48 /* download@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "download@2x.png"; sourceTree = "<group>"; };
 		38F316FF1B6459B500FAE882 /* RSSetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSetTableViewCell.swift; sourceTree = "<group>"; };
@@ -177,8 +177,8 @@
 			isa = PBXGroup;
 			children = (
 				38E558D31B7E5C8B00219F48 /* download@2x.png */,
-				38D6CBF01B6EB24800D8D6B0 /* Play-50.png */,
-				38D6CBEE1B6EB23600D8D6B0 /* Pause-50.png */,
+				38D6CBF01B6EB24800D8D6B0 /* Play-50@2x.png */,
+				38D6CBEE1B6EB23600D8D6B0 /* Pause-50@2x.png */,
 				136121821B6E9296001CBD3A /* titleView@2x.png */,
 				38C9111E1B65185C00F4EBC7 /* launch@2x.png */,
 				38C9111C1B65180800F4EBC7 /* launch.png */,
@@ -361,8 +361,8 @@
 				38B836641B63CBB300C41F02 /* LaunchScreen.xib in Resources */,
 				38E558D41B7E5C8B00219F48 /* download@2x.png in Resources */,
 				38B836611B63CBB300C41F02 /* Images.xcassets in Resources */,
-				38D6CBEF1B6EB23600D8D6B0 /* Pause-50.png in Resources */,
-				38D6CBF11B6EB24800D8D6B0 /* Play-50.png in Resources */,
+				38D6CBEF1B6EB23600D8D6B0 /* Pause-50@2x.png in Resources */,
+				38D6CBF11B6EB24800D8D6B0 /* Play-50@2x.png in Resources */,
 				38C9111F1B65185C00F4EBC7 /* launch@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

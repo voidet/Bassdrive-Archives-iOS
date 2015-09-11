@@ -10,15 +10,16 @@ import UIKit
 
 class RSDownloadManager {
     
-    private var downloadQueue:[DownloadTask] = []
+    private(set) var downloadQueue:[DownloadTask] = []
     static let sharedManager = RSDownloadManager()
-    private var isExecuting:Bool = false
+    private(set) var isExecuting:Bool = false
     private var activeDownloadCount:Int = 0
     
     private init() {}
     
     func enqueForDownload(bassdriveSet:BassdriveSet) -> DownloadTask {
         let downloadTask = DownloadTask()
+        downloadTask.mediaObject = bassdriveSet
         downloadTask.requestUrlString = bassdriveSet.bassdriveSetUrlString
         self.addAndEnqueue(downloadTask)
         return downloadTask
@@ -41,7 +42,7 @@ class RSDownloadManager {
     }
     
     private func executeQueue() {
-        
+        self.isExecuting = true
         if (self.activeDownloadCount < 3) {
             
             let toDownload = min(self.downloadQueue.count, 3 - self.activeDownloadCount)

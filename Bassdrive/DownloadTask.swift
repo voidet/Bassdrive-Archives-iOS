@@ -12,6 +12,7 @@ import Alamofire
 class DownloadTask {
     
     var requestUrlString:String?
+    var mediaObject:AnyObject?
     var isActive:Bool = false {
         willSet {
             if (!self.isActive) {

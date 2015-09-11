@@ -14,30 +14,30 @@ import RxCocoa
 
 class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var sets:JSON?
-    var downloadedSets:[BassdriveSet]?
-    var loadingSets:Bool = false
     #if DEBUG
     let requestURL:String = "http://localhost:8080/parse.php"
     #else
     let requestURL:String = "http://jotlab.com/bassdrive/parse.php"
     #endif
     
+    var sets:JSON?
+    var downloadedSets:[BassdriveSet]?
+
+    dynamic var loadingSets:Bool = false
+    let refreshControl = UIRefreshControl()
+    
     @IBOutlet var tableView:UITableView!
     @IBOutlet var loadingView:UIView!
     @IBOutlet var loadingIndicator:UIActivityIndicatorView!
+    
+    var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.layoutMargins = UIEdgeInsetsZero
         
         self.setupTitleView()
-        
-        self.rx_observeWeakly("sets")
-            .subscribeNext { (sets:JSON?) in
-                self.tableView.reloadData()
-            }
-        
+    
         if (self.sets == nil) {
             self.loadingSets = true
             self.restoreAndRefreshSets()
@@ -45,17 +45,24 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         self.loadingView.layer.cornerRadius = 10;
         
-        self.rx_observeWeakly("loadingSets")
+        self.rx_observe("loadingSets")
             .subscribeNext { (alpha:Bool?) in
-            if (alpha!) {
-                self.loadingView.alpha = 1
-                self.loadingIndicator.startAnimating()
-            } else {
-                self.loadingView.alpha = 0
-                self.loadingIndicator.stopAnimating()
+                if (alpha!) {
+                    self.loadingView.alpha = 1
+                    self.loadingIndicator.startAnimating()
+                } else {
+                    self.loadingView.alpha = 0
+                    self.loadingIndicator.stopAnimating()
+                }
             }
-        }
+            .addDisposableTo(disposeBag)
         
+        self.refreshControl.tintColor = UIColor(hex:"#FF36C1")
+        self.refreshControl.rx_controlEvents(.ValueChanged)
+            .subscribeNext {
+                self.restoreAndRefreshSets()
+            }
+        self.tableView.addSubview(refreshControl)
         self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0)
     }
     
@@ -75,10 +82,12 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     private func restoreAndRefreshSets() {
         if let json:AnyObject = NSUserDefaults.standardUserDefaults().objectForKey("sets") {
             self.sets = JSON(json)
+            self.tableView.reloadData()
         }
         
         Alamofire.request(.GET, self.requestURL).responseJSON { _, _, responseJSON in
             self.loadingSets = false
+            self.refreshControl.endRefreshing()
             if let sets = responseJSON.value as? Dictionary<String, AnyObject> {
                 self.sets = JSON(sets)
                 NSUserDefaults.standardUserDefaults().setObject(responseJSON.value, forKey: "sets")
@@ -97,19 +106,29 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "goToSetList") {
-            let destVC:SetsViewController = segue.destinationViewController as! SetsViewController
-            let indexPath = self.tableView.indexPathForSelectedRow!
-            let key:String = (self.sets?.dictionaryValue.keys.map { (key:String) -> String! in
-                return key
-            }[indexPath.row])!
-            
-            destVC.sets = self.sets![key]
-            destVC.title = key
-        } else if (segue.identifier == "showDownloadedSets") {
-            let destVC:SetsViewController = segue.destinationViewController as! SetsViewController
-            destVC.downloadedSets = SetsHelper.getDownloadedSets()
+        
+        switch (segue.identifier!) {
+            case "goToSetList":
+                let destVC:SetsViewController = segue.destinationViewController as! SetsViewController
+                let indexPath = self.tableView.indexPathForSelectedRow!
+                let key:String = (self.sets?.dictionaryValue.keys.map { (key:String) -> String! in
+                    return key
+                    }[indexPath.row])!
+                
+                destVC.sets = self.sets![key]
+                destVC.title = key
+                break
+            case "showDownloadedSets":
+                let destVC:SetsViewController = segue.destinationViewController as! SetsViewController
+                destVC.downloadedSets = SetsHelper.getDownloadedSets()
+                break
+            case "goToDownloading":
+                let destVC:SetsViewController = segue.destinationViewController as! SetsViewController
+                destVC.downloadedSets = SetsHelper.getDownloadingSets()
+                break
+            default: break
         }
+        
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -170,6 +189,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.downloaded.alpha = 1
         cell.bassdriveSet = bassdriveSet
         cell.previouslyListened.alpha = bassdriveSet.hasPreviouslyListened() ? 1 : 0
+        cell.downloadTask = RSDownloadManager.sharedManager.jobForBassdriveSet(bassdriveSet)
         
         return cell
     }
