@@ -14,6 +14,7 @@
 		136121851B6EA0A3001CBD3A /* RSPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136121841B6EA0A3001CBD3A /* RSPlayerViewController.swift */; };
 		137169C31B6B4AA70008BC29 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 137169C21B6B4AA70008BC29 /* MediaPlayer.framework */; };
 		385498371B7E70FD00F13252 /* SetsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385498361B7E70FD00F13252 /* SetsHelper.swift */; };
+		3855EE101BA33C51006E8079 /* RegEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3855EE0F1BA33C51006E8079 /* RegEx.swift */; settings = {ASSET_TAGS = (); }; };
 		38B8365A1B63CBB300C41F02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B836591B63CBB300C41F02 /* AppDelegate.swift */; };
 		38B8365F1B63CBB300C41F02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38B8365D1B63CBB300C41F02 /* Main.storyboard */; };
 		38B836611B63CBB300C41F02 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38B836601B63CBB300C41F02 /* Images.xcassets */; };
@@ -54,6 +55,7 @@
 		137169C21B6B4AA70008BC29 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		2F42DB6D95ACF9C747BFACF5 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		385498361B7E70FD00F13252 /* SetsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetsHelper.swift; sourceTree = "<group>"; };
+		3855EE0F1BA33C51006E8079 /* RegEx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegEx.swift; sourceTree = "<group>"; };
 		38B836541B63CBB300C41F02 /* Bassdrive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bassdrive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38B836581B63CBB300C41F02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38B836591B63CBB300C41F02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 			children = (
 				136121801B6D86B4001CBD3A /* UIColorExtension.swift */,
 				38C911241B65205F00F4EBC7 /* RSExt.swift */,
+				3855EE0F1BA33C51006E8079 /* RegEx.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				385498371B7E70FD00F13252 /* SetsHelper.swift in Sources */,
 				38C911221B651BD200F4EBC7 /* BassdriveSet.swift in Sources */,
 				136121811B6D86B4001CBD3A /* UIColorExtension.swift in Sources */,
+				3855EE101BA33C51006E8079 /* RegEx.swift in Sources */,
 				C8B7FDF21B643705000053BE /* SetsViewController.swift in Sources */,
 				38F317031B646B4200FAE882 /* RSDownloadManager.swift in Sources */,
 				38F317001B6459B500FAE882 /* RSSetTableViewCell.swift in Sources */,

@@ -11,8 +11,8 @@ import Alamofire
 
 class DownloadTask {
     
-    var requestUrlString:String?
-    var mediaObject:AnyObject?
+    var requestUrl:NSURL?
+    var mediaObject:Any?
     var isActive:Bool = false {
         willSet {
             if (!self.isActive) {
@@ -44,7 +44,7 @@ class DownloadTask {
         
         let destination = Alamofire.Request.suggestedDownloadDestination(directory: .DocumentDirectory, domain: .UserDomainMask)
         
-        self.activeRequest = Alamofire.download(.GET, self.requestUrlString!, destination: destination).progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
+        self.activeRequest = Alamofire.download(.GET, self.requestUrl!.absoluteString, destination: destination).progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
             self.totalDownloaded = totalBytesRead
             self.totalFileSize = totalBytesExpectedToRead
             return

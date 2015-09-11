@@ -8,15 +8,31 @@
 
 import Foundation
 
-class BassdriveSet {
+struct BassdriveSet {
     
-    var bassdriveSetUrlString:String?
-    var bassdriveSetTitle:String?
+    var bassdriveSetUrl:NSURL? {
+        didSet(newValue) {
+            self.bassdriveSetTitle = self.urlStringToFilename(newValue!)
+        }
+    }
+    var bassdriveSetTitle:String? {
+        didSet(newValue) {
+            bassdriveSetTitle = self.cleanMP3String(newValue!)
+            bassdriveSetUrl = self.filePath()
+        }
+    }
     
-    convenience init(dict:Dictionary<String, String>) {
-        self.init()
+    init(setTitle:String) {
+        self.bassdriveSetTitle = self.cleanMP3String(setTitle)
+    }
+    
+    init(url:NSURL) {
+        self.bassdriveSetUrl = url
+    }
+    
+    init(dict:Dictionary<String, String>) {
         self.bassdriveSetTitle = dict["title"]
-        self.bassdriveSetUrlString = dict["url"]
+        self.bassdriveSetUrl = NSURL(string:dict["url"]!)
     }
    
     func exists() -> Bool {
@@ -26,20 +42,24 @@ class BassdriveSet {
     
     func filePath() -> NSURL {
         let path:String! = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first
-        let setPath = NSURL(string:path)!.URLByAppendingPathComponent(self.fileName()! as String)
+        let setPath = NSURL(string:path)!.URLByAppendingPathComponent(self.bassdriveSetTitle! as String)
         return setPath
     }
     
-    func fileName() -> String? {
-        return NSURL(string:self.bassdriveSetUrlString!)?.lastPathComponent!.stringByRemovingPercentEncoding
-    }
-    
     func hasPreviouslyListened() -> Bool {
-        if (self.bassdriveSetUrlString != nil &&
-            NSUserDefaults.standardUserDefaults().objectForKey(self.bassdriveSetUrlString!) != nil) {
+        if (self.bassdriveSetUrl != nil &&
+            NSUserDefaults.standardUserDefaults().objectForKey(self.bassdriveSetUrl!.absoluteString) != nil) {
             return true
         }
         return false
+    }
+    
+    private func urlStringToFilename(urlInput:NSURL) -> String {
+        return self.bassdriveSetUrl!.lastPathComponent!.stringByRemovingPercentEncoding!
+    }
+    
+    private func cleanMP3String(inputString:String) -> String {
+        return inputString.replace("\\.mp3", template: "")
     }
     
 }

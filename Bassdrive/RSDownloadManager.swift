@@ -20,14 +20,14 @@ class RSDownloadManager {
     func enqueForDownload(bassdriveSet:BassdriveSet) -> DownloadTask {
         let downloadTask = DownloadTask()
         downloadTask.mediaObject = bassdriveSet
-        downloadTask.requestUrlString = bassdriveSet.bassdriveSetUrlString
+        downloadTask.requestUrl = bassdriveSet.bassdriveSetUrl
         self.addAndEnqueue(downloadTask)
         return downloadTask
     }
     
     func jobForBassdriveSet(bassdriveSet:BassdriveSet) -> DownloadTask? {
         for downloadTask in self.downloadQueue {
-            if (bassdriveSet.bassdriveSetUrlString == downloadTask.requestUrlString) {
+            if (bassdriveSet.bassdriveSetUrl == downloadTask.requestUrl) {
                 return downloadTask
             }
         }

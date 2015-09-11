@@ -35,7 +35,7 @@ class RSPlaybackManager : NSObject {
             self.progressTracker = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "announceTime", userInfo: nil, repeats: true)
             self.progressTracker!.fire()
             
-            self.audioPlayer = try AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: self.currentSet!.filePath()!))
+            self.audioPlayer = try AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath:self.currentSet!.filePath().absoluteString, isDirectory: false))
             self.audioPlayer!.prepareToPlay()
             self.play()
         } catch {
@@ -68,10 +68,11 @@ class RSPlaybackManager : NSObject {
     
     private func updateMeta() {
         MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = [
-            MPMediaItemPropertyTitle : self.currentSet!.fileName()!,
+            MPMediaItemPropertyTitle : self.currentSet!.bassdriveSetTitle ?? "Bassdrive ",
             MPMediaItemPropertyPlaybackDuration: self.audioPlayer!.duration,
             MPNowPlayingInfoPropertyPlaybackRate: self.playing ? 1 : 0,
-            MPNowPlayingInfoPropertyElapsedPlaybackTime: self.audioPlayer!.currentTime]
+            MPNowPlayingInfoPropertyElapsedPlaybackTime: self.audioPlayer!.currentTime
+        ]
     }
     
     func announceTime() {
@@ -79,7 +80,7 @@ class RSPlaybackManager : NSObject {
         
         if (percentage * 100 > 80) {
             if let bassdriveSet = self.currentSet {
-                NSUserDefaults.standardUserDefaults().setBool(true, forKey: bassdriveSet.bassdriveSetUrlString!)
+                NSUserDefaults.standardUserDefaults().setBool(true, forKey: bassdriveSet.bassdriveSetUrl!.absoluteString)
                 NSUserDefaults.standardUserDefaults().synchronize()
             }
         }

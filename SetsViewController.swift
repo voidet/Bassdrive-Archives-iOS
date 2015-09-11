@@ -185,7 +185,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.cellType = .MediaFile
             
         let bassdriveSet = self.downloadedSets![indexPath.row]
-        cell.bassdriveSetTitleLabel.text = bassdriveSet.fileName()
+        cell.bassdriveSetTitleLabel.text = bassdriveSet.bassdriveSetTitle
         cell.downloaded.alpha = 1
         cell.bassdriveSet = bassdriveSet
         cell.previouslyListened.alpha = bassdriveSet.hasPreviouslyListened() ? 1 : 0
@@ -216,7 +216,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             if let setDict = self.sets?["_sets"].arrayObject![indexPath.row] as? Dictionary<String, String> {
                 let bassdriveSet = BassdriveSet(dict: setDict)
-                cell.bassdriveSetTitleLabel.text = bassdriveSet.fileName()
+                cell.bassdriveSetTitleLabel.text = bassdriveSet.bassdriveSetTitle
                 cell.downloaded.alpha = bassdriveSet.exists() ? 1 : 0
                 cell.bassdriveSet = bassdriveSet
                 cell.downloadTask = RSDownloadManager.sharedManager.jobForBassdriveSet(bassdriveSet)

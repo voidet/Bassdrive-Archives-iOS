@@ -15,14 +15,11 @@ class SetsHelper {
         
         do {
             let documentsUrl:NSURL! =  NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first
-            let directoryContents:[String] = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(documentsUrl.path!)
-            for set:String in directoryContents {
-                let bassdriveSet = BassdriveSet()
-                bassdriveSet.bassdriveSetTitle = set
-                bassdriveSet.bassdriveSetUrlString = set
-                bassdriveSet.bassdriveSetUrlString = bassdriveSet.filePath().absoluteString
-                sets.append(bassdriveSet)
-            }
+            sets = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(documentsUrl.path!)
+                .map { (setURLString:String) -> BassdriveSet in
+                    let bassdriveSet = BassdriveSet(setTitle:setURLString)
+                    return bassdriveSet
+                }
         } catch {
             print("Could not find downloaded sets")
         }
