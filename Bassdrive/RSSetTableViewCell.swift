@@ -61,7 +61,7 @@ class RSSetTableViewCell: UITableViewCell {
         })
     }
     
-    private func completed() {
+    private func completed(downloadTask:DownloadTask, success:Bool) {
         if (self.bassdriveSet!.exists()) {
             UIView.animateWithDuration(0.5, animations: {
                 self.downloaded.alpha = 1

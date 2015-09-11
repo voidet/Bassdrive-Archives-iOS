@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class RSDownloadManager {
     
@@ -21,6 +23,7 @@ class RSDownloadManager {
         let downloadTask = DownloadTask()
         downloadTask.mediaObject = bassdriveSet
         downloadTask.requestUrl = bassdriveSet.bassdriveSetUrl
+        downloadTask.completion = self.downloadCompleted
         self.addAndEnqueue(downloadTask)
         return downloadTask
     }
@@ -58,8 +61,11 @@ class RSDownloadManager {
             }
             
         }
-        
-        
+    }
+    
+    private func downloadCompleted(downloadTask:DownloadTask, success:Bool) {
+//        self.downloadQueue.remove(downloadTask)
+        self.activeDownloadCount--
     }
    
 }

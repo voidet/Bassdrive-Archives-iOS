@@ -36,7 +36,7 @@ class DownloadTask {
         }
     }
     var progressMonitor:((Double) -> (Void))?
-    var completion:((Void) -> (Void))?
+    var completion:((DownloadTask, Bool) -> (Void))?
     
     private var activeRequest:Request?
     
@@ -50,7 +50,7 @@ class DownloadTask {
             return
         }.response { (request, response, data, error) -> Void in
             if let completion = self.completion {
-                completion()
+                completion(self, error == nil)
             }
         }
     }
