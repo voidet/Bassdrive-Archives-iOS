@@ -8,7 +8,7 @@ This application was made from my frustration with getting these awesome sets on
 
 ## Endpoint
 ```
-http://jotlab.com/bassdrive/parse.php
+http://jotlab.com/bassdrive.json
 ```
 
 ## Credits
