@@ -35,9 +35,13 @@ class RSPlaybackManager : NSObject {
             self.progressTracker = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "announceTime", userInfo: nil, repeats: true)
             self.progressTracker!.fire()
             
-            self.audioPlayer = try AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath:self.currentSet!.filePath().absoluteString, isDirectory: false))
-            self.audioPlayer!.prepareToPlay()
-            self.play()
+            let setTitle = self.currentSet!.bassdriveSetTitle
+            if let filePath = self.currentSet!.filePath(setTitle)!.absoluteString as String? {
+                self.audioPlayer = try AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath:filePath, isDirectory: false))
+                self.audioPlayer!.prepareToPlay()
+                self.play()
+            }
+
         } catch {
             print("could not spin up AVAudioSession")
             return
@@ -79,8 +83,8 @@ class RSPlaybackManager : NSObject {
         let percentage = (self.currentTime() / self.totalTime())
         
         if (percentage * 100 > 80) {
-            if let bassdriveSet = self.currentSet {
-                NSUserDefaults.standardUserDefaults().setBool(true, forKey: bassdriveSet.bassdriveSetUrl!.absoluteString)
+            if let bassDriveSetURL = self.currentSet?.bassdriveSetURL?.absoluteString {
+                NSUserDefaults.standardUserDefaults().setBool(true, forKey: bassDriveSetURL)
                 NSUserDefaults.standardUserDefaults().synchronize()
             }
         }

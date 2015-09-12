@@ -140,8 +140,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return (self.sets?["_sets"] != nil) ? 2 : 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if (self.downloadedSets != nil) {
             return self.downloadedSets?.count ?? 0
@@ -215,7 +214,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.cellType = .MediaFile
             
             if let setDict = self.sets?["_sets"].arrayObject![indexPath.row] as? Dictionary<String, String> {
-                let bassdriveSet = BassdriveSet(dict: setDict)
+                let bassdriveSet = BassdriveSet(title:setDict["title"], url:NSURL(string: setDict["url"] as String!))
                 cell.bassdriveSetTitleLabel.text = bassdriveSet.bassdriveSetTitle
                 cell.downloaded.alpha = bassdriveSet.exists() ? 1 : 0
                 cell.bassdriveSet = bassdriveSet

@@ -10,52 +10,45 @@ import Foundation
 
 struct BassdriveSet {
     
-    var bassdriveSetUrl:NSURL? {
-        didSet(newValue) {
-            self.bassdriveSetTitle = self.urlStringToFilename(newValue!)
-        }
-    }
-    var bassdriveSetTitle:String? {
-        didSet(newValue) {
-            bassdriveSetTitle = self.cleanMP3String(newValue!)
-            bassdriveSetUrl = self.filePath()
-        }
-    }
+    var bassdriveSetTitle:String?
+    var bassdriveSetURL:NSURL?
     
-    init(setTitle:String) {
-        self.bassdriveSetTitle = self.cleanMP3String(setTitle)
+    init(title:String?, url:NSURL?) {
+        let setTitle = title ?? urlStringToFilename(url) ?? ""
+        bassdriveSetTitle = cleanMP3String(setTitle)
+        bassdriveSetURL = url ?? filePath(setTitle)
     }
-    
-    init(url:NSURL) {
-        self.bassdriveSetUrl = url
-    }
-    
-    init(dict:Dictionary<String, String>) {
-        self.bassdriveSetTitle = dict["title"]
-        self.bassdriveSetUrl = NSURL(string:dict["url"]!)
-    }
-   
+
     func exists() -> Bool {
         let checkValidation = NSFileManager.defaultManager()
-        return checkValidation.fileExistsAtPath(self.filePath().absoluteString)
-    }
-    
-    func filePath() -> NSURL {
-        let path:String! = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first
-        let setPath = NSURL(string:path)!.URLByAppendingPathComponent(self.bassdriveSetTitle! as String)
-        return setPath
-    }
-    
-    func hasPreviouslyListened() -> Bool {
-        if (self.bassdriveSetUrl != nil &&
-            NSUserDefaults.standardUserDefaults().objectForKey(self.bassdriveSetUrl!.absoluteString) != nil) {
-            return true
+        if let path = self.filePath(bassdriveSetTitle)?.absoluteString {
+            return checkValidation.fileExistsAtPath(path)
         }
         return false
     }
     
-    private func urlStringToFilename(urlInput:NSURL) -> String {
-        return self.bassdriveSetUrl!.lastPathComponent!.stringByRemovingPercentEncoding!
+    func filePath(setTitle:String?) -> NSURL? {
+        if (setTitle == nil) {
+            return nil
+        }
+        
+        let path:String! = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first
+        let setPath = NSURL(string:path)!.URLByAppendingPathComponent(setTitle! as String)
+        return setPath
+    }
+    
+    func hasPreviouslyListened() -> Bool {
+        if let setURL = bassdriveSetURL {
+            return NSUserDefaults.standardUserDefaults().objectForKey(setURL.absoluteString) != nil
+        }
+        return false
+    }
+    
+    private func urlStringToFilename(urlInput:NSURL?) -> String? {
+        if let url = urlInput {
+            return url.lastPathComponent!.stringByRemovingPercentEncoding!
+        }
+        return nil
     }
     
     private func cleanMP3String(inputString:String) -> String {
