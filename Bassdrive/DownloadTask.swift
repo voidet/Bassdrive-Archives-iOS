@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class DownloadTask {
+class DownloadTask:Equatable {
     
     var requestUrl:NSURL?
     var mediaObject:Any?
@@ -20,25 +20,29 @@ class DownloadTask {
             }
         }
     }
-    var totalFileSize:Int64 = 0
-    var totalDownloaded:Int64 = 0 {
+    var progressMonitor:((Double) -> (Void))?
+    
+    private var totalFileSize:Int64 = 0
+    private var totalDownloaded:Int64 = 0 {
         didSet {
             if (self.totalFileSize > 0) {
                 self.percentageCompleted = Double(self.totalDownloaded) / Double(self.totalFileSize) * 100
             }
         }
     }
-    var percentageCompleted:Double = 0 {
+    private var percentageCompleted:Double = 0 {
         didSet {
-            if let monitor = self.progressMonitor {
-                monitor(self.percentageCompleted)
+            if let monitor = progressMonitor {
+                monitor(percentageCompleted)
             }
         }
     }
-    var progressMonitor:((Double) -> (Void))?
-    var completion:((DownloadTask, Bool) -> (Void))?
-    
+    private var completion:[(DownloadTask, Bool) -> ()] = []
     private var activeRequest:Request?
+    
+    func addCompletion(task:(DownloadTask, Bool) -> ()) {
+        completion.append(task)
+    }
     
     private func beginDownload() {
         
@@ -49,9 +53,11 @@ class DownloadTask {
             self.totalFileSize = totalBytesExpectedToRead
             return
         }.response { (request, response, data, error) -> Void in
-            if let completion = self.completion {
-                completion(self, error == nil)
+            for downloadCompletion:(DownloadTask, Bool) -> () in self.completion {
+                downloadCompletion(self, error == nil)
             }
+            self.completion.removeAll()
+            return
         }
     }
     
@@ -59,4 +65,8 @@ class DownloadTask {
         self.activeRequest?.cancel()
     }
    
+}
+
+func ==(lhs: DownloadTask, rhs: DownloadTask) -> Bool {
+    return lhs.requestUrl == rhs.requestUrl
 }

@@ -27,6 +27,11 @@ class BassdriveSetTests: XCTestCase {
         set = BassdriveSet(title: title, url: url)
         XCTAssert(set.bassdriveSetTitle == "mewmew this is awesome", "Pass")
         XCTAssertFalse(set.bassdriveSetTitle == "mewmew this is awesome.mp3", "Pass")
+        
+        set = BassdriveSet(title: nil, url: nil)
+        XCTAssertFalse(set.bassdriveSetTitle == "mewmew this is awesome", "Pass")
+        XCTAssertFalse(set.bassdriveSetTitle == "mewmew this is awesome.mp3", "Pass")
+        
     }
     
 }

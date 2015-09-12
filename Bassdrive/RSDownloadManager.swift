@@ -23,20 +23,13 @@ class RSDownloadManager {
         let downloadTask = DownloadTask()
         downloadTask.mediaObject = bassdriveSet
         downloadTask.requestUrl = bassdriveSet.bassdriveSetURL
-        downloadTask.completion = self.downloadCompleted
+        downloadTask.addCompletion(self.downloadCompleted)
         self.addAndEnqueue(downloadTask)
         return downloadTask
     }
     
     func jobForBassdriveSet(bassdriveSet:BassdriveSet) -> DownloadTask? {
         return downloadQueue.lazy.filter({ $0.requestUrl == bassdriveSet.bassdriveSetURL }).first
-        
-//        for downloadTask in self.downloadQueue {
-//            if (bassdriveSet.bassdriveSetUrl == downloadTask.requestUrl) {
-//                return downloadTask
-//            }
-//        }
-//        return nil
     }
     
     private func addAndEnqueue(downloadTask:DownloadTask) {
@@ -66,7 +59,11 @@ class RSDownloadManager {
     }
     
     private func downloadCompleted(downloadTask:DownloadTask, success:Bool) {
-//        self.downloadQueue.remove(downloadTask)
+        
+        if let index = self.downloadQueue.indexOf(downloadTask) {
+            self.downloadQueue.removeAtIndex(index)
+        }
+        
         self.activeDownloadCount--
     }
    
