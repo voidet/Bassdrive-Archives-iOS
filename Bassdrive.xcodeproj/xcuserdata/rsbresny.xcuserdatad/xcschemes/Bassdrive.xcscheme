@@ -52,6 +52,16 @@
                ReferencedContainer = "container:Bassdrive.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "387728EC1BA4D5B30009D35B"
+               BuildableName = "BassdriveUITests.xctest"
+               BlueprintName = "BassdriveUITests"
+               ReferencedContainer = "container:Bassdrive.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

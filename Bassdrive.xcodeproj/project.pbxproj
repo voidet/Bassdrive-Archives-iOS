@@ -19,6 +19,8 @@
 		387728E41BA4AD7E0009D35B /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136121801B6D86B4001CBD3A /* UIColorExtension.swift */; settings = {ASSET_TAGS = (); }; };
 		387728E51BA4AD7E0009D35B /* RSExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C911241B65205F00F4EBC7 /* RSExt.swift */; settings = {ASSET_TAGS = (); }; };
 		387728E61BA4AD7E0009D35B /* RegEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3855EE0F1BA33C51006E8079 /* RegEx.swift */; settings = {ASSET_TAGS = (); }; };
+		387728F01BA4D5B30009D35B /* BassdriveUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387728EF1BA4D5B30009D35B /* BassdriveUITests.swift */; };
+		387728F71BA4D5B90009D35B /* SetsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387728E71BA4D5200009D35B /* SetsUITests.swift */; settings = {ASSET_TAGS = (); }; };
 		38B8365A1B63CBB300C41F02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B836591B63CBB300C41F02 /* AppDelegate.swift */; };
 		38B8365F1B63CBB300C41F02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38B8365D1B63CBB300C41F02 /* Main.storyboard */; };
 		38B836611B63CBB300C41F02 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38B836601B63CBB300C41F02 /* Images.xcassets */; };
@@ -40,6 +42,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		387728F21BA4D5B30009D35B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38B8364C1B63CBB300C41F02 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 38B836531B63CBB300C41F02;
+			remoteInfo = Bassdrive;
+		};
 		38B8366A1B63CBB400C41F02 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 38B8364C1B63CBB300C41F02 /* Project object */;
@@ -60,6 +69,10 @@
 		2F42DB6D95ACF9C747BFACF5 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		385498361B7E70FD00F13252 /* SetsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetsHelper.swift; sourceTree = "<group>"; };
 		3855EE0F1BA33C51006E8079 /* RegEx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegEx.swift; sourceTree = "<group>"; };
+		387728E71BA4D5200009D35B /* SetsUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetsUITests.swift; sourceTree = "<group>"; };
+		387728ED1BA4D5B30009D35B /* BassdriveUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BassdriveUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		387728EF1BA4D5B30009D35B /* BassdriveUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BassdriveUITests.swift; sourceTree = "<group>"; };
+		387728F11BA4D5B30009D35B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38B836541B63CBB300C41F02 /* Bassdrive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bassdrive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38B836581B63CBB300C41F02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38B836591B63CBB300C41F02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +99,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		387728EA1BA4D5B30009D35B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		38B836511B63CBB300C41F02 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -114,11 +134,21 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
+		387728EE1BA4D5B30009D35B /* BassdriveUITests */ = {
+			isa = PBXGroup;
+			children = (
+				387728EF1BA4D5B30009D35B /* BassdriveUITests.swift */,
+				387728F11BA4D5B30009D35B /* Info.plist */,
+			);
+			path = BassdriveUITests;
+			sourceTree = "<group>";
+		};
 		38B8364B1B63CBB300C41F02 = {
 			isa = PBXGroup;
 			children = (
 				38B836561B63CBB300C41F02 /* Bassdrive */,
 				38B8366C1B63CBB400C41F02 /* BassdriveTests */,
+				387728EE1BA4D5B30009D35B /* BassdriveUITests */,
 				38B836551B63CBB300C41F02 /* Products */,
 				7AFD6D6DEDAEB47E65A7015F /* Pods */,
 				B29AB5DD834684D29841C7BC /* Frameworks */,
@@ -130,6 +160,7 @@
 			children = (
 				38B836541B63CBB300C41F02 /* Bassdrive.app */,
 				38B836691B63CBB400C41F02 /* BassdriveTests.xctest */,
+				387728ED1BA4D5B30009D35B /* BassdriveUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -167,6 +198,7 @@
 			children = (
 				38B8366F1B63CBB400C41F02 /* BassdriveSetTests.swift */,
 				38B8366D1B63CBB400C41F02 /* Supporting Files */,
+				387728E71BA4D5200009D35B /* SetsUITests.swift */,
 			);
 			path = BassdriveTests;
 			sourceTree = "<group>";
@@ -276,6 +308,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		387728EC1BA4D5B30009D35B /* BassdriveUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 387728F41BA4D5B30009D35B /* Build configuration list for PBXNativeTarget "BassdriveUITests" */;
+			buildPhases = (
+				387728E91BA4D5B30009D35B /* Sources */,
+				387728EA1BA4D5B30009D35B /* Frameworks */,
+				387728EB1BA4D5B30009D35B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				387728F31BA4D5B30009D35B /* PBXTargetDependency */,
+			);
+			name = BassdriveUITests;
+			productName = BassdriveUITests;
+			productReference = 387728ED1BA4D5B30009D35B /* BassdriveUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		38B836531B63CBB300C41F02 /* Bassdrive */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 38B836731B63CBB400C41F02 /* Build configuration list for PBXNativeTarget "Bassdrive" */;
@@ -324,6 +374,10 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Richard Sbresny";
 				TargetAttributes = {
+					387728EC1BA4D5B30009D35B = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = 38B836531B63CBB300C41F02;
+					};
 					38B836531B63CBB300C41F02 = {
 						CreatedOnToolsVersion = 6.3;
 						SystemCapabilities = {
@@ -353,11 +407,19 @@
 			targets = (
 				38B836531B63CBB300C41F02 /* Bassdrive */,
 				38B836681B63CBB400C41F02 /* BassdriveTests */,
+				387728EC1BA4D5B30009D35B /* BassdriveUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		387728EB1BA4D5B30009D35B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		38B836521B63CBB300C41F02 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -432,6 +494,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		387728E91BA4D5B30009D35B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				387728F71BA4D5B90009D35B /* SetsUITests.swift in Sources */,
+				387728F01BA4D5B30009D35B /* BassdriveUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		38B836501B63CBB300C41F02 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -467,6 +538,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		387728F31BA4D5B30009D35B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 38B836531B63CBB300C41F02 /* Bassdrive */;
+			targetProxy = 387728F21BA4D5B30009D35B /* PBXContainerItemProxy */;
+		};
 		38B8366B1B63CBB400C41F02 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 38B836531B63CBB300C41F02 /* Bassdrive */;
@@ -494,6 +570,33 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		387728F51BA4D5B30009D35B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = BassdriveUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jotlab.BassdriveUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Bassdrive;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		387728F61BA4D5B30009D35B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = BassdriveUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jotlab.BassdriveUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Bassdrive;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
 		38B836711B63CBB400C41F02 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -648,6 +751,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		387728F41BA4D5B30009D35B /* Build configuration list for PBXNativeTarget "BassdriveUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				387728F51BA4D5B30009D35B /* Debug */,
+				387728F61BA4D5B30009D35B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		38B8364F1B63CBB300C41F02 /* Build configuration list for PBXProject "Bassdrive" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

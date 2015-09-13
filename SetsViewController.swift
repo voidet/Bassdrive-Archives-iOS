@@ -30,8 +30,6 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet var loadingView:UIView!
     @IBOutlet var loadingIndicator:UIActivityIndicatorView!
     
-    var disposeBag = DisposeBag()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.layoutMargins = UIEdgeInsetsZero
@@ -55,7 +53,6 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     self.loadingIndicator.stopAnimating()
                 }
             }
-            .addDisposableTo(disposeBag)
         
         self.refreshControl.tintColor = UIColor(hex:"#FF36C1")
         self.refreshControl.rx_controlEvents(.ValueChanged)
@@ -111,10 +108,11 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             case "goToSetList":
                 let destVC:SetsViewController = segue.destinationViewController as! SetsViewController
                 let indexPath = self.tableView.indexPathForSelectedRow!
-                let key:String = (self.sets?.dictionaryValue.keys.map { (key:String) -> String! in
+                let keys:[String] = (self.sets!.dictionaryObject!.keys.map { (key:String) -> String in
                     return key
-                    }[indexPath.row])!
+                })
                 
+                let key = keys[indexPath.row]
                 destVC.sets = self.sets![key]
                 destVC.title = key
                 break
@@ -132,7 +130,6 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        
         if (self.downloadedSets != nil) {
             return 1
         }
@@ -218,7 +215,9 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 cell.bassdriveSetTitleLabel.text = bassdriveSet.bassdriveSetTitle
                 cell.downloaded.alpha = bassdriveSet.exists() ? 1 : 0
                 cell.bassdriveSet = bassdriveSet
-                cell.downloadTask = RSDownloadManager.sharedManager.jobForBassdriveSet(bassdriveSet)
+                if let downloadTask = RSDownloadManager.sharedManager.jobForBassdriveSet(bassdriveSet) {
+                    cell.downloadTask = downloadTask
+                }
                 cell.previouslyListened.alpha = bassdriveSet.hasPreviouslyListened() ? 1 : 0
             }
             

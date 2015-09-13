@@ -24,7 +24,11 @@ class RSDownloadManager {
         downloadTask.mediaObject = bassdriveSet
         downloadTask.requestUrl = bassdriveSet.bassdriveSetURL
         downloadTask.addCompletion(self.downloadCompleted)
-        self.addAndEnqueue(downloadTask)
+        
+        // only enque if not already downloading
+        if (!self.jobIsActive(downloadTask)) {
+            self.addAndEnqueue(downloadTask)
+        }
         return downloadTask
     }
     
@@ -37,6 +41,16 @@ class RSDownloadManager {
         if (!self.isExecuting) {
             self.executeQueue()
         }
+    }
+    
+    private func jobIsActive(downloadTask:DownloadTask) -> Bool {
+        
+        for existingDownloadTask in self.downloadQueue {
+            if (existingDownloadTask == downloadTask) {
+                return true
+            }
+        }
+        return false
     }
     
     private func executeQueue() {
@@ -59,7 +73,6 @@ class RSDownloadManager {
     }
     
     private func downloadCompleted(downloadTask:DownloadTask, success:Bool) {
-        
         if let index = self.downloadQueue.indexOf(downloadTask) {
             self.downloadQueue.removeAtIndex(index)
         }
