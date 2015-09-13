@@ -21,7 +21,7 @@ struct BassdriveSet {
 
     func exists() -> Bool {
         let checkValidation = NSFileManager.defaultManager()
-        if let path = self.filePath(bassdriveSetTitle)?.absoluteString {
+        if let path = self.filePath(bassdriveSetURL?.lastPathComponent)?.absoluteString.stringByRemovingPercentEncoding {
             return checkValidation.fileExistsAtPath(path)
         }
         return false

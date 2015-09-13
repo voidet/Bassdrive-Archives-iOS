@@ -28,6 +28,10 @@ class RSSetTableViewCell: UITableViewCell {
     var cellType:Type?
     var downloadTask:DownloadTask? {
         didSet {
+            if downloadTask == nil {
+                return
+            }
+            
             self.downloadTask!.progressMonitor = updateProgress
             self.downloadTask!.addCompletion(completed)
         }
