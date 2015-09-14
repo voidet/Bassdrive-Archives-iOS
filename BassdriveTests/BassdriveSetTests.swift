@@ -55,9 +55,12 @@ class BassdriveSetTests: XCTestCase {
     }
     
     func testHasPreviouslyListened() {
-        let set = BassdriveSet(title: "mew", url: NSURL(string: "mew.mp3"))
-        
+
         NSUserDefaults.standardUserDefaults().removeObjectForKey("mew.mp3")
+        var set = BassdriveSet(title: nil, url: nil)
+        XCTAssertFalse(set.hasPreviouslyListened(), "Pass")
+        
+        set = BassdriveSet(title: "mew", url: NSURL(string: "mew.mp3"))
         
         XCTAssertFalse(set.hasPreviouslyListened(), "Pass")
         
