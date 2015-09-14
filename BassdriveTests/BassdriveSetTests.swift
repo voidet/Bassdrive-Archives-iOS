@@ -34,4 +34,37 @@ class BassdriveSetTests: XCTestCase {
         
     }
     
+    func testBassdriveSetExists() {
+        
+        let path:String! = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first
+        let file:String = "\(path)/voidet.mp3"
+        
+        do {
+            try! NSFileManager().removeItemAtPath(file)
+        }
+        
+        var set = BassdriveSet(title: "voidet", url: NSURL(string: "voidet.mp3"))
+        XCTAssertFalse(set.exists(), "Pass")
+        
+        try! "test".writeToFile(file, atomically: false, encoding: NSUTF8StringEncoding)
+
+        XCTAssert(set.exists(), "Pass")
+        
+        set = BassdriveSet(title: nil, url: nil)
+        XCTAssertFalse(set.exists(), "Pass")
+    }
+    
+    func testHasPreviouslyListened() {
+        let set = BassdriveSet(title: "mew", url: NSURL(string: "mew.mp3"))
+        
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("mew.mp3")
+        
+        XCTAssertFalse(set.hasPreviouslyListened(), "Pass")
+        
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "mew.mp3")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        
+        XCTAssert(set.hasPreviouslyListened(), "Pass")
+    }
+    
 }

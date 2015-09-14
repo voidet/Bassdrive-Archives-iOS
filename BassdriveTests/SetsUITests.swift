@@ -30,9 +30,35 @@ class SetsUITests: XCTestCase {
     func testExample() {
         
         let tablesQuery = XCUIApplication().tables
+        
+        XCTAssertEqual(tablesQuery.count, 1)
+        XCTAssertEqual(tablesQuery.cells.count, 10)
+
         tablesQuery.staticTexts["Friday"].tap()
         tablesQuery.staticTexts["Urban Aristocracy - Citykings Matt D"].tap()
         tablesQuery.staticTexts["2012"].tap()
+        XCTAssertGreaterThan(tablesQuery.cells.count, 1)
+        
+    }
+    
+    func testDownloadStartsAndAppears() {
+        
+        let tablesQuery = XCUIApplication().tables
+        
+        XCTAssertEqual(tablesQuery.count, 1)
+        XCTAssertEqual(tablesQuery.cells.count, 10)
+        
+        tablesQuery.staticTexts["Friday"].tap()
+        tablesQuery.staticTexts["Urban Aristocracy - Citykings Matt D"].tap()
+        tablesQuery.staticTexts["2012"].tap()
+        
+        let cell = tablesQuery.cells.elementBoundByIndex(0)
+
+//        cell.tap()
+        var downloadingCell = cell.accessibilityValue
+        print(downloadingCell)
+        
+        
         
     }
     

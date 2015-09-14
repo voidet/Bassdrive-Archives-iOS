@@ -10,18 +10,18 @@ import Foundation
 
 struct BassdriveSet {
     
-    var bassdriveSetTitle:String?
-    var bassdriveSetURL:NSURL?
+    private(set) var bassdriveSetTitle:String?
+    private(set) var bassdriveSetURL:NSURL?
     
     init(title:String?, url:NSURL?) {
-        let setTitle = title ?? urlStringToFilename(url) ?? ""
+        let setTitle:String? = title ?? urlStringToFilename(url)
         bassdriveSetTitle = cleanMP3String(setTitle)
         bassdriveSetURL = url ?? filePath(setTitle)
     }
 
     func exists() -> Bool {
         let checkValidation = NSFileManager.defaultManager()
-        if let path = self.filePath(bassdriveSetURL?.lastPathComponent)?.absoluteString.stringByRemovingPercentEncoding {
+        if let path = self.filePath(bassdriveSetURL?.lastPathComponent)?.absoluteString.stringByRemovingPercentEncoding where self.filePath(bassdriveSetURL?.lastPathComponent) != nil {
             return checkValidation.fileExistsAtPath(path)
         }
         return false
@@ -51,8 +51,11 @@ struct BassdriveSet {
         return nil
     }
     
-    private func cleanMP3String(inputString:String) -> String {
-        return inputString.replace("\\.mp3", template: "")
+    private func cleanMP3String(inputString:String?) -> String? {
+        if (inputString == nil) {
+            return nil
+        }
+        return inputString!.replace("\\.mp3", template: "")
     }
     
 }
