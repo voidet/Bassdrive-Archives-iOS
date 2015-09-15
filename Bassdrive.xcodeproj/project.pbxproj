@@ -336,6 +336,7 @@
 				38B836521B63CBB300C41F02 /* Resources */,
 				EE89D75F9B0D2739AA415A52 /* Embed Pods Frameworks */,
 				B2F1631C558A4513607E6818 /* Copy Pods Resources */,
+				385163901BA7C61500DBC62A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -446,6 +447,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		385163901BA7C61500DBC62A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
+		};
 		468FAFCF2D0508908F75DBD7 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -758,6 +772,7 @@
 				387728F61BA4D5B30009D35B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		38B8364F1B63CBB300C41F02 /* Build configuration list for PBXProject "Bassdrive" */ = {
 			isa = XCConfigurationList;
