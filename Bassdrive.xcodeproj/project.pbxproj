@@ -37,7 +37,7 @@
 		38F317001B6459B500FAE882 /* RSSetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F316FF1B6459B500FAE882 /* RSSetTableViewCell.swift */; };
 		38F317031B646B4200FAE882 /* RSDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F317021B646B4200FAE882 /* RSDownloadManager.swift */; };
 		38F317061B646B8400FAE882 /* DownloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F317051B646B8400FAE882 /* DownloadTask.swift */; };
-		5D952F7C97C8A3F9083BB551 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F42DB6D95ACF9C747BFACF5 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		5D952F7C97C8A3F9083BB551 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F42DB6D95ACF9C747BFACF5 /* Pods.framework */; };
 		C8B7FDF21B643705000053BE /* SetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B7FDF11B643705000053BE /* SetsViewController.swift */; };
 /* End PBXBuildFile section */
 
