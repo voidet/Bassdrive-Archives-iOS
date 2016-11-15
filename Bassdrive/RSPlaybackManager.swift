@@ -11,33 +11,33 @@ import AVFoundation
 import MediaPlayer
 
 protocol RSPlaybackManagerProtocol {
-    func didUpdateToTime(time:NSTimeInterval)
+    func didUpdateToTime(_ time:TimeInterval)
 }
 
 class RSPlaybackManager : NSObject {
     
     static let sharedInstance = RSPlaybackManager()
-    private var audioPlayer:AVAudioPlayer?
-    private(set) var currentSet:BassdriveSet?
-    private var playing:Bool = false
-    private var progressTracker:NSTimer?
-    private var delegates:[RSPlaybackManagerProtocol] = []
+    fileprivate var audioPlayer:AVAudioPlayer?
+    fileprivate(set) var currentSet:BassdriveSet?
+    fileprivate var playing:Bool = false
+    fileprivate var progressTracker:Timer?
+    fileprivate var delegates:[RSPlaybackManagerProtocol] = []
     
-    override private init() {}
+    override fileprivate init() {}
     
-    func playSet(bassdriveSet:BassdriveSet) {
+    func playSet(_ bassdriveSet:BassdriveSet) {
         self.currentSet = bassdriveSet
 
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
             try AVAudioSession.sharedInstance().setActive(true)
             
-            self.progressTracker = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "announceTime", userInfo: nil, repeats: true)
+            self.progressTracker = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(RSPlaybackManager.announceTime), userInfo: nil, repeats: true)
             self.progressTracker!.fire()
             
             let setTitle = self.currentSet!.bassdriveSetTitle
             if let filePath = self.currentSet!.filePath(setTitle)!.absoluteString as String? {
-                self.audioPlayer = try AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath:filePath, isDirectory: false))
+                self.audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath:filePath, isDirectory: false))
                 self.audioPlayer!.prepareToPlay()
                 self.play()
             }
@@ -49,7 +49,7 @@ class RSPlaybackManager : NSObject {
         
     }
     
-    func addSubscriber(subscriber:RSPlaybackManagerProtocol) {
+    func addSubscriber(_ subscriber:RSPlaybackManagerProtocol) {
 //        if find(self.delegates, subscriber) {
             self.delegates.append(subscriber)
 //        }
@@ -70,8 +70,8 @@ class RSPlaybackManager : NSObject {
         }
     }
     
-    private func updateMeta() {
-        MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = [
+    fileprivate func updateMeta() {
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = [
             MPMediaItemPropertyTitle : self.currentSet!.bassdriveSetTitle ?? "Bassdrive ",
             MPMediaItemPropertyPlaybackDuration: self.audioPlayer!.duration,
             MPNowPlayingInfoPropertyPlaybackRate: self.playing ? 1 : 0,
@@ -84,8 +84,8 @@ class RSPlaybackManager : NSObject {
         
         if (percentage * 100 > 80) {
             if let bassDriveSetURL = self.currentSet?.bassdriveSetURL?.absoluteString {
-                NSUserDefaults.standardUserDefaults().setBool(true, forKey: bassDriveSetURL)
-                NSUserDefaults.standardUserDefaults().synchronize()
+                UserDefaults.standard.set(true, forKey: bassDriveSetURL)
+                UserDefaults.standard.synchronize()
             }
         }
         
@@ -94,11 +94,11 @@ class RSPlaybackManager : NSObject {
         }
     }
     
-    func currentTime() -> NSTimeInterval {
+    func currentTime() -> TimeInterval {
         return self.audioPlayer?.currentTime ?? 0
     }
     
-    func totalTime() -> NSTimeInterval {
+    func totalTime() -> TimeInterval {
         return self.audioPlayer?.duration ?? 0
     }
     
@@ -106,7 +106,7 @@ class RSPlaybackManager : NSObject {
         return self.playing
     }
     
-    func jumpToTime(time:NSTimeInterval) {
+    func jumpToTime(_ time:TimeInterval) {
         self.audioPlayer?.currentTime = time
     }
     

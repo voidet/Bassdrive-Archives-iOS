@@ -10,18 +10,18 @@ import UIKit
 
 class RSContainerViewController: UIViewController {
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
+        UIApplication.shared.beginReceivingRemoteControlEvents()
         self.becomeFirstResponder()
     }
     
-    override func remoteControlReceivedWithEvent(event: UIEvent?) {
+    override func remoteControlReceived(with event: UIEvent?) {
         switch event!.subtype {
-            case .RemoteControlPause:
+            case .remoteControlPause:
                 RSPlaybackManager.sharedInstance.pause()
                 break
-            case .RemoteControlPlay:
+            case .remoteControlPlay:
                 RSPlaybackManager.sharedInstance.play()
                 break
             default:

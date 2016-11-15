@@ -14,13 +14,13 @@
 		136121851B6EA0A3001CBD3A /* RSPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136121841B6EA0A3001CBD3A /* RSPlayerViewController.swift */; };
 		137169C31B6B4AA70008BC29 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 137169C21B6B4AA70008BC29 /* MediaPlayer.framework */; };
 		385498371B7E70FD00F13252 /* SetsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385498361B7E70FD00F13252 /* SetsHelper.swift */; };
-		3855EE101BA33C51006E8079 /* RegEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3855EE0F1BA33C51006E8079 /* RegEx.swift */; settings = {ASSET_TAGS = (); }; };
-		387728E31BA4AB100009D35B /* BassdriveSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C911211B651BD200F4EBC7 /* BassdriveSet.swift */; settings = {ASSET_TAGS = (); }; };
-		387728E41BA4AD7E0009D35B /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136121801B6D86B4001CBD3A /* UIColorExtension.swift */; settings = {ASSET_TAGS = (); }; };
-		387728E51BA4AD7E0009D35B /* RSExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C911241B65205F00F4EBC7 /* RSExt.swift */; settings = {ASSET_TAGS = (); }; };
-		387728E61BA4AD7E0009D35B /* RegEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3855EE0F1BA33C51006E8079 /* RegEx.swift */; settings = {ASSET_TAGS = (); }; };
+		3855EE101BA33C51006E8079 /* RegEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3855EE0F1BA33C51006E8079 /* RegEx.swift */; };
+		387728E31BA4AB100009D35B /* BassdriveSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C911211B651BD200F4EBC7 /* BassdriveSet.swift */; };
+		387728E41BA4AD7E0009D35B /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136121801B6D86B4001CBD3A /* UIColorExtension.swift */; };
+		387728E51BA4AD7E0009D35B /* RSExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C911241B65205F00F4EBC7 /* RSExt.swift */; };
+		387728E61BA4AD7E0009D35B /* RegEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3855EE0F1BA33C51006E8079 /* RegEx.swift */; };
 		387728F01BA4D5B30009D35B /* BassdriveUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387728EF1BA4D5B30009D35B /* BassdriveUITests.swift */; };
-		387728F71BA4D5B90009D35B /* SetsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387728E71BA4D5200009D35B /* SetsUITests.swift */; settings = {ASSET_TAGS = (); }; };
+		387728F71BA4D5B90009D35B /* SetsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387728E71BA4D5200009D35B /* SetsUITests.swift */; };
 		38B8365A1B63CBB300C41F02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B836591B63CBB300C41F02 /* AppDelegate.swift */; };
 		38B8365F1B63CBB300C41F02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38B8365D1B63CBB300C41F02 /* Main.storyboard */; };
 		38B836611B63CBB300C41F02 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38B836601B63CBB300C41F02 /* Images.xcassets */; };
@@ -38,6 +38,7 @@
 		38F317031B646B4200FAE882 /* RSDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F317021B646B4200FAE882 /* RSDownloadManager.swift */; };
 		38F317061B646B8400FAE882 /* DownloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F317051B646B8400FAE882 /* DownloadTask.swift */; };
 		5D952F7C97C8A3F9083BB551 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F42DB6D95ACF9C747BFACF5 /* Pods.framework */; };
+		A68EF740DA8ADF20AFA3A666 /* Pods_Bassdrive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A92255DCA2E4A7B05518F183 /* Pods_Bassdrive.framework */; };
 		C8B7FDF21B643705000053BE /* SetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B7FDF11B643705000053BE /* SetsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +67,7 @@
 		136121821B6E9296001CBD3A /* titleView@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "titleView@2x.png"; sourceTree = "<group>"; };
 		136121841B6EA0A3001CBD3A /* RSPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSPlayerViewController.swift; sourceTree = "<group>"; };
 		137169C21B6B4AA70008BC29 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		1DE7B75E31793EAA4A87E1DA /* Pods-Bassdrive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bassdrive.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bassdrive/Pods-Bassdrive.debug.xcconfig"; sourceTree = "<group>"; };
 		2F42DB6D95ACF9C747BFACF5 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		385498361B7E70FD00F13252 /* SetsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetsHelper.swift; sourceTree = "<group>"; };
 		3855EE0F1BA33C51006E8079 /* RegEx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegEx.swift; sourceTree = "<group>"; };
@@ -95,7 +97,9 @@
 		38F317051B646B8400FAE882 /* DownloadTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadTask.swift; sourceTree = "<group>"; };
 		7F8C5CD8C90E5A304C2ACCF7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		92D0CB75744113ACDB0A4345 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		A92255DCA2E4A7B05518F183 /* Pods_Bassdrive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bassdrive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8B7FDF11B643705000053BE /* SetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetsViewController.swift; path = ../SetsViewController.swift; sourceTree = "<group>"; };
+		EEC8A5A31B9CE4B1CFCFD3DD /* Pods-Bassdrive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bassdrive.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bassdrive/Pods-Bassdrive.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +117,7 @@
 				137169C31B6B4AA70008BC29 /* MediaPlayer.framework in Frameworks */,
 				135E57261B6B45E7005F7FC8 /* AVFoundation.framework in Frameworks */,
 				5D952F7C97C8A3F9083BB551 /* Pods.framework in Frameworks */,
+				A68EF740DA8ADF20AFA3A666 /* Pods_Bassdrive.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +285,8 @@
 			children = (
 				7F8C5CD8C90E5A304C2ACCF7 /* Pods.debug.xcconfig */,
 				92D0CB75744113ACDB0A4345 /* Pods.release.xcconfig */,
+				1DE7B75E31793EAA4A87E1DA /* Pods-Bassdrive.debug.xcconfig */,
+				EEC8A5A31B9CE4B1CFCFD3DD /* Pods-Bassdrive.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -291,6 +298,7 @@
 				135E57251B6B45E7005F7FC8 /* AVFoundation.framework */,
 				135E57231B6B45DE005F7FC8 /* AVKit.framework */,
 				2F42DB6D95ACF9C747BFACF5 /* Pods.framework */,
+				A92255DCA2E4A7B05518F183 /* Pods_Bassdrive.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -330,12 +338,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 38B836731B63CBB400C41F02 /* Build configuration list for PBXNativeTarget "Bassdrive" */;
 			buildPhases = (
-				468FAFCF2D0508908F75DBD7 /* Check Pods Manifest.lock */,
+				468FAFCF2D0508908F75DBD7 /* [CP] Check Pods Manifest.lock */,
 				38B836501B63CBB300C41F02 /* Sources */,
 				38B836511B63CBB300C41F02 /* Frameworks */,
 				38B836521B63CBB300C41F02 /* Resources */,
-				EE89D75F9B0D2739AA415A52 /* Embed Pods Frameworks */,
-				B2F1631C558A4513607E6818 /* Copy Pods Resources */,
+				EE89D75F9B0D2739AA415A52 /* [CP] Embed Pods Frameworks */,
+				B2F1631C558A4513607E6818 /* [CP] Copy Pods Resources */,
 				385163901BA7C61500DBC62A /* ShellScript */,
 			);
 			buildRules = (
@@ -372,15 +380,17 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Richard Sbresny";
 				TargetAttributes = {
 					387728EC1BA4D5B30009D35B = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0810;
 						TestTargetID = 38B836531B63CBB300C41F02;
 					};
 					38B836531B63CBB300C41F02 = {
 						CreatedOnToolsVersion = 6.3;
+						LastSwiftMigration = 0810;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -389,6 +399,7 @@
 					};
 					38B836681B63CBB400C41F02 = {
 						CreatedOnToolsVersion = 6.3;
+						LastSwiftMigration = 0810;
 						TestTargetID = 38B836531B63CBB300C41F02;
 					};
 				};
@@ -460,49 +471,49 @@
 			shellPath = /bin/sh;
 			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
 		};
-		468FAFCF2D0508908F75DBD7 /* Check Pods Manifest.lock */ = {
+		468FAFCF2D0508908F75DBD7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		B2F1631C558A4513607E6818 /* Copy Pods Resources */ = {
+		B2F1631C558A4513607E6818 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bassdrive/Pods-Bassdrive-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EE89D75F9B0D2739AA415A52 /* Embed Pods Frameworks */ = {
+		EE89D75F9B0D2739AA415A52 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bassdrive/Pods-Bassdrive-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -593,6 +604,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jotlab.BassdriveUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Bassdrive;
 				USES_XCTRUNNER = YES;
 			};
@@ -606,6 +618,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jotlab.BassdriveUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Bassdrive;
 				USES_XCTRUNNER = YES;
 			};
@@ -624,8 +637,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -670,8 +685,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -690,6 +707,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -697,8 +715,9 @@
 		};
 		38B836741B63CBB400C41F02 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7F8C5CD8C90E5A304C2ACCF7 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 1DE7B75E31793EAA4A87E1DA /* Pods-Bassdrive.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = Bassdrive/Info.plist;
@@ -707,14 +726,16 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"DEBUG\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jotlab.bassdrive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		38B836751B63CBB400C41F02 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 92D0CB75744113ACDB0A4345 /* Pods.release.xcconfig */;
+			baseConfigurationReference = EEC8A5A31B9CE4B1CFCFD3DD /* Pods-Bassdrive.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = Bassdrive/Info.plist;
@@ -722,6 +743,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jotlab.bassdrive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -742,6 +764,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jotlab.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bassdrive.app/Bassdrive";
 			};
 			name = Debug;
@@ -758,6 +781,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jotlab.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bassdrive.app/Bassdrive";
 			};
 			name = Release;

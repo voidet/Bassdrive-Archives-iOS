@@ -32,7 +32,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.layoutMargins = UIEdgeInsetsZero
+        self.tableView.layoutMargins = UIEdgeInsets.zero
         
         self.setupTitleView()
     
@@ -63,11 +63,11 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if let indexPath = self.tableView.indexPathForSelectedRow {
-            self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            self.tableView.deselectRow(at: indexPath, animated: true)
         }
         
         if (self !== self.navigationController?.childViewControllers.first) {
@@ -76,8 +76,8 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
     }
     
-    private func restoreAndRefreshSets() {
-        if let json:AnyObject = NSUserDefaults.standardUserDefaults().objectForKey("sets") {
+    fileprivate func restoreAndRefreshSets() {
+        if let json:AnyObject = UserDefaults.standard.object(forKey: "sets") as AnyObject? {
             self.sets = JSON(json)
             self.tableView.reloadData()
         }
@@ -94,19 +94,19 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-    private func setupTitleView() {
+    fileprivate func setupTitleView() {
         let titleView = UIImageView(image: UIImage(named: "titleView"))
         titleView.frame.size.height = 40
-        titleView.contentMode = .ScaleAspectFit
+        titleView.contentMode = .scaleAspectFit
         titleView.clipsToBounds = true
         self.navigationItem.titleView = titleView
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         switch (segue.identifier!) {
             case "goToSetList":
-                let destVC:SetsViewController = segue.destinationViewController as! SetsViewController
+                let destVC:SetsViewController = segue.destination as! SetsViewController
                 let indexPath = self.tableView.indexPathForSelectedRow!
                 let keys:[String] = (self.sets!.dictionaryObject!.keys.map { (key:String) -> String in
                     return key
@@ -117,11 +117,11 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 destVC.title = key
                 break
             case "showDownloadedSets":
-                let destVC:SetsViewController = segue.destinationViewController as! SetsViewController
+                let destVC:SetsViewController = segue.destination as! SetsViewController
                 destVC.downloadedSets = SetsHelper.getDownloadedSets()
                 break
             case "goToDownloading":
-                let destVC:SetsViewController = segue.destinationViewController as! SetsViewController
+                let destVC:SetsViewController = segue.destination as! SetsViewController
                 destVC.downloadedSets = SetsHelper.getDownloadingSets()
                 break
             default: break
@@ -129,7 +129,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         if (self.downloadedSets != nil) {
             return 1
         }
@@ -137,7 +137,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return (self.sets?["_sets"] != nil) ? 2 : 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if (self.downloadedSets != nil) {
             return self.downloadedSets?.count ?? 0
@@ -161,10 +161,10 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         
-        var cell:RSSetTableViewCell = tableView.dequeueReusableCellWithIdentifier("setTitleCell") as! RSSetTableViewCell
+        var cell:RSSetTableViewCell = tableView.dequeueReusableCell(withIdentifier: "setTitleCell") as! RSSetTableViewCell
         if (self.downloadedSets != nil) {
             cell = self.getLocalSetCell(indexPath, cell:cell)
         } else if (self.sets != nil) {
@@ -174,11 +174,11 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
     }
     
-    func getLocalSetCell(indexPath:NSIndexPath, cell:RSSetTableViewCell) -> RSSetTableViewCell {
+    func getLocalSetCell(_ indexPath:IndexPath, cell:RSSetTableViewCell) -> RSSetTableViewCell {
         
         cell.progressBarSize.constant = self.view.frame.size.width
         
-        cell.cellType = .MediaFile
+        cell.cellType = .mediaFile
             
         let bassdriveSet = self.downloadedSets![indexPath.row]
         cell.bassdriveSetTitleLabel.text = bassdriveSet.bassdriveSetTitle
@@ -190,7 +190,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
     }
     
-    func getRemoteSetCell(indexPath:NSIndexPath, cell:RSSetTableViewCell) -> RSSetTableViewCell {
+    func getRemoteSetCell(_ indexPath:IndexPath, cell:RSSetTableViewCell) -> RSSetTableViewCell {
         
         cell.progressBarSize.constant = self.view.frame.size.width
         
@@ -206,12 +206,12 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             
             cell.bassdriveSetTitleLabel.text = key
-            cell.cellType = .Folder
+            cell.cellType = .folder
         } else if (indexPath.section == 1) {
-            cell.cellType = .MediaFile
+            cell.cellType = .mediaFile
             
             if let setDict = self.sets?["_sets"].arrayObject![indexPath.row] as? Dictionary<String, String> {
-                let bassdriveSet = BassdriveSet(title:setDict["title"], url:NSURL(string: setDict["url"] as String!))
+                let bassdriveSet = BassdriveSet(title:setDict["title"], url:URL(string: setDict["url"] as String!))
                 cell.bassdriveSetTitleLabel.text = bassdriveSet.bassdriveSetTitle
                 cell.downloaded.alpha = bassdriveSet.exists() ? 1 : 0
                 cell.bassdriveSet = bassdriveSet
@@ -225,12 +225,12 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
     }
     
-    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+    override func shouldPerformSegue(withIdentifier identifier: String?, sender: Any?) -> Bool {
         
         if (identifier == "goToSetList") {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let cell:RSSetTableViewCell = tableView.cellForRowAtIndexPath(indexPath) as! RSSetTableViewCell
-                if (cell.cellType == .MediaFile) {
+                let cell:RSSetTableViewCell = tableView.cellForRow(at: indexPath) as! RSSetTableViewCell
+                if (cell.cellType == .mediaFile) {
                     return false
                 }
             }
@@ -239,15 +239,15 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return true
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell:RSSetTableViewCell = tableView.cellForRowAtIndexPath(indexPath) as! RSSetTableViewCell
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell:RSSetTableViewCell = tableView.cellForRow(at: indexPath) as! RSSetTableViewCell
         
         if let bassdriveSet = cell.bassdriveSet {
             if (bassdriveSet.exists()) {
                 RSPlaybackManager.sharedInstance.playSet(bassdriveSet)
             } else {
                 cell.downloadTask = RSDownloadManager.sharedManager.enqueForDownload(bassdriveSet)
-                self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                self.tableView.deselectRow(at: indexPath, animated: true)
             }
         }
        

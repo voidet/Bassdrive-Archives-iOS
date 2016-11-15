@@ -18,17 +18,17 @@ class RSPlayerViewController: UIViewController, RSPlaybackManagerProtocol {
     @IBOutlet var playPauseButton:UIButton!
     @IBOutlet var playbackHead:UIView!
     
-    private var scrubbing:Bool = false
-    private var playbackHeadCurrentPosition:CGPoint = CGPointZero
-    private var initialLayout:Bool = false
-    private var initialProgressSize:CGFloat?
-    private var isCountingDown:Bool = false
+    fileprivate var scrubbing:Bool = false
+    fileprivate var playbackHeadCurrentPosition:CGPoint = CGPoint.zero
+    fileprivate var initialLayout:Bool = false
+    fileprivate var initialProgressSize:CGFloat?
+    fileprivate var isCountingDown:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         RSPlaybackManager.sharedInstance.addSubscriber(self)
         
-        NSNotificationCenter.defaultCenter().rx_notification("AVAudioSessionRouteChangeNotification", object:nil)
+        NotificationCenter.default.rx_notification("AVAudioSessionRouteChangeNotification", object:nil)
             .map { notif in
                 self.pause()
         }
@@ -43,7 +43,7 @@ class RSPlayerViewController: UIViewController, RSPlaybackManagerProtocol {
         }
     }
     
-    func didUpdateToTime(time:NSTimeInterval) {
+    func didUpdateToTime(_ time:TimeInterval) {
         self.updateProgress()
     }
     
@@ -58,7 +58,7 @@ class RSPlayerViewController: UIViewController, RSPlaybackManagerProtocol {
         }
     }
     
-    private func stringFromTimeInterval(interval: NSTimeInterval) -> String {
+    fileprivate func stringFromTimeInterval(_ interval: TimeInterval) -> String {
         let interval = Int(interval)
         let seconds = interval % 60
         let minutes = (interval / 60) % 60
@@ -66,15 +66,15 @@ class RSPlayerViewController: UIViewController, RSPlaybackManagerProtocol {
         return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
     
-    private func updateTimeByPercentage(percentage:Double) {
+    fileprivate func updateTimeByPercentage(_ percentage:Double) {
         RSPlaybackManager.sharedInstance.jumpToTime(self.timeAtPercentage(percentage))
     }
     
-    private func timeAtPercentage(difference:Double) -> NSTimeInterval {
-        return NSTimeInterval(RSPlaybackManager.sharedInstance.totalTime()) * (difference / 100)
+    fileprivate func timeAtPercentage(_ difference:Double) -> TimeInterval {
+        return TimeInterval(RSPlaybackManager.sharedInstance.totalTime()) * (difference / 100)
     }
     
-    private func pause() {
+    fileprivate func pause() {
         RSPlaybackManager.sharedInstance.pause()
     }
     
@@ -85,13 +85,13 @@ class RSPlayerViewController: UIViewController, RSPlaybackManagerProtocol {
             RSPlaybackManager.sharedInstance.play()
         }
         
-        UIView.animateWithDuration(0.2, animations: {
+        UIView.animate(withDuration: 0.2, animations: {
             self.playPauseButton.alpha = 0
         }, completion: { (completed) in
             if (completed) {
                 let imageString = RSPlaybackManager.sharedInstance.isPlaying() ? "Pause-50" : "Play-50"
-                self.playPauseButton .setImage(UIImage(named: imageString), forState:.Normal)
-                UIView.animateWithDuration(0.2, animations: { () -> Void in
+                self.playPauseButton .setImage(UIImage(named: imageString), for:UIControlState())
+                UIView.animate(withDuration: 0.2, animations: { () -> Void in
                   self.playPauseButton.alpha = 1
                 })
             }
@@ -100,24 +100,24 @@ class RSPlayerViewController: UIViewController, RSPlaybackManagerProtocol {
     }
     
     @IBAction func changeCountDown() {
-        UIView.animateWithDuration(0.2, animations: {
+        UIView.animate(withDuration: 0.2, animations: {
             self.timeLabel.alpha = 0
         }, completion: { (completed) in
             self.isCountingDown = !self.isCountingDown
             self.updateProgress()
-            UIView.animateWithDuration(0.2, animations: { () -> Void in
+            UIView.animate(withDuration: 0.2, animations: { () -> Void in
                 self.timeLabel.alpha = 1
             })
         })
     }
     
-    @IBAction func handlePan(gestureRecogniser:UIPanGestureRecognizer) {
-        if (gestureRecogniser.state == .Began) {
+    @IBAction func handlePan(_ gestureRecogniser:UIPanGestureRecognizer) {
+        if (gestureRecogniser.state == .began) {
             self.playbackHeadCurrentPosition = self.playbackHead.frame.origin
             self.scrubbing = true
         }
         
-        let translation:CGPoint = gestureRecogniser.translationInView(self.playbackHead.superview!)
+        let translation:CGPoint = gestureRecogniser.translation(in: self.playbackHead.superview!)
         
         var xOffset = translation.x + self.playbackHeadCurrentPosition.x + 5
         if (xOffset < self.playbackProgressBar.frame.origin.x) {
@@ -126,7 +126,7 @@ class RSPlayerViewController: UIViewController, RSPlaybackManagerProtocol {
             xOffset = self.playbackProgressBar.frame.origin.x + self.initialProgressSize! + 5
         }
         
-        self.playbackHead.center = CGPointMake(xOffset, self.playbackHead.center.y)
+        self.playbackHead.center = CGPoint(x: xOffset, y: self.playbackHead.center.y)
 
         let progressPosition = (self.playbackHead.center.x - self.playbackProgressBar.frame.origin.x)
         self.playbackProgressBarXOffset.constant = self.initialProgressSize! - progressPosition
@@ -138,7 +138,7 @@ class RSPlayerViewController: UIViewController, RSPlaybackManagerProtocol {
         
         self.timeLabel.text = self.stringFromTimeInterval(self.timeAtPercentage(Double(difference * 100)))
 
-        if (gestureRecogniser.state == .Ended) {
+        if (gestureRecogniser.state == .ended) {
             self.updateTimeByPercentage(Double(difference * 100))
             self.scrubbing = false
         }

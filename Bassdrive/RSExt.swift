@@ -10,8 +10,8 @@ import Foundation
 
 extension Int {
     
-    func times(function: Void -> Void) {
-        for (var i = 0; i < self; i++) {
+    func times(_ function: (Void) -> Void) {
+        for (i in 0 ..< self) {
             function();
         }
     }

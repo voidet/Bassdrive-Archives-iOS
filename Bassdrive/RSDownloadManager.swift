@@ -12,14 +12,14 @@ import RxCocoa
 
 class RSDownloadManager {
     
-    private(set) var downloadQueue:[DownloadTask] = []
+    fileprivate(set) var downloadQueue:[DownloadTask] = []
     static let sharedManager = RSDownloadManager()
-    private(set) var isExecuting:Bool = false
-    private var activeDownloadCount:Int = 0
+    fileprivate(set) var isExecuting:Bool = false
+    fileprivate var activeDownloadCount:Int = 0
     
-    private init() {}
+    fileprivate init() {}
     
-    func enqueForDownload(bassdriveSet:BassdriveSet) -> DownloadTask {
+    func enqueForDownload(_ bassdriveSet:BassdriveSet) -> DownloadTask {
         let downloadTask = DownloadTask()
         downloadTask.mediaObject = bassdriveSet
         downloadTask.requestUrl = bassdriveSet.bassdriveSetURL
@@ -32,18 +32,18 @@ class RSDownloadManager {
         return downloadTask
     }
     
-    func jobForBassdriveSet(bassdriveSet:BassdriveSet) -> DownloadTask? {
+    func jobForBassdriveSet(_ bassdriveSet:BassdriveSet) -> DownloadTask? {
         return downloadQueue.lazy.filter({ $0.requestUrl == bassdriveSet.bassdriveSetURL }).first
     }
     
-    private func addAndEnqueue(downloadTask:DownloadTask) {
+    fileprivate func addAndEnqueue(_ downloadTask:DownloadTask) {
         self.downloadQueue.append(downloadTask)
         if (!self.isExecuting) {
             self.executeQueue()
         }
     }
     
-    private func jobIsActive(downloadTask:DownloadTask) -> Bool {
+    fileprivate func jobIsActive(_ downloadTask:DownloadTask) -> Bool {
         
         for existingDownloadTask in self.downloadQueue {
             if (existingDownloadTask == downloadTask) {
@@ -53,7 +53,7 @@ class RSDownloadManager {
         return false
     }
     
-    private func executeQueue() {
+    fileprivate func executeQueue() {
         self.isExecuting = true
         if (self.activeDownloadCount < 3) {
             
@@ -62,7 +62,7 @@ class RSDownloadManager {
             (toDownload).times {
                 for task in self.downloadQueue {
                     if (!task.isActive) {
-                        self.activeDownloadCount++
+                        self.activeDownloadCount += 1
                         task.isActive = true
                         break;
                     }
@@ -72,12 +72,12 @@ class RSDownloadManager {
         }
     }
     
-    private func downloadCompleted(downloadTask:DownloadTask, success:Bool) {
-        if let index = self.downloadQueue.indexOf(downloadTask) {
-            self.downloadQueue.removeAtIndex(index)
+    fileprivate func downloadCompleted(_ downloadTask:DownloadTask, success:Bool) {
+        if let index = self.downloadQueue.index(of: downloadTask) {
+            self.downloadQueue.remove(at: index)
         }
         
-        self.activeDownloadCount--
+        self.activeDownloadCount -= 1
     }
    
 }

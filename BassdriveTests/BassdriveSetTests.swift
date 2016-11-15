@@ -14,7 +14,7 @@ class BassdriveSetTests: XCTestCase {
     func testBassdriveSetNameSettingFromURL() {
         
         let title = "mewmew this is awesome.mp3"
-        let url = NSURL(string: "http://www.bassdrive.com/this/is/an/mewmew%20this%20is%20awesome.mp3")
+        let url = URL(string: "http://www.bassdrive.com/this/is/an/mewmew%20this%20is%20awesome.mp3")
         
         var set = BassdriveSet(title: title, url:nil)
         XCTAssert(set.bassdriveSetTitle == "mewmew this is awesome", "Pass")
@@ -36,17 +36,17 @@ class BassdriveSetTests: XCTestCase {
     
     func testBassdriveSetExists() {
         
-        let path:String! = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first
+        let path:String! = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
         let file:String = "\(path)/voidet.mp3"
         
         do {
-            try! NSFileManager().removeItemAtPath(file)
+            try! FileManager().removeItem(atPath: file)
         }
         
-        var set = BassdriveSet(title: "voidet", url: NSURL(string: "voidet.mp3"))
+        var set = BassdriveSet(title: "voidet", url: URL(string: "voidet.mp3"))
         XCTAssertFalse(set.exists(), "Pass")
         
-        try! "test".writeToFile(file, atomically: false, encoding: NSUTF8StringEncoding)
+        try! "test".write(toFile: file, atomically: false, encoding: String.Encoding.utf8)
 
         XCTAssert(set.exists(), "Pass")
         
@@ -56,16 +56,16 @@ class BassdriveSetTests: XCTestCase {
     
     func testHasPreviouslyListened() {
 
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("mew.mp3")
+        UserDefaults.standard.removeObject(forKey: "mew.mp3")
         var set = BassdriveSet(title: nil, url: nil)
         XCTAssertFalse(set.hasPreviouslyListened(), "Pass")
         
-        set = BassdriveSet(title: "mew", url: NSURL(string: "mew.mp3"))
+        set = BassdriveSet(title: "mew", url: URL(string: "mew.mp3"))
         
         XCTAssertFalse(set.hasPreviouslyListened(), "Pass")
         
-        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "mew.mp3")
-        NSUserDefaults.standardUserDefaults().synchronize()
+        UserDefaults.standard.set(true, forKey: "mew.mp3")
+        UserDefaults.standard.synchronize()
         
         XCTAssert(set.hasPreviouslyListened(), "Pass")
     }

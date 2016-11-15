@@ -52,10 +52,10 @@ class SetsUITests: XCTestCase {
         tablesQuery.staticTexts["Urban Aristocracy - Citykings Matt D"].tap()
         tablesQuery.staticTexts["2012"].tap()
         
-        let cell = tablesQuery.cells.elementBoundByIndex(0)
+        let cell = tablesQuery.cells.element(boundBy: 0)
 
 //        cell.tap()
-        var downloadingCell = cell.accessibilityValue
+        let downloadingCell = cell.accessibilityValue
         print(downloadingCell)
         
         

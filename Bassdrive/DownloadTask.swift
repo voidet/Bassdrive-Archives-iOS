@@ -11,7 +11,7 @@ import Alamofire
 
 class DownloadTask:Equatable {
     
-    var requestUrl:NSURL?
+    var requestUrl:URL?
     var mediaObject:Any?
     var isActive:Bool = false {
         willSet {
@@ -22,29 +22,29 @@ class DownloadTask:Equatable {
     }
     var progressMonitor:((Double) -> (Void))?
     
-    private var totalFileSize:Int64 = 0
-    private var totalDownloaded:Int64 = 0 {
+    fileprivate var totalFileSize:Int64 = 0
+    fileprivate var totalDownloaded:Int64 = 0 {
         didSet {
             if (self.totalFileSize > 0) {
                 self.percentageCompleted = Double(self.totalDownloaded) / Double(self.totalFileSize) * 100
             }
         }
     }
-    private var percentageCompleted:Double = 0 {
+    fileprivate var percentageCompleted:Double = 0 {
         didSet {
             if let monitor = progressMonitor {
                 monitor(percentageCompleted)
             }
         }
     }
-    private var completion:[(DownloadTask, Bool) -> ()] = []
-    private var activeRequest:Request?
+    fileprivate var completion:[(DownloadTask, Bool) -> ()] = []
+    fileprivate var activeRequest:Request?
     
-    func addCompletion(task:(DownloadTask, Bool) -> ()) {
+    func addCompletion(_ task:@escaping (DownloadTask, Bool) -> ()) {
         completion.append(task)
     }
     
-    private func beginDownload() {
+    fileprivate func beginDownload() {
         
         let destination = Alamofire.Request.suggestedDownloadDestination(directory: .DocumentDirectory, domain: .UserDomainMask)
         

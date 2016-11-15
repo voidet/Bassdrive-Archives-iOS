@@ -14,8 +14,8 @@ class SetsHelper {
         var sets:[BassdriveSet] = []
         
         do {
-            let documentsUrl:NSURL! =  NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first
-            sets = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(documentsUrl.path!)
+            let documentsUrl:URL! =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+            sets = try FileManager.default.contentsOfDirectory(atPath: documentsUrl.path)
                 .map { (setString:String) -> BassdriveSet in
                     let bassdriveSet = BassdriveSet(title: setString, url:nil)
                     return bassdriveSet
