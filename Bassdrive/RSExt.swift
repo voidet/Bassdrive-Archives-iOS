@@ -11,7 +11,7 @@ import Foundation
 extension Int {
     
     func times(_ function: (Void) -> Void) {
-        for (i in 0 ..< self) {
+        for _ in 0 ..< self {
             function();
         }
     }

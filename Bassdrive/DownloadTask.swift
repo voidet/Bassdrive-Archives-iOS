@@ -46,15 +46,15 @@ class DownloadTask:Equatable {
     
     fileprivate func beginDownload() {
         
-        let destination = Alamofire.Request.suggestedDownloadDestination(directory: .DocumentDirectory, domain: .UserDomainMask)
+        let destination = DownloadRequest.suggestedDownloadDestination(for: .documentDirectory)
         
-        self.activeRequest = Alamofire.download(.GET, self.requestUrl!.absoluteString, destination: destination).progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
-            self.totalDownloaded = totalBytesRead
-            self.totalFileSize = totalBytesExpectedToRead
+        self.activeRequest = Alamofire.download(self.requestUrl!.absoluteString, to: destination).downloadProgress { progress in
+            self.totalDownloaded = progress.completedUnitCount
+            self.totalFileSize = progress.totalUnitCount
             return
-        }.response { (request, response, data, error) -> Void in
+        }.responseData { response in
             for downloadCompletion:(DownloadTask, Bool) -> () in self.completion {
-                downloadCompletion(self, error == nil)
+                downloadCompletion(self, response.result.error == nil)
             }
             self.completion.removeAll()
             return

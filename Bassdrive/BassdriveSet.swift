@@ -21,7 +21,7 @@ struct BassdriveSet {
 
     func exists() -> Bool {
         let checkValidation = FileManager.default
-        if let path = self.filePath(bassdriveSetURL?.lastPathComponent)?.absoluteString.stringByRemovingPercentEncoding, self.filePath(bassdriveSetURL?.lastPathComponent) != nil {
+        if let path = self.filePath(bassdriveSetURL?.lastPathComponent)?.absoluteString.removingPercentEncoding, self.filePath(bassdriveSetURL?.lastPathComponent) != nil {
             return checkValidation.fileExists(atPath: path)
         }
         return false
@@ -46,7 +46,7 @@ struct BassdriveSet {
     
     fileprivate func urlStringToFilename(_ urlInput:URL?) -> String? {
         if let url = urlInput {
-            return url.lastPathComponent.stringByRemovingPercentEncoding!
+            return url.lastPathComponent.removingPercentEncoding!
         }
         return nil
     }

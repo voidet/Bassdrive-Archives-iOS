@@ -23,8 +23,8 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var sets:JSON?
     var downloadedSets:[BassdriveSet]?
 
-    dynamic var loadingSets:Bool = false
-    let refreshControl = UIRefreshControl()
+    var loadingSets:Variable<Bool> = Variable(false)
+    let refreshControl:UIRefreshControl = UIRefreshControl()
     
     @IBOutlet var tableView:UITableView!
     @IBOutlet var loadingView:UIView!
@@ -37,28 +37,27 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.setupTitleView()
     
         if (self.sets == nil && self.downloadedSets == nil) {
-            self.loadingSets = true
+            self.loadingSets.value = true
             self.restoreAndRefreshSets()
         }
         
         self.loadingView.layer.cornerRadius = 10;
         
-        self.rx_observe("loadingSets")
-            .subscribeNext { (alpha:Bool?) in
-                if (alpha!) {
-                    self.loadingView.alpha = 1
-                    self.loadingIndicator.startAnimating()
-                } else {
-                    self.loadingView.alpha = 0
-                    self.loadingIndicator.stopAnimating()
-                }
+        let _ = loadingSets.asObservable().subscribe(onNext: { (alpha) in
+            if (alpha) {
+                self.loadingView.alpha = 1
+                self.loadingIndicator.startAnimating()
+            } else {
+                self.loadingView.alpha = 0
+                self.loadingIndicator.stopAnimating()
             }
+        })
         
         self.refreshControl.tintColor = UIColor(hex:"#FF36C1")
-        self.refreshControl.rx_controlEvents(.ValueChanged)
-            .subscribeNext {
-                self.restoreAndRefreshSets()
-            }
+//        self.refreshControl.rx_controlEvent(.ValueChanged)
+//            .subscribeNext {
+//                self.restoreAndRefreshSets()
+//            }
         self.tableView.addSubview(refreshControl)
         self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0)
     }
@@ -82,13 +81,13 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.tableView.reloadData()
         }
         
-        Alamofire.request(.GET, self.requestURL).responseJSON { _, _, responseJSON in
-            self.loadingSets = false
+        Alamofire.request(self.requestURL).responseJSON { responseJSON in
+            self.loadingSets.value = false
             self.refreshControl.endRefreshing()
-            if let sets = responseJSON.value as? Dictionary<String, AnyObject> {
+            if let sets = responseJSON.result.value as? Dictionary<String, AnyObject> {
                 self.sets = JSON(sets)
-                NSUserDefaults.standardUserDefaults().setObject(responseJSON.value, forKey: "sets")
-                NSUserDefaults.standardUserDefaults().synchronize()
+//                NSUserDefaults.standardUserDefaults().setObject(responseJSON.value, forKey: "sets")
+//                NSUserDefaults.standardUserDefaults().synchronize()
                 self.tableView.reloadData()
             }
         }
@@ -202,7 +201,8 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             var key:String = keys[row]
             while (key == "_sets") {
-                key = keys[row++]
+                row += 1
+                key = keys[row]
             }
             
             cell.bassdriveSetTitleLabel.text = key

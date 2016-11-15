@@ -28,10 +28,10 @@ class RSPlayerViewController: UIViewController, RSPlaybackManagerProtocol {
         super.viewDidLoad()
         RSPlaybackManager.sharedInstance.addSubscriber(self)
         
-        NotificationCenter.default.rx_notification("AVAudioSessionRouteChangeNotification", object:nil)
-            .map { notif in
-                self.pause()
-        }
+//        NotificationCenter.default.notification("AVAudioSessionRouteChangeNotification", object:nil)
+//            .map { notif in
+//                self.pause()
+//        }
     }
     
     override func viewDidLayoutSubviews() {
