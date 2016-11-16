@@ -11,7 +11,7 @@ import AVFoundation
 import MediaPlayer
 
 protocol RSPlaybackManagerProtocol {
-    func didUpdateToTime(_ time:TimeInterval)
+    func didUpdateToTime(time:TimeInterval)
 }
 
 class RSPlaybackManager : NSObject {
@@ -25,31 +25,31 @@ class RSPlaybackManager : NSObject {
     
     override fileprivate init() {}
     
-    func playSet(_ bassdriveSet:BassdriveSet) {
+    func playSet(bassdriveSet:BassdriveSet) {
         self.currentSet = bassdriveSet
 
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-            try AVAudioSession.sharedInstance().setActive(true)
+//        do {
+            try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try? AVAudioSession.sharedInstance().setActive(true)
             
             self.progressTracker = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(RSPlaybackManager.announceTime), userInfo: nil, repeats: true)
             self.progressTracker!.fire()
             
             let setTitle = self.currentSet!.bassdriveSetTitle
-            if let filePath = self.currentSet!.filePath(setTitle)!.absoluteString as String? {
-                self.audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath:filePath, isDirectory: false))
+            if let filePath = self.currentSet!.filePath(setTitle: setTitle)!.absoluteString.removingPercentEncoding as String? {
+                self.audioPlayer = try? AVAudioPlayer(contentsOf: URL(fileURLWithPath:"\(filePath).mp3", isDirectory: false))
                 self.audioPlayer!.prepareToPlay()
                 self.play()
             }
 
-        } catch {
-            print("could not spin up AVAudioSession")
-            return
-        }
-        
+//        } catch {
+//            print("could not spin up AVAudioSession")
+//            return
+//        }
+
     }
     
-    func addSubscriber(_ subscriber:RSPlaybackManagerProtocol) {
+    func addSubscriber(subscriber:RSPlaybackManagerProtocol) {
 //        if find(self.delegates, subscriber) {
             self.delegates.append(subscriber)
 //        }
@@ -90,7 +90,7 @@ class RSPlaybackManager : NSObject {
         }
         
         for delegate in self.delegates {
-            delegate.didUpdateToTime(self.currentTime())
+            delegate.didUpdateToTime(time: self.currentTime())
         }
     }
     
@@ -106,7 +106,7 @@ class RSPlaybackManager : NSObject {
         return self.playing
     }
     
-    func jumpToTime(_ time:TimeInterval) {
+    func jumpToTime(time:TimeInterval) {
         self.audioPlayer?.currentTime = time
     }
     

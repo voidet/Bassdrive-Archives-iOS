@@ -22,29 +22,29 @@ class DownloadTask:Equatable {
     }
     var progressMonitor:((Double) -> (Void))?
     
-    fileprivate var totalFileSize:Int64 = 0
-    fileprivate var totalDownloaded:Int64 = 0 {
+    private var totalFileSize:Int64 = 0
+    private var totalDownloaded:Int64 = 0 {
         didSet {
             if (self.totalFileSize > 0) {
                 self.percentageCompleted = Double(self.totalDownloaded) / Double(self.totalFileSize) * 100
             }
         }
     }
-    fileprivate var percentageCompleted:Double = 0 {
+    private var percentageCompleted:Double = 0 {
         didSet {
             if let monitor = progressMonitor {
                 monitor(percentageCompleted)
             }
         }
     }
-    fileprivate var completion:[(DownloadTask, Bool) -> ()] = []
-    fileprivate var activeRequest:Request?
+    private var completion:[(DownloadTask, Bool) -> ()] = []
+    private var activeRequest:Request?
     
-    func addCompletion(_ task:@escaping (DownloadTask, Bool) -> ()) {
+    func addCompletion(task:@escaping (DownloadTask, Bool) -> ()) {
         completion.append(task)
     }
     
-    fileprivate func beginDownload() {
+    private func beginDownload() {
         
         let destination = DownloadRequest.suggestedDownloadDestination(for: .documentDirectory)
         

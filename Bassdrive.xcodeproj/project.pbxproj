@@ -13,6 +13,7 @@
 		136121831B6E9296001CBD3A /* titleView@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 136121821B6E9296001CBD3A /* titleView@2x.png */; };
 		136121851B6EA0A3001CBD3A /* RSPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136121841B6EA0A3001CBD3A /* RSPlayerViewController.swift */; };
 		137169C31B6B4AA70008BC29 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 137169C21B6B4AA70008BC29 /* MediaPlayer.framework */; };
+		2FF96FA0D867977E80B67E5F /* Pods_Bassdrive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A92255DCA2E4A7B05518F183 /* Pods_Bassdrive.framework */; };
 		385498371B7E70FD00F13252 /* SetsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385498361B7E70FD00F13252 /* SetsHelper.swift */; };
 		3855EE101BA33C51006E8079 /* RegEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3855EE0F1BA33C51006E8079 /* RegEx.swift */; };
 		387728E31BA4AB100009D35B /* BassdriveSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C911211B651BD200F4EBC7 /* BassdriveSet.swift */; };
@@ -112,6 +113,7 @@
 			files = (
 				137169C31B6B4AA70008BC29 /* MediaPlayer.framework in Frameworks */,
 				135E57261B6B45E7005F7FC8 /* AVFoundation.framework in Frameworks */,
+				2FF96FA0D867977E80B67E5F /* Pods_Bassdrive.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

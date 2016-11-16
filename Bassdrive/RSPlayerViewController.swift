@@ -26,7 +26,7 @@ class RSPlayerViewController: UIViewController, RSPlaybackManagerProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        RSPlaybackManager.sharedInstance.addSubscriber(self)
+        RSPlaybackManager.sharedInstance.addSubscriber(subscriber: self)
         
 //        NotificationCenter.default.notification("AVAudioSessionRouteChangeNotification", object:nil)
 //            .map { notif in
@@ -43,7 +43,7 @@ class RSPlayerViewController: UIViewController, RSPlaybackManagerProtocol {
         }
     }
     
-    func didUpdateToTime(_ time:TimeInterval) {
+    func didUpdateToTime(time:TimeInterval) {
         self.updateProgress()
     }
     
@@ -53,12 +53,12 @@ class RSPlayerViewController: UIViewController, RSPlaybackManagerProtocol {
             let currentTime = RSPlaybackManager.sharedInstance.currentTime()
             
             self.playbackProgressBarXOffset.constant = self.initialProgressSize! - (self.initialProgressSize! * CGFloat(currentTime / totalTime));
-            self.timeLabel.text = self.isCountingDown ? self.stringFromTimeInterval(totalTime - currentTime) : self.stringFromTimeInterval(currentTime)
+            self.timeLabel.text = self.isCountingDown ? self.stringFromTimeInterval(interval: totalTime - currentTime) : self.stringFromTimeInterval(interval: currentTime)
             self.view.layoutIfNeeded()
         }
     }
     
-    fileprivate func stringFromTimeInterval(_ interval: TimeInterval) -> String {
+    fileprivate func stringFromTimeInterval(interval: TimeInterval) -> String {
         let interval = Int(interval)
         let seconds = interval % 60
         let minutes = (interval / 60) % 60
@@ -66,11 +66,11 @@ class RSPlayerViewController: UIViewController, RSPlaybackManagerProtocol {
         return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
     
-    fileprivate func updateTimeByPercentage(_ percentage:Double) {
-        RSPlaybackManager.sharedInstance.jumpToTime(self.timeAtPercentage(percentage))
+    fileprivate func updateTimeByPercentage(percentage:Double) {
+        RSPlaybackManager.sharedInstance.jumpToTime(time: self.timeAtPercentage(difference: percentage))
     }
     
-    fileprivate func timeAtPercentage(_ difference:Double) -> TimeInterval {
+    fileprivate func timeAtPercentage(difference:Double) -> TimeInterval {
         return TimeInterval(RSPlaybackManager.sharedInstance.totalTime()) * (difference / 100)
     }
     
@@ -136,10 +136,10 @@ class RSPlayerViewController: UIViewController, RSPlaybackManagerProtocol {
             difference = 1
         }
         
-        self.timeLabel.text = self.stringFromTimeInterval(self.timeAtPercentage(Double(difference * 100)))
+        self.timeLabel.text = self.stringFromTimeInterval(interval: self.timeAtPercentage(difference: Double(difference * 100)))
 
         if (gestureRecogniser.state == .ended) {
-            self.updateTimeByPercentage(Double(difference * 100))
+            self.updateTimeByPercentage(percentage: Double(difference * 100))
             self.scrubbing = false
         }
     }

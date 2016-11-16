@@ -53,7 +53,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         })
         
-        self.refreshControl.tintColor = UIColor(hex:"#FF36C1")
+        self.refreshControl.tintColor = UIColor(hex:"#0D345C")
 //        self.refreshControl.rx_controlEvent(.ValueChanged)
 //            .subscribeNext {
 //                self.restoreAndRefreshSets()
@@ -94,7 +94,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     fileprivate func setupTitleView() {
-        let titleView = UIImageView(image: UIImage(named: "titleView"))
+        let titleView = UIImageView(image: UIImage(named: "expedia"))
         titleView.frame.size.height = 40
         titleView.contentMode = .scaleAspectFit
         titleView.clipsToBounds = true
@@ -165,15 +165,15 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         var cell:RSSetTableViewCell = tableView.dequeueReusableCell(withIdentifier: "setTitleCell") as! RSSetTableViewCell
         if (self.downloadedSets != nil) {
-            cell = self.getLocalSetCell(indexPath, cell:cell)
+            cell = self.getLocalSetCell(indexPath: indexPath, cell:cell)
         } else if (self.sets != nil) {
-            cell = self.getRemoteSetCell(indexPath, cell:cell)
+            cell = self.getRemoteSetCell(indexPath: indexPath, cell:cell)
         }
         
         return cell
     }
     
-    func getLocalSetCell(_ indexPath:IndexPath, cell:RSSetTableViewCell) -> RSSetTableViewCell {
+    func getLocalSetCell(indexPath:IndexPath, cell:RSSetTableViewCell) -> RSSetTableViewCell {
         
         cell.progressBarSize.constant = self.view.frame.size.width
         
@@ -184,12 +184,12 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.downloaded.alpha = 1
         cell.bassdriveSet = bassdriveSet
         cell.previouslyListened.alpha = bassdriveSet.hasPreviouslyListened() ? 1 : 0
-        cell.downloadTask = RSDownloadManager.sharedManager.jobForBassdriveSet(bassdriveSet)
+        cell.downloadTask = RSDownloadManager.sharedManager.jobForBassdriveSet(bassdriveSet: bassdriveSet)
         
         return cell
     }
     
-    func getRemoteSetCell(_ indexPath:IndexPath, cell:RSSetTableViewCell) -> RSSetTableViewCell {
+    func getRemoteSetCell(indexPath:IndexPath, cell:RSSetTableViewCell) -> RSSetTableViewCell {
         
         cell.progressBarSize.constant = self.view.frame.size.width
         
@@ -215,7 +215,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 cell.bassdriveSetTitleLabel.text = bassdriveSet.bassdriveSetTitle
                 cell.downloaded.alpha = bassdriveSet.exists() ? 1 : 0
                 cell.bassdriveSet = bassdriveSet
-                if let downloadTask = RSDownloadManager.sharedManager.jobForBassdriveSet(bassdriveSet) {
+                if let downloadTask = RSDownloadManager.sharedManager.jobForBassdriveSet(bassdriveSet: bassdriveSet) {
                     cell.downloadTask = downloadTask
                 }
                 cell.previouslyListened.alpha = bassdriveSet.hasPreviouslyListened() ? 1 : 0
@@ -244,9 +244,9 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         if let bassdriveSet = cell.bassdriveSet {
             if (bassdriveSet.exists()) {
-                RSPlaybackManager.sharedInstance.playSet(bassdriveSet)
+                RSPlaybackManager.sharedInstance.playSet(bassdriveSet: bassdriveSet)
             } else {
-                cell.downloadTask = RSDownloadManager.sharedManager.enqueForDownload(bassdriveSet)
+                cell.downloadTask = RSDownloadManager.sharedManager.enqueForDownload(bassdriveSet: bassdriveSet)
                 self.tableView.deselectRow(at: indexPath, animated: true)
             }
         }

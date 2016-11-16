@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,16 +15,15 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch.png" translatesAutoresizingMaskIntoConstraints="NO" id="hgI-4r-7e5">
-                    <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="expedia" translatesAutoresizingMaskIntoConstraints="NO" id="HUL-ll-NvN">
+                    <rect key="frame" x="62" y="145" width="357" height="190"/>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="hgI-4r-7e5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="EVS-bP-YWT"/>
-                <constraint firstItem="hgI-4r-7e5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ITI-k6-KiX"/>
-                <constraint firstAttribute="bottom" secondItem="hgI-4r-7e5" secondAttribute="bottom" id="iWy-IX-Yxp"/>
-                <constraint firstAttribute="trailing" secondItem="hgI-4r-7e5" secondAttribute="trailing" id="veG-Ls-snG"/>
+                <constraint firstItem="HUL-ll-NvN" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="KIS-NV-Mmr"/>
+                <constraint firstAttribute="trailing" secondItem="HUL-ll-NvN" secondAttribute="trailing" constant="61" id="Ve0-2w-pxP"/>
+                <constraint firstItem="HUL-ll-NvN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="62" id="xcO-pE-WK6"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -28,6 +31,6 @@
         </view>
     </objects>
     <resources>
-        <image name="launch.png" width="320" height="320"/>
+        <image name="expedia" width="1024" height="290"/>
     </resources>
 </document>

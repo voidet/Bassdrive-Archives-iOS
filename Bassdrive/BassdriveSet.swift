@@ -10,24 +10,24 @@ import Foundation
 
 struct BassdriveSet {
     
-    fileprivate(set) var bassdriveSetTitle:String?
-    fileprivate(set) var bassdriveSetURL:URL?
+    private(set) var bassdriveSetTitle:String?
+    private(set) var bassdriveSetURL:URL?
     
     init(title:String?, url:URL?) {
-        let setTitle:String? = title ?? urlStringToFilename(url)
-        bassdriveSetTitle = cleanMP3String(setTitle)
-        bassdriveSetURL = url ?? filePath(setTitle)
+        let setTitle:String? = title ?? urlStringToFilename(urlInput: url)
+        bassdriveSetTitle = cleanMP3String(inputString: setTitle)
+        bassdriveSetURL = url ?? filePath(setTitle: setTitle)
     }
 
     func exists() -> Bool {
         let checkValidation = FileManager.default
-        if let path = self.filePath(bassdriveSetURL?.lastPathComponent)?.absoluteString.removingPercentEncoding, self.filePath(bassdriveSetURL?.lastPathComponent) != nil {
+        if let path = self.filePath(setTitle: bassdriveSetURL?.lastPathComponent)?.absoluteString.removingPercentEncoding, self.filePath(setTitle: bassdriveSetURL?.lastPathComponent) != nil {
             return checkValidation.fileExists(atPath: path)
         }
         return false
     }
     
-    func filePath(_ setTitle:String?) -> URL? {
+    func filePath(setTitle:String?) -> URL? {
         if (setTitle == nil) {
             return nil
         }
@@ -44,14 +44,14 @@ struct BassdriveSet {
         return false
     }
     
-    fileprivate func urlStringToFilename(_ urlInput:URL?) -> String? {
+    private func urlStringToFilename(urlInput:URL?) -> String? {
         if let url = urlInput {
             return url.lastPathComponent.removingPercentEncoding!
         }
         return nil
     }
     
-    fileprivate func cleanMP3String(_ inputString:String?) -> String? {
+    private func cleanMP3String(inputString:String?) -> String? {
         if (inputString == nil) {
             return nil
         }

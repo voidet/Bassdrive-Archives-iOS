@@ -33,7 +33,7 @@ class RSSetTableViewCell: UITableViewCell {
             }
             
             self.downloadTask!.progressMonitor = updateProgress
-            self.downloadTask!.addCompletion(completed)
+            self.downloadTask!.addCompletion(task: completed)
         }
     }
     
@@ -55,7 +55,7 @@ class RSSetTableViewCell: UITableViewCell {
         self.previouslyListened.alpha = 0
     }
     
-    fileprivate func updateProgress(_ progress:Double) {
+    fileprivate func updateProgress(progress:Double) {
         DispatchQueue.main.async(execute: {
             self.progressBar.alpha = 1
             let width = self.frame.size.width
@@ -65,7 +65,7 @@ class RSSetTableViewCell: UITableViewCell {
         })
     }
     
-    fileprivate func completed(_ downloadTask:DownloadTask, success:Bool) {
+    fileprivate func completed(downloadTask:DownloadTask, success:Bool) {
         if (self.bassdriveSet!.exists()) {
             UIView.animate(withDuration: 0.5, animations: {
                 self.downloaded.alpha = 1
